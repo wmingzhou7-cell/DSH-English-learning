@@ -1,4 +1,4 @@
 - insert:
     - id: english-lounge
-      name: '@local/english-lounge'
+      name: 'dsh-english-lounge'
       config: {}
