@@ -69,12 +69,12 @@
       },
       "versions": [
         {
-          "version": "1.1.0",
-          "publishTimestamp": 1794364596,
+          "version": "1.1.1",
+          "publishTimestamp": 1794367865,
           "source": {
             "type": "git",
             "url": "https://github.com/wmingzhou7-cell/DSH-English-learning",
-            "commit": "4e5905319ec1f4325edcc73937369357818c609c"
+            "commit": "604283e9e9ca3a2d9fd3ed9a0a27193c39aa65f2"
           }
         }
       ]
