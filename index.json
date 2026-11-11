@@ -1,0 +1,83 @@
+{
+  "format": 1,
+  "title": {
+    "en": "Link's DSH plugins",
+    "zh": "Link 的 DSH 插件"
+  },
+  "description": {
+    "en": "Personal DeepSeek Harness plugins by Link.",
+    "zh": "Link 的个人 DeepSeek Harness 插件集合。"
+  },
+  "metadata": {
+    "categories": {
+      "learning": {
+        "title": {
+          "en": "Learning",
+          "zh": "学习"
+        }
+      }
+    },
+    "labels": {
+      "vocabulary": {
+        "title": {
+          "en": "Vocabulary",
+          "zh": "词汇"
+        }
+      },
+      "ui": {
+        "title": {
+          "en": "UI surface",
+          "zh": "界面扩展"
+        }
+      }
+    }
+  },
+  "plugins": [
+    {
+      "name": "dsh-english-lounge",
+      "title": {
+        "en": "English Lounge",
+        "zh": "英语角"
+      },
+      "description": {
+        "en": "Rotating word and phrase flashcards under the composer, plus an English topic brief with a word book in the right sidebar.",
+        "zh": "输入框下方轮播单词短语闪卡，右侧栏展示当前会话主题英文简报，内置生词本与认识状态记录。"
+      },
+      "icon": "icon.svg",
+      "author": "Link",
+      "homepage": "https://github.com/wmingzhou7-cell/dsh-english-lounge",
+      "repository": {
+        "url": "https://github.com/wmingzhou7-cell/dsh-english-lounge"
+      },
+      "metadata": {
+        "category": "learning",
+        "keywords": [
+          "english",
+          "vocabulary",
+          "flashcards",
+          "learning",
+          "word book",
+          "英语",
+          "单词",
+          "生词本",
+          "学习"
+        ],
+        "labels": [
+          "vocabulary",
+          "ui"
+        ]
+      },
+      "versions": [
+        {
+          "version": "1.1.0",
+          "publishTimestamp": 0,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/wmingzhou7-cell/dsh-english-lounge",
+            "commit": "0000000000000000000000000000000000000000"
+          }
+        }
+      ]
+    }
+  ]
+}
