@@ -45,9 +45,9 @@
       },
       "icon": "icon.svg",
       "author": "Link",
-      "homepage": "https://github.com/wmingzhou7-cell/dsh-english-lounge",
+      "homepage": "https://github.com/wmingzhou7-cell/DSH-English-learning",
       "repository": {
-        "url": "https://github.com/wmingzhou7-cell/dsh-english-lounge"
+        "url": "https://github.com/wmingzhou7-cell/DSH-English-learning"
       },
       "metadata": {
         "category": "learning",
@@ -70,11 +70,11 @@
       "versions": [
         {
           "version": "1.1.0",
-          "publishTimestamp": 0,
+          "publishTimestamp": 1794364596,
           "source": {
             "type": "git",
-            "url": "https://github.com/wmingzhou7-cell/dsh-english-lounge",
-            "commit": "0000000000000000000000000000000000000000"
+            "url": "https://github.com/wmingzhou7-cell/DSH-English-learning",
+            "commit": "4e5905319ec1f4325edcc73937369357818c609c"
           }
         }
       ]
