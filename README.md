@@ -15,12 +15,13 @@ A DeepSeek Harness (DSH) client plugin that turns idle moments into an English m
   - While the model is generating (`session.running`), rotation speeds up and a pulse dot appears; hovering pauses it. 回复生成期间加速轮换并显示呼吸点，悬停暂停。
   - Buttons: next / got-it / save-to-word-book / open sidebar. 按钮：换一个、认识了、收进生词本、打开右侧栏。
 - **Right-sidebar page · 右侧栏「英语角」页**
-  - Topic brief: reads the session title, detects the topic (code / frontend / git / AI / design / planning), and composes a short English brief with topic chips. 主题简报：读取会话标题，识别主题并生成英文概述与标签。
-  - Topic vocabulary matched to the detected topic. 按主题匹配的注释词卡。
+  - Topic brief: reads the session title **and recent conversation text**, detects one of 14 topics (code / frontend / git / AI / design / planning / business / finance / industry / legal / health / travel / learning / daily), and composes a short English brief with topic chips. 主题简报：读取会话标题与最近对话内容，识别 14 个主题（编程/前端/Git/AI/设计/规划/商务/金融/工业/法务/健康/旅行/学习/日常）并生成英文概述与标签。
+  - Topic vocabulary matched to the detected topic — the composer dock strip and the sidebar word list both switch to topic words (generic words fill in when no topic is detected). 按主题匹配的注释词卡——输入框下方闪卡条与侧栏词表都切换为主题词；未识别到主题时回退通用词。
+  - **Custom topic packs · 自定义主题词包**: ask the model for an ```elpack code block in the conversation (`{"topic":"finance","title":"…","words":[{w,pos,zh,en,zhEx}]}`, ≤40 words); the plugin parses it, caches it locally (up to 12 packs), and blends its words into topic-matched pushes — dock strip and sidebar alike. Manage or delete packs in Settings. 在对话里让模型生成 ```elpack 代码块（≤40 词），插件即解析并缓存（最多 12 包），词包词自动混入主题推送——闪卡条与侧栏同样生效；设置页可查看/删除词包。
   - **Word book (生词本)**: segmented view with a live count; ☆ on any card saves a word. 生词本分段视图带数量角标，任意词卡 ☆ 收进。
   - **Known state (认识状态)**: marking a word dims its card with a “✓ Known” badge and an `x/y` counter; “↩ Forgot” undoes it. 认识后卡片变暗并挂徽章、计数；「忘了」可撤销。
-- **Settings · 设置页**: right-sidebar **Settings** tab — English level (starter A2 → pro C1), words per batch, and dock card pace with explicit seconds (e.g. fast = 6–14 s: short while generating, long while idle). Open it with the small ⚙ icon beside the segmented tabs; ▾ Hide word strip collapses the dock bar (tap the ＋ capsule above the composer to bring it back). Clearing learning records requires a second tap — the button turns red and auto-reverts in 4 s. Pushed words are filtered by the difficulty ceiling and drawn with priority from the band matching the chosen level; topic relevance stays automatic. 右侧栏「设置」分段：英语水平（入门 A2 → 老手 C1）、每批数量、换词节奏（带具体秒数，如快 = 6–14 秒：生成中用短间隔、空闲用长间隔）。点分段右侧的小 ⚙ 图标进入；「收起单词条」可收起输入框下方的卡片条（点输入框上方 ＋ 胶囊恢复）。清空学习记录需二次确认——按钮变红，4 秒未点击自动复位。推送按难度上限过滤，并优先从所选水平对应的难度区间抽词；主题相关性自动检测，无需手动配置。
-- **Built-in bank · 内置词库**: 562 developer-flavoured entries rated 1–5. Phrases come from real developer scenarios (requirements, architecture, code review, incidents, retrospectives, meetings); words are curated from the Oxford 3000/5000 by CEFR (A1–C1) with engineering-flavoured examples. 562 条开发者向词条，难度 1–5 分级：短语源自真实开发场景（需求、架构、代码审查、线上事故、复盘、会议），单词按 CEFR（A1–C1）从 Oxford 3000/5000 精选，例句贴近工程语境。
+- **Settings · 设置页**: right-sidebar **Settings** tab — English level (starter A2 → pro C1), words per batch, and dock card pace with explicit seconds (e.g. fast = 6–14 s: short while generating, long while idle). Open it with the small ⚙ icon beside the segmented tabs; ▾ Hide word strip collapses the dock bar (tap the ＋ capsule above the composer to bring it back). Clearing learning records requires a second tap — the button turns red and auto-reverts in 4 s. Pushed words are filtered by the difficulty ceiling and drawn with priority from the band matching the chosen level; topic relevance stays automatic. 右侧栏「设置」分段：英语水平（入门 A2 → 老手 C1）、每批数量、换词节奏（带具体秒数，如快 = 6–14 秒：生成中用短间隔、空闲用长间隔）。点分段右侧的小 ⚙ 图标进入；「收起单词条」可收起输入框下方的卡片条（点输入框上方 ＋ 胶囊恢复）。清空学习记录需二次确认——按钮变红，4 秒未点击自动复位。推送按难度上限过滤，并优先从所选水平对应的难度区间抽词；主题相关性自动检测，无需手动配置。设置页还列出已保存的主题词包，可逐个删除。
+- **Built-in bank · 内置词库**: 620 entries rated 1–5: developer phrases from real scenarios (requirements, architecture, code review, incidents, retrospectives, meetings), Oxford 3000/5000 words curated by CEFR (A1–C1), and industry packs for power trading, industrial IoT, business and legal — each with examples in its own jargon. 620 条词条，难度 1–5：真实开发场景短语、按 CEFR（A1–C1）精选的 Oxford 3000/5000 单词，以及电力交易/工业物联/商务/法务行业词包，例句贴近各自领域语境。
 - **State**: known / word book / collapsed / settings persist in browser `localStorage` (`dsh.english-lounge.v1`). 认识、生词本、收起状态与设置都存于浏览器本地。
 
 ## Install · 安装
@@ -55,7 +56,7 @@ Developed and tested on DSH `0.2.2-rc.1` (desktop profile, web client). The inde
 
 ## Privacy · 隐私
 
-Everything runs in the browser. Topic detection uses only the session title from the local session catalog; nothing leaves the machine beyond what DSH itself already exchanges. 全部逻辑在浏览器本地运行；主题识别只使用本地会话目录中的会话标题。
+Everything runs in the browser. Topic detection uses only the session title and a bounded slice of recent session text (kept in memory, never persisted or uploaded); saved topic packs stay in browser `localStorage`. Nothing leaves the machine beyond what DSH itself already exchanges. 全部逻辑在浏览器本地运行；主题识别只用会话标题与最近会话文本的有限片段（仅在内存中，不落盘、不上传），保存的主题词包只存浏览器 localStorage；除 DSH 本身交换的内容外无任何数据离开本机。
 
 ## Implementation notes · 实现说明
 
@@ -65,7 +66,7 @@ Everything runs in the browser. Topic detection uses only the session title from
 - Styling uses only host theme tokens (`--dsw-alias-*`); literal colours appear solely in the brand glyph. 样式仅用宿主主题 token。
 - No harness client package is `require`d; no DOM writes outside the component tree. 不 require 任何宿主客户端包。
 
-Roadmap ideas: SM-2 review queue, CSV import, topic extraction from session content. 路线图：SM-2 复习队列、CSV 导入、按会话内容提取主题。（设置页已覆盖换词节奏与难度/数量偏好）
+Roadmap ideas: SM-2 review queue, CSV import. 路线图：SM-2 复习队列、CSV 导入。（主题识别与主题词包已在 v1.3.0 落地；设置页覆盖换词节奏与难度/数量偏好）
 
 ## License
 
