@@ -1,7 +1,7 @@
 {
   "name": "dsh-english-lounge",
   "description": "English Lounge for the DeepSeek Harness: rotating word and phrase flashcards under the composer, plus an English topic brief with a word book in the right sidebar",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "type": "module",
   "license": "MIT",
   "author": "Link <wmingzhou7@gmail.com>",
