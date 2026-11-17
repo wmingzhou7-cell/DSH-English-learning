@@ -14917,7 +14917,11 @@ window.__ModuleLoader__.load({
     const WORDS_SET = new Set(WORDS.map((entry) => entry.w.toLowerCase()));
 
     // --------------------------------------------------------- topics
-    const TOPIC_RULES = [
+    // v1.5.0 离线批量主题标注（word → [topic]），由 tools/topic-tags.json 生成；查询一律走 tagsOf()
+const TOPIC_TAGS = {"PTO":["work"],"illustrate":["design"],"business":["business"],"leave":["work"],"machine":["industry"],"productive":["work"],"abrasion":["industry"],"academy":["education"],"ache":["health"],"adjustable":["industry"],"aerospace":["industry"],"aesthetic":["design"],"ambulance":["health"],"amends":["legal"],"amuse":["daily"],"antibiotic":["health"],"apparatus":["industry"],"appliance":["daily"],"aquarium":["daily"],"archaic":["education"],"article":["legal"],"assembly":["industry"],"assert":["industry"],"assign":["work"],"assignment":["education","work"],"attend":["health"],"attendance":["work"],"aupair":["daily"],"bacteria":["health"],"bacterium":["health"],"badminton":["daily"],"bag":["travel"],"basin":["daily"],"basketball":["daily"],"bath":["daily"],"bathe":["daily"],"bazaar":["daily"],"bearing":["industry"],"beer":["daily"],"bin":["code"],"birthday":["daily"],"blackboard":["education"],"blueprint":["design"],"boiler":["industry"],"bone":["health"],"bonus":["finance"],"bound":["legal"],"breakfast":["daily"],"breathe":["health"],"brother":["work"],"burn":["health"],"button":["frontend"],"cabin":["travel"],"cafe":["daily"],"calibration":["industry"],"campus":["education"],"cancer":["health"],"caption":["daily"],"cartoon":["daily"],"caustic":["industry"],"celebrate":["daily"],"celebrity":["daily"],"certificate":["education","legal"],"chalk":["education"],"chamber":["work","industry"],"chancellor":["legal","education"],"chat":["daily"],"checkup":["health"],"chore":["daily"],"chronic":["health","daily"],"cinema":["daily"],"circulation":["finance"],"cite":["legal"],"civilize":["education"],"class":["education"],"classmate":["education"],"classroom":["education"],"clinic":["health"],"clock":["industry"],"clone":["health","git"],"clothe":["daily"],"coed":["education"],"coffee":["daily"],"coin":["industry"],"collaborate":["work"],"collaboration":["work"],"collect":["finance"],"college":["education"],"color":["design"],"commence":["education"],"commission":["business"],"commute":["work"],"commuter":["work"],"compensate":["legal"],"compensation":["legal"],"component":["frontend"],"composition":["education"],"compress":["industry"],"compression":["industry"],"compromise":["legal"],"compulsory":["legal"],"computer":["code"],"concert":["daily"],"configuration":["code","frontend"],"conservatory":["education"],"consign":["work"],"console":["code"],"consultant":["health"],"context":["ai"],"contrive":["design"],"conventional":["daily"],"convict":["legal"],"cooperate":["work"],"cope":["finance"],"corrosion":["industry"],"cost":["finance"],"cough":["health"],"counsel":["legal"],"courier":["travel"],"course":["education"],"coverage":["finance"],"credit":["finance"],"cure":["health"],"currency":["finance"],"curriculum":["education"],"custom":["travel","daily"],"customary":["business"],"daily":["work"],"dance":["daily"],"database":["code"],"dean":["education"],"debt":["finance"],"default":["legal"],"defect":["industry"],"defendant":["legal"],"defer":["work"],"degree":["education"],"delay":["work"],"delivery":["work"],"dentist":["health"],"departure":["travel"],"depend":["code"],"dependent":["code"],"deposit":["finance"],"deposition":["finance"],"depression":["health"],"designate":["design"],"desk":["work"],"devise":["design"],"diagnose":["health"],"dictation":["education"],"diet":["daily"],"diploma":["education"],"directly":["industry"],"discount":["business"],"disposition":["code","health"],"dissertation":["education"],"distance":["design"],"distraction":["daily"],"distribute":["business"],"distribution":["business"],"ditch":["business"],"diversion":["daily"],"dividend":["finance"],"doctor":["health"],"doctorate":["education"],"dollar":["finance"],"domain":["code"],"domestic":["daily"],"dorm":["education"],"dormitory":["education"],"dose":["health"],"drink":["daily"],"drug":["health"],"duty":["work","finance","legal"],"dynamo":["industry"],"earnings":["finance"],"educate":["education"],"education":["education"],"efficiency":["work"],"efficient":["work"],"electricity":["industry"],"embed":["ai"],"engagement":["daily"],"english":["education"],"entail":["health"],"entitle":["legal"],"equipment":["industry"],"equity":["finance"],"erosion":["industry"],"everyday":["daily"],"evidence":["legal"],"exam":["education"],"examination":["education"],"excursion":["travel"],"exercise":["health"],"exist":["daily"],"existence":["daily"],"expenditure":["finance"],"expense":["finance"],"express":["daily"],"exquisite":["code"],"extraordinary":["work"],"facility":["industry"],"factory":["industry"],"family":["daily"],"fan":["daily"],"fancy":["daily"],"fault":["industry"],"feast":["daily"],"festival":["daily"],"fever":["health"],"finance":["finance"],"financial":["finance"],"fitness":["health"],"fixture":["industry"],"flabby":["health"],"flesh":["health"],"flight":["travel"],"flu":["health"],"football":["daily"],"forge":["industry"],"foundation":["finance"],"fracture":["health"],"frame":["code"],"framework":["code"],"friendship":["daily"],"fun":["daily"],"function":["code"],"fund":["finance"],"furnace":["industry"],"furniture":["daily"],"gaily":["daily"],"game":["daily"],"gathering":["daily"],"gear":["industry"],"gene":["health"],"generator":["industry"],"genetic":["health"],"germ":["health"],"gift":["daily"],"glossary":["education"],"gradient":["ai","design"],"grammar":["education"],"grammatical":["education"],"granddaughter":["daily"],"grandfather":["daily"],"grandmother":["daily"],"grandson":["daily"],"grid":["industry"],"grocery":["daily"],"guest":["travel"],"guide":["travel"],"guilt":["legal"],"gymnasium":["health"],"habit":["daily"],"habitual":["daily"],"headache":["health"],"heal":["legal","health"],"health":["health"],"healthy":["health"],"hear":["legal"],"hearing":["legal"],"hereditary":["health"],"hike":["travel"],"hobby":["daily"],"holiday":["daily"],"home":["daily"],"honor":["finance"],"horticulture":["daily"],"hospital":["health"],"household":["daily"],"housewife":["daily"],"housework":["daily"],"housing":["industry"],"hydraulic":["industry"],"hysterical":["code"],"illness":["health"],"illustration":["design"],"immediately":["industry"],"immigrate":["travel"],"immune":["health"],"impose":["finance"],"imprison":["legal"],"income":["finance"],"indemnity":["legal"],"industrial":["industry"],"industrialize":["industry"],"industrious":["industry"],"industry":["industry"],"inefficient":["work"],"infect":["health"],"infectious":["health"],"inflation":["finance"],"infringe":["legal"],"ingenuity":["design"],"inn":["travel"],"input":["finance"],"insert":["ai"],"insolvent":["finance"],"installment":["finance"],"instalment":["finance"],"institute":["education"],"instruction":["education"],"instrument":["industry"],"insulate":["industry"],"insulator":["industry"],"insurance":["finance"],"intellectual":["legal"],"interest":["finance","daily"],"interval":["design","daily"],"intrigue":["daily"],"invalid":["health"],"inventory":["business"],"invest":["finance"],"investigate":["finance"],"investigation":["finance"],"investment":["finance"],"itinerary":["travel"],"jazz":["daily"],"jog":["health"],"journal":["code","work"],"journey":["travel"],"kilowatt":["industry"],"kindergarten":["education"],"kitchen":["daily"],"landing":["travel"],"language":["education"],"lathe":["industry"],"laundry":["daily"],"law":["legal"],"lawyer":["legal"],"layout":["frontend","design"],"leak":["code"],"learn":["education"],"learning":["education"],"lecture":["education"],"legal":["legal"],"legislate":["legal"],"legislation":["legal"],"lesson":["education"],"lever":["finance"],"levy":["finance"],"liberty":["legal"],"licence":["legal"],"license":["legal"],"litre":["industry"],"liver":["health"],"living":["daily"],"loan":["finance"],"lounge":["daily"],"lover":["daily"],"lubricate":["industry"],"luggage":["travel"],"lunch":["daily"],"luncheon":["daily"],"lung":["health"],"luxurious":["daily"],"machinery":["industry"],"mackintosh":["education"],"magistrate":["legal"],"maintain":["industry"],"maintenance":["industry"],"make":["industry"],"malice":["legal"],"mall":["daily"],"malnutrition":["health"],"manage":["finance"],"manufacture":["industry"],"manufacturer":["industry"],"marriage":["daily"],"marry":["daily"],"mate":["work"],"matrimony":["daily"],"mechanic":["industry"],"mechanical":["industry"],"mechanically":["industry"],"mechanism":["industry"],"medical":["health"],"medicine":["health"],"meditate":["health"],"meditation":["health"],"meeting":["work"],"melody":["daily"],"mentality":["health"],"merchant":["business"],"metabolism":["health"],"meter":["industry"],"method":["education"],"mill":["industry"],"millimeter":["industry"],"minus":["industry"],"mission":["work"],"model":["ai"],"monetary":["finance"],"money":["finance"],"monopoly":["legal"],"mortgage":["finance"],"mould":["ai"],"movie":["daily"],"muscle":["health"],"muscular":["health"],"muse":["health"],"music":["daily"],"musical":["daily"],"musician":["daily"],"narcotic":["health"],"negotiable":["business","finance"],"neighbor":["daily"],"neighbour":["daily"],"neurotic":["health"],"nominal":["finance"],"notary":["legal"],"notation":["daily"],"nourishment":["health"],"nuance":["design"],"nurse":["health"],"nurture":["health"],"nutrition":["health"],"obligation":["legal","work"],"obligatory":["legal"],"observance":["legal"],"obsession":["health"],"odyssey":["travel"],"offence":["legal"],"offend":["legal"],"office":["work"],"operate":["health"],"operation":["health"],"opium":["health"],"overhaul":["industry"],"overload":["industry"],"overseas":["travel"],"oversee":["legal"],"overtime":["work"],"oxygen":["health"],"pain":["health"],"palpitate":["health"],"parachute":["travel"],"party":["daily"],"passenger":["travel"],"passion":["daily"],"passport":["travel"],"pastime":["daily"],"patch":["git"],"patent":["legal"],"patient":["health"],"pay":["finance"],"payment":["finance"],"pedal":["industry"],"penalty":["legal"],"pension":["finance"],"permissible":["legal"],"permission":["legal"],"permit":["legal"],"pharmaceutical":["health"],"pharmacy":["health"],"photo":["daily"],"photograph":["daily"],"photography":["daily"],"phrase":["daily"],"physician":["health"],"piracy":["legal"],"plant":["industry"],"play":["daily"],"player":["daily"],"pneumatic":["industry"],"pneumonia":["health"],"pool":["daily"],"pop":["daily"],"portfolio":["finance"],"poster":["design"],"postgraduate":["education"],"pottery":["industry"],"practitioner":["health"],"premium":["finance"],"prescribe":["health"],"prescription":["health"],"pressure":["daily"],"priority":["work"],"privacy":["legal"],"prize":["finance"],"probation":["work","legal"],"problem":["education"],"procedure":["code"],"proceeding":["code"],"process":["industry"],"produce":["industry"],"producer":["industry"],"production":["work","industry"],"productivity":["work","industry"],"professor":["education"],"profit":["finance"],"program":["code"],"programme":["code"],"proof":["legal"],"property":["finance"],"prosecute":["legal"],"prospect":["business"],"protein":["health"],"protocol":["code"],"prototype":["design"],"psychiatry":["health"],"psychological":["health"],"psychology":["health"],"pump":["industry"],"punish":["legal"],"pupil":["education"],"purchase":["business"],"queer":["finance"],"quiz":["education"],"quotation":["business"],"rack":["travel"],"racket":["daily"],"rain":["daily"],"rainy":["daily"],"rape":["daily"],"raw":["industry"],"receipt":["finance"],"recipe":["daily"],"recite":["education"],"recreation":["daily"],"recruit":["health"],"recur":["code"],"recycle":["finance"],"referee":["daily"],"regulate":["legal"],"rehabilitate":["daily"],"relieve":["legal"],"rely":["code"],"remarkable":["code"],"remedy":["health"],"rendezvous":["daily"],"repertoire":["code","industry"],"report":["work"],"repression":["health"],"resignation":["work"],"respiration":["health"],"responsibility":["legal","work"],"rest":["daily"],"restaurant":["daily"],"restless":["health"],"retail":["business"],"revenue":["finance"],"review":["education"],"ride":["travel"],"rig":["industry"],"robot":["industry"],"robust":["health"],"role":["work"],"routine":["daily"],"rub":["industry"],"rubber":["industry"],"sad":["design"],"safety":["industry"],"salesman":["business"],"sanction":["legal"],"saturate":["design"],"saturation":["design"],"saving":["finance"],"scholarship":["education"],"score":["education"],"script":["code"],"sector":["code"],"sell":["business"],"semester":["education"],"seminar":["education"],"sentence":["legal"],"service":["industry"],"session":["work"],"shadow":["design"],"share":["finance"],"shine":["daily"],"shop":["daily"],"sightseeing":["travel"],"sin":["legal"],"sing":["daily"],"sink":["daily"],"sir":["education"],"sister":["health"],"sleep":["health"],"slip":["code","legal"],"slumber":["health"],"snack":["daily"],"sneak":["education"],"snow":["daily"],"soccer":["daily"],"sociable":["daily"],"software":["code"],"song":["daily"],"sophomore":["education"],"sound":["health"],"souvenir":["travel"],"spend":["finance"],"sport":["daily"],"spot":["finance"],"spouse":["daily"],"staple":["industry"],"statement":["finance"],"statute":["legal"],"stock":["business"],"stomach":["health"],"store":["daily"],"straight":["industry"],"stretch":["health"],"stroke":["health"],"stroll":["daily"],"student":["education"],"style":["design"],"subordinate":["work"],"suit":["legal"],"suite":["daily"],"supermarket":["daily"],"supper":["daily"],"surgeon":["health"],"surgery":["health"],"sustenance":["health"],"swan":["daily"],"swim":["daily"],"syllabus":["education"],"symmetrical":["design"],"symmetry":["design"],"syndrome":["health"],"synthesis":["industry","daily"],"tariff":["finance"],"task":["work","education"],"tax":["finance"],"taxation":["finance"],"taxi":["travel"],"teacher":["education"],"team":["work"],"temper":["health"],"temperature":["health"],"term":["legal","education"],"terminate":["legal"],"testimony":["legal"],"textbook":["education"],"texture":["design"],"theater":["health","daily"],"therapy":["health"],"thesaurus":["education"],"thesis":["education"],"till":["finance"],"title":["legal"],"tour":["travel"],"tourism":["travel"],"tourist":["travel"],"trade":["finance"],"trademark":["legal"],"transaction":["finance"],"transformer":["industry"],"transgress":["legal"],"transient":["travel"],"transit":["travel"],"trauma":["health"],"treasurer":["finance"],"treatise":["education"],"treatment":["health"],"treaty":["legal"],"trek":["travel"],"trip":["travel"],"trot":["health"],"tuberculosis":["health"],"tuition":["education"],"tumour":["health"],"turbine":["industry"],"typhoon":["daily"],"undergraduate":["education"],"understanding":["legal"],"undertaking":["work"],"uphold":["industry"],"upkeep":["industry"],"vacation":["travel","work"],"vaccinate":["health"],"validity":["legal"],"valuation":["finance"],"valve":["industry"],"variable":["code"],"vector":["design"],"vegetation":["daily"],"verdict":["legal"],"vest":["daily"],"visa":["travel"],"visual":["design"],"vitamin":["health"],"vocabulary":["education"],"voltage":["industry"],"vow":["daily"],"walk":["daily"],"warrant":["legal"],"watery":["daily"],"wear":["industry"],"wedding":["daily"],"weekend":["daily","work"],"weld":["industry"],"welfare":["work"],"whirl":["travel"],"wholesale":["business"],"wholesome":["health"],"withdraw":["finance"],"witness":["legal"],"wound":["health"],"wrench":["health"],"zest":["daily"]};
+function tagsOf(entry) { const extra = TOPIC_TAGS[entry.w]; return extra ? entry.tags.concat(extra) : entry.tags; }
+
+const TOPIC_RULES = [
       {
         id: 'code',
         chip: '#code',
@@ -15020,6 +15024,8 @@ window.__ModuleLoader__.load({
       level: 'basic',
       batchSize: 10,
       pace: 'normal',
+      quizAutoPromote: false,
+      aiPick: true,
     };
     function normalizeSettings(raw) {
       const v = raw && typeof raw === 'object' ? raw : {};
@@ -15027,6 +15033,8 @@ window.__ModuleLoader__.load({
         level: LEVEL_PRESETS.some((p) => p.id === v.level) ? v.level : DEFAULT_SETTINGS.level,
         batchSize: Math.min(20, Math.max(5, Number(v.batchSize) || DEFAULT_SETTINGS.batchSize)),
         pace: PACES.includes(v.pace) ? v.pace : DEFAULT_SETTINGS.pace,
+        quizAutoPromote: v.quizAutoPromote === true,
+        aiPick: v.aiPick !== false,
       };
     }
     function levelPreset(id) {
@@ -15077,6 +15085,11 @@ window.__ModuleLoader__.load({
     // ------------------------------------------------------- dictionary
     const zh = {
       'dock.brand': '英语角',
+      'tail.title': '本轮词汇',
+      'tail.fold': '收起',
+      'tail.aiBtn': 'AI 选词',
+      'set.aiPick': 'AI 主题选词',
+      'set.aiPickDesc': '回合结束后自动请 AI 挑选贴合对话内容的词条（会产生少量 token 消耗）',
       'dock.mastered': '太熟了 · 之后不再出现',
       'dock.known': '认识了 · 之后低频出现',
       'dock.fuzzy': '有点模糊 · 收进生词本，会多出现',
@@ -15088,6 +15101,32 @@ window.__ModuleLoader__.load({
       'tab.wordsHeading': '主题词汇',
       'tab.viewWords': '主题词汇',
       'tab.viewBook': '生词本',
+      'tab.viewQuiz': '小测试',
+      'quiz.count': '题数',
+      'quiz.start': '开始测试',
+      'quiz.pool': '本轮题池：生词本 {n} · 主题 {m}',
+      'quiz.spellPrompt': '看中文释义，拼出英文',
+      'quiz.choicePrompt': '选出正确的英文表达',
+      'quiz.submit': '提交',
+      'quiz.next': '下一题',
+      'quiz.correct': '正确',
+      'quiz.closeTry': '很接近，再试一次',
+      'quiz.wrongShow': '正确答案',
+      'quiz.hintIpa': '音标',
+      'quiz.hintMask': '字母骨架',
+      'quiz.hintEx': '例句提示',
+      'quiz.phrase': '词组',
+      'quiz.done': '本轮完成',
+      'quiz.score': '正确率',
+      'quiz.addWrong': '错词全部加入生词本',
+      'quiz.added': '已加入生词本',
+      'quiz.again': '再来一轮',
+      'quiz.back': '返回',
+      'quiz.empty': '题池太小，先在词汇页/生词本积累一些词',
+      'set.quizAuto': '小测试答对自动升级',
+      'set.quizAutoDesc': '答对的生词本词条自动标为「认识」',
+      'set.on': '开',
+      'set.off': '关',
       'tab.knownCount': '已认识',
       'book.empty': '生词本是空的——把词标为「? 生词」或「≈ 模糊」，就会自动收进来。',
       'book.prev': '上一页',
@@ -15103,7 +15142,8 @@ window.__ModuleLoader__.load({
       'card.new': '生词',
       'card.knownOn': '已认识',
       'card.fuzzyOn': '模糊',
-      'card.masterOn': '已熟悉',
+      'card.masteredOn': '已熟悉',
+      'card.newOn': '生词',
       'guide.title': '英语角',
       'guide.desc': '等待时刷单词短语，看当前主题的英文简报',
       'tab.viewSettings': '设置',
@@ -15147,6 +15187,11 @@ window.__ModuleLoader__.load({
     };
     const en = {
       'dock.brand': 'English Lounge',
+      'tail.title': 'Words this turn',
+      'tail.fold': 'Fold',
+      'tail.aiBtn': 'AI pick',
+      'set.aiPick': 'AI topic words',
+      'set.aiPickDesc': 'After each turn ends, ask AI for words matching this conversation (uses a few tokens)',
       'dock.mastered': 'Mastered · never again',
       'dock.known': 'Got it · shows up less often',
       'dock.fuzzy': 'Fuzzy · into the book, comes back more often',
@@ -15158,6 +15203,32 @@ window.__ModuleLoader__.load({
       'tab.wordsHeading': 'Topic vocabulary',
       'tab.viewWords': 'Topic words',
       'tab.viewBook': 'Word book',
+      'tab.viewQuiz': 'Quiz',
+      'quiz.count': 'Questions',
+      'quiz.start': 'Start',
+      'quiz.pool': 'This round: book {n} · topic {m}',
+      'quiz.spellPrompt': 'Spell the English for this meaning',
+      'quiz.choicePrompt': 'Pick the right expression',
+      'quiz.submit': 'Check',
+      'quiz.next': 'Next',
+      'quiz.correct': 'Correct',
+      'quiz.closeTry': 'So close — try again',
+      'quiz.wrongShow': 'Answer',
+      'quiz.hintIpa': 'IPA',
+      'quiz.hintMask': 'Letters',
+      'quiz.hintEx': 'Example',
+      'quiz.phrase': 'phrase',
+      'quiz.done': 'Round complete',
+      'quiz.score': 'Accuracy',
+      'quiz.addWrong': 'Add all missed words to book',
+      'quiz.added': 'Added to book',
+      'quiz.again': 'Another round',
+      'quiz.back': 'Back',
+      'quiz.empty': 'Pool too small — collect words first',
+      'set.quizAuto': 'Auto-promote on correct',
+      'set.quizAutoDesc': 'Words answered correctly are marked as known',
+      'set.on': 'On',
+      'set.off': 'Off',
       'tab.knownCount': 'Known',
       'book.empty': 'Your word book is empty. Mark a word as “? new” or “≈ fuzzy” and it lands here automatically.',
       'book.prev': 'Previous page',
@@ -15173,7 +15244,8 @@ window.__ModuleLoader__.load({
       'card.new': 'New',
       'card.knownOn': 'Known',
       'card.fuzzyOn': 'Fuzzy',
-      'card.masterOn': 'Mastered',
+      'card.masteredOn': 'Mastered',
+      'card.newOn': 'New',
       'guide.title': 'English Lounge',
       'guide.desc': 'Flashcards while you wait, plus an English topic brief',
       'tab.viewSettings': 'Settings',
@@ -15262,6 +15334,14 @@ window.__ModuleLoader__.load({
       if (v) return 'known';
       return 'new';
     }
+    function markedState(map, word) {
+      const v = map && map[word];
+      if (v === 'mastered') return 'mastered';
+      if (v === 'fuzzy') return 'fuzzy';
+      if (v === 'new') return 'new';
+      if (v) return 'known';
+      return '';
+    }
     function learnedIn(map, word) { const s = stateIn(map, word); return s === 'known' || s === 'mastered'; }
     function wordState(word) { return stateIn(storeState.known, word); }
     function markWord(word, state) {
@@ -15307,8 +15387,9 @@ window.__ModuleLoader__.load({
 
     // ------------------------------------------------- theme packs (elpack)
     const PACK_KEY = 'englishLounge.packs.v2';
-    // v1.4.0: AI pack feature is disabled (not mature yet); saved packs are wiped and stay wiped
-    const PACKS_ENABLED = false;
+    // v1.5.0: AI pack flow enabled (turn-tail AI pick + elpack fences); manual prompt entry stays hidden
+    const PACKS_ENABLED = true;
+    const PACK_MANUAL_ENABLED = false;
     if (!PACKS_ENABLED) { try { localStorage.removeItem(PACK_KEY); } catch (err) { /* storage blocked */ } }
     function loadAllPacks() {
       try {
@@ -15406,24 +15487,124 @@ window.__ModuleLoader__.load({
       if (!snap || typeof snap !== 'object') return '';
       const out = { text: '' };
       collectConvText(snap, 0, out);
-      return out.text.slice(0, 4500);
+      const text = out.text;
+      return text.length > 3800 ? text.slice(-3800) : text;
     }
 
-    function detectTopics(title, extraText) {
-      const text = String(title || '') + '\n' + String(extraText || '').slice(0, 3000);
-      if (text.trim() === '') return [];
-      const lower = text.toLowerCase();
-      const hits = [];
-      for (const rule of TOPIC_RULES) {
-        if (rule.keys.some((key) => lower.includes(key.toLowerCase()))) hits.push(rule);
+    // v1.5 直接命中通道：从对话文本中找出真实出现过的词库词条（英文词 token + 短语）
+    // HIT_STOP：提示词/JSON 键名等永不作为直接命中（AI 选词提示词与 elpack 围栏的键名）
+    const HIT_STOP = new Set(['topic', 'title', 'words', 'word', 'elpack', 'ipa', 'pos', 'zh', 'en', 'example', 'meaning', 'zhex', 'zhexample']);
+    function stripEpackBlocks(text) { return String(text || '').replace(/```elpack\s*[\s\S]*?```/g, ' '); }
+    let HIT_INDEX = null;
+    function hitIndex() {
+      if (HIT_INDEX) return HIT_INDEX;
+      const single = new Map();
+      const phrases = [];
+      for (const entry of WORDS) {
+        const w = String(entry.w || '').trim();
+        if (!w) continue;
+        const low = w.toLowerCase();
+        if (/^[a-z][a-z'-]*$/.test(low)) {
+          if (!single.has(low)) single.set(low, entry);
+        } else {
+          phrases.push({ entry, needle: low });
+        }
       }
-      return hits;
+      HIT_INDEX = { single, phrases };
+      return HIT_INDEX;
+    }
+    function stemLookup(single, token) {
+      let hit = single.get(token);
+      if (hit || token.length < 5) return hit || null;
+      let stem = token.replace(/['’]s$/, '');
+      if (!single.has(stem)) {
+        if (stem.endsWith('ies')) {
+          const y = stem.slice(0, -3) + 'y';
+          if (single.has(y)) stem = y;
+        } else if (stem.endsWith('es')) {
+          if (single.has(stem.slice(0, -2))) stem = stem.slice(0, -2);
+        } else if (stem.endsWith('s') && !stem.endsWith('ss') && single.has(stem.slice(0, -1))) {
+          stem = stem.slice(0, -1);
+        } else if (stem.endsWith('ing')) {
+          if (single.has(stem.slice(0, -3))) stem = stem.slice(0, -3);
+          else if (single.has(stem.slice(0, -3) + 'e')) stem = stem.slice(0, -3) + 'e';
+        } else if (stem.endsWith('ed')) {
+          if (single.has(stem.slice(0, -2))) stem = stem.slice(0, -2);
+          else if (!stem.endsWith('eed') && single.has(stem.slice(0, -1))) stem = stem.slice(0, -1);
+          else if (single.has(stem.slice(0, -2) + 'e')) stem = stem.slice(0, -2) + 'e';
+        }
+      }
+      return single.get(stem) || null;
+    }
+    function extractHitsFromText(text) {
+      const lower = stripEpackBlocks(text).toLowerCase();
+      if (!lower.trim()) return [];
+      const { single, phrases } = hitIndex();
+      const found = new Map();
+      const note = (entry, at) => {
+        const prev = found.get(entry.w);
+        if (!prev || prev.at > at) found.set(entry.w, { entry, at });
+      };
+      const regex = /[a-z][a-z'-]{1,}/g;
+      let match;
+      while ((match = regex.exec(lower)) !== null) {
+        const hit = stemLookup(single, match[0]);
+        if (hit) note(hit, match.index);
+      }
+      for (const item of phrases) {
+        const at = lower.indexOf(item.needle);
+        if (at !== -1) note(item.entry, at);
+      }
+      return Array.from(found.values())
+        .filter((hit) => wordState(hit.entry.w) !== 'mastered' && !HIT_STOP.has(hit.entry.w.toLowerCase()))
+        .sort((a, b) => b.at - a.at)
+        .slice(0, 12);
+    }
+
+    // v1.5 主题识别升级：计分制（命中次数×关键长度×位置权重），只取得分最高的前 2 个
+    function detectTopics(title, extraText) {
+      const head = String(title || '');
+      const body = String(extraText || '');
+      if (head.trim() === '' && body.trim() === '') return [];
+      const scoreIn = (text, weight) => {
+        const lower = text.toLowerCase();
+        const scores = new Map();
+        if (!lower.trim()) return scores;
+        for (const rule of TOPIC_RULES) {
+          let score = 0;
+          for (const key of rule.keys) {
+            const needle = key.toLowerCase();
+            let at = 0;
+            let hits = 0;
+            while (hits < 12) {
+              const found = lower.indexOf(needle, at);
+              if (found === -1) break;
+              hits += 1;
+              at = found + needle.length;
+            }
+            if (hits > 0) score += Math.min(hits, 6) * (needle.length >= 4 ? 2 : 1);
+          }
+          if (score > 0) scores.set(rule.id, { rule, score: score * weight });
+        }
+        return scores;
+      };
+      const merged = new Map();
+      for (const item of scoreIn(head, 2).values()) merged.set(item.rule.id, item);
+      for (const item of scoreIn(body.slice(-3000), 1).values()) {
+        const prev = merged.get(item.rule.id);
+        merged.set(item.rule.id, prev ? { rule: prev.rule, score: prev.score + item.score } : item);
+      }
+      return Array.from(merged.values())
+        .filter((item) => item.score >= 2)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 2)
+        .map((item) => item.rule);
     }
 
     function topicPool(topics) {
       const wanted = new Set();
       for (const topic of topics) wanted.add(topic.id);
-      return WORDS.filter((entry) => entry.tags.some((tag) => wanted.has(tag)));
+      return WORDS.filter((entry) => tagsOf(entry).some((tag) => wanted.has(tag)));
     }
 
     function topicPoolFor(title, extraText, settings, sessionPacks) {
@@ -15443,7 +15624,7 @@ window.__ModuleLoader__.load({
       }
       if (topicIds.length === 0 && packWords.length === 0) return [];
       let pool = topicIds.length > 0
-        ? WORDS.filter((entry) => entry.tags.some((tag) => want.has(tag) || tag === 'core'))
+        ? WORDS.filter((entry) => tagsOf(entry).some((tag) => want.has(tag) || tag === 'core'))
         : WORDS.filter((entry) => entry.tags.includes('core'));
       if (packWords.length > 0) {
         const seen = new Set(pool.map((entry) => entry.w));
@@ -15491,7 +15672,7 @@ window.__ModuleLoader__.load({
     const CSS = [
       '.elz-root { font-size: 13px; }',
       '.elz-dock { box-sizing: border-box; display: flex; justify-content: center; }',
-      '.elz-bar { display: flex; align-items: center; gap: 8px; box-sizing: border-box; width: 760px; max-width: 100%; padding: 3px 10px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: var(--dsw-radius-md); background: var(--dsw-alias-bg-layer-1); }',
+      '.elz-bar { display: flex; align-items: center; gap: 8px; box-sizing: border-box; width: 760px; max-width: 100%; padding: 3px 10px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: var(--dsw-radius-md); background: var(--dsw-alias-bg-layer-1); flex-wrap: nowrap; overflow: hidden; }',
       '.elz-chipbar { display: flex; align-items: center; gap: 8px; box-sizing: border-box; padding: 4px 10px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: 999px; background: var(--dsw-alias-bg-layer-1); width: max-content; }',
       '.elz-word { color: var(--dsw-alias-label-primary); font-weight: 600; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; max-width: 26ch; flex: 0 2 auto; }',
       '.elz-ipa { color: var(--dsw-alias-label-tertiary); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }',
@@ -15520,9 +15701,9 @@ window.__ModuleLoader__.load({
       '.elz-chip { font-size: 11px; line-height: 18px; color: var(--dsw-alias-label-secondary); border: 0.5px solid var(--dsw-alias-border-l1); border-radius: 999px; padding: 0 8px; }',
       '.elz-cards { display: flex; flex-direction: column; gap: 8px; }',
       '.elz-card { display: flex; flex-direction: column; gap: 4px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: var(--dsw-radius-md); background: var(--dsw-alias-bg-layer-1); padding: 10px 12px; }',
-      '.elz-card-top { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }',
-      '.elz-card-zh { color: var(--dsw-alias-label-primary-dimmed, var(--dsw-alias-label-secondary)); font-size: 13px; }',
-      '.elz-card-ex { color: var(--dsw-alias-label-tertiary); font-size: 12px; line-height: 1.55; overflow-wrap: anywhere; }',
+      '.elz-card-top { display: flex; align-items: baseline; gap: 8px; flex-wrap: nowrap; }',
+      '.elz-card-zh { color: var(--dsw-alias-label-primary-dimmed, var(--dsw-alias-label-secondary)); font-size: 13px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }',
+      '.elz-card-ex { color: var(--dsw-alias-label-tertiary); font-size: 12px; line-height: 1.55; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }',
       '.elz-card-actions { display: flex; gap: 6px; margin-top: 2px; }',
       '.elz-empty { color: var(--dsw-alias-label-tertiary); font-size: 12px; }',
       '.elz-head-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }',
@@ -15550,6 +15731,27 @@ window.__ModuleLoader__.load({
       'body[data-ds-dark-theme] .elz-btn-danger { color: #e06a5d; border-color: #e06a5d; }',
       '.elz-seg-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }',
       '.elz-gear { font-size: 13px; line-height: 20px; padding: 1px 9px; }',
+          '.elz-tail { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; padding: 2px 0; width: 100%; max-width: 760px; margin: 0 auto; }',
+      '.elz-tail-label { flex: none; color: var(--dsw-alias-label-tertiary); font-size: 11px; }',
+      '.elz-tail-chip { display: inline-flex; align-items: center; gap: 6px; max-width: 32ch; padding: 2px 10px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: 999px; background: var(--dsw-alias-bg-layer-1); cursor: pointer; font: inherit; font-size: 12px; }',
+      '.elz-tail-chip:hover { background: var(--dsw-alias-interactive-bg-hover); }',
+      '.elz-tail-card { margin-top: 4px; }',
+      '.elz-quiz { display: flex; flex-direction: column; gap: 10px; }',
+      '.elz-quiz-prompt { font-weight: 600; font-size: 13px; }',
+      '.elz-quiz-zh { font-size: 15px; font-weight: 600; line-height: 1.5; }',
+      '.elz-quiz-input { width: 100%; padding: 8px 12px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: 10px; background: var(--dsw-alias-bg-layer-1); color: var(--dsw-alias-label-primary); font: inherit; font-size: 14px; outline: none; }',
+      '.elz-quiz-input:focus { border-color: var(--dsw-alias-border-active); }',
+      '.elz-quiz-hints { display: flex; flex-wrap: wrap; gap: 6px; }',
+      '.elz-quiz-hint { font-size: 12px; padding: 2px 8px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: 999px; background: var(--dsw-alias-bg-layer-1); color: var(--dsw-alias-label-primary); cursor: pointer; font: inherit; }',
+      '.elz-quiz-hint:disabled { opacity: 0.4; cursor: default; }',
+      '.elz-quiz-mask { font-family: monospace; letter-spacing: 2px; font-size: 14px; }',
+      '.elz-quiz-ok { color: var(--dsw-alias-label-primary); font-size: 12px; }',
+      '.elz-quiz-close { color: var(--dsw-alias-label-secondary); font-size: 12px; }',
+      '.elz-quiz-bad { color: var(--dsw-alias-label-primary); font-size: 12px; }',
+      '.elz-quiz-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }',
+      '.elz-quiz-actions { display: flex; gap: 8px; }',
+      '.elz-quiz-score { font-size: 14px; font-weight: 600; }',
+      '.elz-quiz-wrong { display: flex; flex-direction: column; gap: 4px; }',
     ].join('\n');
 
     function Styles() { return h('style', null, CSS); }
@@ -15585,7 +15787,7 @@ window.__ModuleLoader__.load({
       { id: 'new', icon: '?' },
     ];
     function StateBadge({ state, t }) {
-      const meta = state !== 'new' ? STATE_META.find((m) => m.id === state) : null;
+      const meta = state ? STATE_META.find((m) => m.id === state) : null;
       return meta ? h('span', { className: 'elz-known-badge' }, meta.icon + ' ' + t('card.' + meta.id + 'On')) : null;
     }
     function StateButtons({ entry, state, t }) {
@@ -15621,10 +15823,11 @@ window.__ModuleLoader__.load({
       }, [packHit]);
       const pool = React.useMemo(() => {
         const sessionPacks = loadPacks(sessionId);
-        const themed = topicPoolFor(title, convText, settings, sessionPacks);
+        const themed = topicPoolFor(title, stripEpackBlocks(convText), settings, sessionPacks);
         const base = themed.length > 0 ? themed : dockPool(settings);
         const want = new Set(detectTopics(title, convText).map((rule) => rule.id));
-        const rank = (entry) => (entry.__pack || (entry.tags || []).some((tag) => want.has(tag))) ? 0 : 1;
+        const hits = new Set(extractHitsFromText(convText).slice(0, 6).map((hit) => hit.entry.w));
+        const rank = (entry) => hits.has(entry.w) ? -1 : (entry.__pack || tagsOf(entry).some((tag) => want.has(tag))) ? 0 : 1;
         return visiblePool([...base].sort((a, b) => rank(a) - rank(b)));
       }, [sessionId, settings, title, convText, packHit, s.packsTick]);
       // rotation = pool woven by mastery weight: fuzzy x3, new x2, known x1 (low frequency); mastered never enters
@@ -15804,6 +16007,30 @@ window.__ModuleLoader__.load({
           ),
           h('span', { className: 'elz-note' }, t('set.paceDesc')),
         ),
+        h('div', { className: 'elz-set-group' },
+          h('span', { className: 'elz-h' }, t('set.quizAuto')),
+          h('div', { className: 'elz-seg', role: 'group' },
+            [true, false].map((v) => h('button', {
+              key: String(v), type: 'button',
+              'aria-pressed': (settings.quizAutoPromote === true) === v ? 'true' : 'false',
+              className: 'elz-seg-btn' + ((settings.quizAutoPromote === true) === v ? ' elz-seg-on' : ''),
+              onClick: () => { updateSettings({ quizAutoPromote: v }); },
+            }, t(v ? 'set.on' : 'set.off'))),
+          ),
+          h('span', { className: 'elz-note' }, t('set.quizAutoDesc')),
+        ),
+        h('div', { className: 'elz-set-group' },
+          h('span', { className: 'elz-h' }, t('set.aiPick')),
+          h('div', { className: 'elz-seg', role: 'group' },
+            [true, false].map((v) => h('button', {
+              key: String(v), type: 'button',
+              'aria-pressed': (settings.aiPick !== false) === v ? 'true' : 'false',
+              className: 'elz-seg-btn' + ((settings.aiPick !== false) === v ? ' elz-seg-on' : ''),
+              onClick: () => { updateSettings({ aiPick: v }); },
+            }, t(v ? 'set.on' : 'set.off'))),
+          ),
+          h('span', { className: 'elz-note' }, t('set.aiPickDesc')),
+        ),
         PACKS_ENABLED ? h('div', { className: 'elz-set-group' },
         h('span', { className: 'elz-h' }, t('set.packHeading')),
         (() => {
@@ -15811,10 +16038,10 @@ window.__ModuleLoader__.load({
           const knownCount = allWords.filter((entry) => learnedIn(s.known, entry.w)).length;
           return allWords.length > 0 ? h('p', { className: 'elz-note' }, t('set.packTotal') + ' ' + allWords.length + ' · ' + t('set.packKnown') + ' ' + knownCount) : null;
         })(),
-        h('div', { className: 'elz-card-actions' },
+        PACK_MANUAL_ENABLED ? h('div', { className: 'elz-card-actions' },
           h('button', { type: 'button', className: 'elz-btn elz-btn-primary', onClick: generatePack, title: t('set.packGenNote') }, '＋ ' + t('set.packGenerate')),
           packMsg ? h('span', { className: 'elz-pack-ok' }, packMsg) : null,
-        ),
+        ) : null,
         packs.length === 0
           ? h('p', { className: 'elz-note' }, t('set.packEmpty'))
           : h('div', { className: 'elz-cards' }, [...packs].reverse().map((p) => h('div', { className: 'elz-card', key: p.ts },
@@ -15829,13 +16056,13 @@ window.__ModuleLoader__.load({
               }, '✕ ' + t('set.packDelete')),
             ),
           ))),
-        manualPrompt ? h('textarea', {
+        PACK_MANUAL_ENABLED && manualPrompt ? h('textarea', {
           className: 'elz-pack-manual', readOnly: true, value: manualPrompt, rows: 8,
           onFocus: (event) => { event.target.select(); },
           'aria-label': t('set.packManual'),
         }) : null,
-        h('p', { className: 'elz-note' }, t('set.packHint')),
-        h('p', { className: 'elz-note' }, t('set.packGenNote')),
+        PACK_MANUAL_ENABLED ? h('p', { className: 'elz-note' }, t('set.packHint')) : null,
+        PACK_MANUAL_ENABLED ? h('p', { className: 'elz-note' }, t('set.packGenNote')) : null,
       ) : null,
       h('div', { className: 'elz-actions' },
           h('button', {
@@ -15862,6 +16089,297 @@ window.__ModuleLoader__.load({
     }
 
     // -------------------------------------------------- sidebar tab body
+    // ------------------------------------------------------------ quiz（小测试）
+    function normalizeAnswer(text) {
+      return String(text || '').toLowerCase().trim()
+        .replace(/[’‘]/g, "'")
+        .replace(/[-–—]/g, ' ')
+        .replace(/[.,!?;:]+$/, '')
+        .replace(/\s+/g, ' ');
+    }
+    function editDistanceAtMost1(a, b) {
+      if (a === b) return true;
+      if (Math.abs(a.length - b.length) > 1) return false;
+      let i = 0; let j = 0; let diff = 0;
+      while (i < a.length && j < b.length) {
+        if (a[i] === b[j]) { i += 1; j += 1; continue; }
+        diff += 1;
+        if (diff > 1) return false;
+        if (a.length > b.length) i += 1;
+        else if (a.length < b.length) j += 1;
+        else { i += 1; j += 1; }
+      }
+      return true;
+    }
+    function answerMatch(input, entry) {
+      const guess = normalizeAnswer(input);
+      const answer = normalizeAnswer(entry.w);
+      if (!guess) return 'none';
+      if (guess === answer) return 'exact';
+      if (editDistanceAtMost1(guess, answer)) return 'close';
+      return 'bad';
+    }
+    function letterMask(word) {
+      return String(word || '').split(/(\s+|-)/).map((part) => {
+        if (!/[a-zA-Z]/.test(part)) return part;
+        return part.split('').map((ch, i) => (i === 0 ? ch : '□')).join('');
+      }).join('');
+    }
+    function blankedExample(entry) {
+      const ex = String(entry.en || '');
+      const w = String(entry.w || '');
+      if (!ex || !w) return '';
+      const re = new RegExp(w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'ig');
+      const blanked = ex.replace(re, '______');
+      return blanked === ex ? '' : blanked;
+    }
+    function weightedSample(pairs, n, rand) {
+      const picked = [];
+      const pool = pairs.slice();
+      while (picked.length < n && pool.length > 0) {
+        let total = 0;
+        for (const p of pool) total += p.weight;
+        let roll = rand() * total;
+        let hit = pool.length - 1;
+        for (let i = 0; i < pool.length; i++) {
+          roll -= pool[i].weight;
+          if (roll <= 0) { hit = i; break; }
+        }
+        picked.push(pool[hit].entry);
+        pool.splice(hit, 1);
+      }
+      return picked;
+    }
+    function quizChoiceOptions(entry, known) {
+      const options = new Set([entry.w]);
+      let guard = 0;
+      while (options.size < 4 && guard < 80) {
+        guard += 1;
+        const cand = WORDS[Math.floor(Math.random() * WORDS.length)];
+        if (!cand || options.has(cand.w)) continue;
+        if (known && known[cand.w] === 'mastered') continue;
+        if (wordLevel(cand) > wordLevel(entry) + 1) continue;
+        options.add(cand.w);
+      }
+      while (options.size < 4) {
+        const cand = WORDS[Math.floor(Math.random() * WORDS.length)];
+        if (cand && !options.has(cand.w)) options.add(cand.w);
+      }
+      return Array.from(options).sort(() => Math.random() - 0.5);
+    }
+    function buildQuizItems(opts) {
+      const known = opts.known;
+      const settings = opts.settings;
+      const count = Math.max(1, Math.min(20, opts.count || 10));
+      const rand = Math.random;
+      const favPairs = [];
+      for (const entry of WORDS) {
+        const v = known && known[entry.w];
+        if (v === 'new') favPairs.push({ entry, weight: 2 });
+        else if (v === 'fuzzy') favPairs.push({ entry, weight: 1 });
+      }
+      const favN = Math.min(favPairs.length, Math.max(1, Math.round(count * 0.8)));
+      const favPick = weightedSample(favPairs, favN, rand);
+      const used = new Set(favPick.map((entry) => entry.w));
+      const topicPool = visiblePool(topicPoolFor(opts.title, opts.convText, settings, loadPacks(opts.sessionId)))
+        .filter((entry) => !used.has(entry.w));
+      const picked = favPick.slice();
+      const tp = topicPool.slice();
+      while (picked.length < count && tp.length > 0) {
+        picked.push(tp.splice(Math.floor(rand() * tp.length), 1)[0]);
+      }
+      if (picked.length < count) {
+        const preset = levelPreset(settings && settings.level);
+        const rest = visiblePool(WORDS.filter((entry) => passesLevel(entry, preset)))
+          .filter((entry) => !used.has(entry.w) && !picked.some((p) => p.w === entry.w));
+        while (picked.length < count && rest.length > 0) {
+          picked.push(rest.splice(Math.floor(rand() * rest.length), 1)[0]);
+        }
+      }
+      const items = picked.map((entry) => ({ entry, mode: rand() < 0.3 ? 'choice' : 'spell' }));
+      for (let i = items.length - 1; i > 0; i--) {
+        const j = Math.floor(rand() * (i + 1));
+        const tmp = items[i]; items[i] = items[j]; items[j] = tmp;
+      }
+      return items;
+    }
+    function QuizView({ s, t, title, convText, sessionId }) {
+      const settings = s.settings || DEFAULT_SETTINGS;
+      const [count, setCount] = React.useState(10);
+      const [items, setItems] = React.useState(null);
+      const [idx, setIdx] = React.useState(0);
+      const [done, setDone] = React.useState(false);
+      const [log, setLog] = React.useState([]);
+      const [input, setInput] = React.useState('');
+      const [hint, setHint] = React.useState(() => ({ ipa: false, mask: false, ex: false }));
+      const [verdict, setVerdict] = React.useState(null);
+      const [closeTried, setCloseTried] = React.useState(false);
+      const [choicePick, setChoicePick] = React.useState(null);
+      const [added, setAdded] = React.useState(false);
+      const favCount = React.useMemo(() => WORDS.filter((entry) => {
+        const v = s.known && s.known[entry.w];
+        return v === 'new' || v === 'fuzzy';
+      }).length, [s.known]);
+      const topicCount = React.useMemo(() => visiblePool(topicPoolFor(title, convText, settings, loadPacks(sessionId))).length,
+        [title, convText, settings, sessionId, s.packsTick]);
+      const quizEntry = items && items[idx] ? items[idx].entry : null;
+      const choiceOpts = React.useMemo(
+        () => (quizEntry ? quizChoiceOptions(quizEntry, s.known) : []),
+        [quizEntry ? quizEntry.w : null, s.known],
+      );
+      // v1.5.0 feedback: Enter / ArrowRight advances when the current question is already judged
+      React.useEffect(() => {
+        if (items === null || done) return undefined;
+        const onKey = (event) => {
+          if (!event || event.repeat) return;
+          if (event.key !== 'Enter' && event.key !== 'ArrowRight') return;
+          const it = items[idx];
+          if (!it) return;
+          const isSpell = it.mode === 'spell';
+          const judged = isSpell
+            ? !!(verdict && (verdict.kind === 'ok' || verdict.kind === 'bad'))
+            : !!choicePick;
+          if (!judged) return;
+          event.preventDefault();
+          const ok = isSpell ? verdict.kind === 'ok' : choicePick.picked === it.entry.w;
+          const nextLog = log.concat([{ w: it.entry.w, zh: it.entry.zh, ok }]);
+          if (ok && settings.quizAutoPromote === true) {
+            const v = stateIn(storeState.known, it.entry.w);
+            if (v === 'new' || v === 'fuzzy') markWord(it.entry.w, 'known');
+          }
+          setLog(nextLog);
+          if (idx + 1 >= items.length) { setDone(true); return; }
+          setIdx(idx + 1); setInput(''); setHint({ ipa: false, mask: false, ex: false });
+          setVerdict(null); setCloseTried(false); setChoicePick(null);
+        };
+        window.addEventListener('keydown', onKey);
+        return () => { window.removeEventListener('keydown', onKey); };
+      }, [items, idx, done, verdict, choicePick, log, settings]);
+      if (items === null) {
+        const empty = favCount + topicCount === 0;
+        return h('section', { className: 'elz-root elz-page elz-quiz' }, h(Styles),
+          h('span', { className: 'elz-h' }, t('quiz.count')),
+          h('div', { className: 'elz-seg', role: 'group' },
+            [5, 10, 20].map((n) => h('button', {
+              key: n, type: 'button', 'aria-pressed': count === n ? 'true' : 'false',
+              className: 'elz-seg-btn' + (count === n ? ' elz-seg-on' : ''),
+              onClick: () => { setCount(n); },
+            }, String(n))),
+          ),
+          h('span', { className: 'elz-note' }, t('quiz.pool').replace('{n}', String(favCount)).replace('{m}', String(topicCount))),
+          empty ? h('p', { className: 'elz-empty' }, t('quiz.empty')) : null,
+          h('button', { type: 'button', className: 'elz-btn elz-btn-primary', disabled: empty,
+            onClick: () => {
+              setItems(buildQuizItems({ known: s.known, settings, title, convText, sessionId, count }));
+              setIdx(0); setDone(false); setLog([]); setInput('');
+              setHint({ ipa: false, mask: false, ex: false }); setVerdict(null); setCloseTried(false); setChoicePick(null); setAdded(false);
+            } }, t('quiz.start')),
+        );
+      }
+      if (done) {
+        const right = log.filter((row) => row.ok).length;
+        const wrongRows = log.filter((row) => !row.ok);
+        return h('section', { className: 'elz-root elz-page elz-quiz' }, h(Styles),
+          h('span', { className: 'elz-quiz-prompt' }, t('quiz.done')),
+          h('div', { className: 'elz-quiz-score' }, t('quiz.score') + ' · ' + right + '/' + log.length),
+          wrongRows.length === 0 ? h('p', { className: 'elz-note' }, t('quiz.correct')) : h('div', { className: 'elz-cards' },
+            wrongRows.map((row) => h('div', { className: 'elz-card elz-quiz-wrong', key: row.w },
+              h('div', { className: 'elz-word' }, row.w),
+              h('span', { className: 'elz-card-zh' }, row.zh),
+            )),
+          ),
+          wrongRows.length > 0 ? h('button', { type: 'button', className: 'elz-btn', disabled: added,
+            onClick: () => {
+              for (const row of wrongRows) {
+                const v = stateIn(storeState.known, row.w);
+                if (v !== 'new' && v !== 'fuzzy') markWord(row.w, 'new');
+              }
+              setAdded(true);
+            } }, added ? t('quiz.added') : t('quiz.addWrong')) : null,
+          h('div', { className: 'elz-quiz-actions' },
+            h('button', { type: 'button', className: 'elz-btn elz-btn-primary', onClick: () => { setItems(null); } }, t('quiz.again')),
+            h('button', { type: 'button', className: 'elz-btn', onClick: () => { setItems(null); setCount(count); } }, t('quiz.back')),
+          ),
+        );
+      }
+      const item = items[idx];
+      const entry = item.entry;
+      const advance = (ok) => {
+        const nextLog = log.concat([{ w: entry.w, zh: entry.zh, ok }]);
+        if (ok && settings.quizAutoPromote === true) {
+          const v = stateIn(storeState.known, entry.w);
+          if (v === 'new' || v === 'fuzzy') markWord(entry.w, 'known');
+        }
+        setLog(nextLog);
+        if (idx + 1 >= items.length) { setDone(true); return; }
+        setIdx(idx + 1); setInput(''); setHint({ ipa: false, mask: false, ex: false });
+        setVerdict(null); setCloseTried(false); setChoicePick(null);
+      };
+      const submitSpell = () => {
+        if (verdict && (verdict.kind === 'ok' || verdict.kind === 'bad')) return;
+        const kind = answerMatch(input, entry);
+        if (kind === 'exact') setVerdict({ kind: 'ok' });
+        else if (kind === 'close' && !closeTried) { setCloseTried(true); setVerdict({ kind: 'close' }); }
+        else setVerdict({ kind: 'bad' });
+      };
+      const spell = item.mode === 'spell';
+      const maskText = letterMask(entry.w);
+      const exText = blankedExample(entry);
+      const nextLabel = idx + 1 >= items.length ? t('quiz.done') : t('quiz.next');
+      return h('section', { className: 'elz-root elz-page elz-quiz' }, h(Styles),
+        h('span', { className: 'elz-note' }, (idx + 1) + ' / ' + items.length),
+        h('span', { className: 'elz-quiz-prompt' }, spell ? t('quiz.spellPrompt') : t('quiz.choicePrompt')),
+        h('div', { className: 'elz-quiz-zh' },
+          entry.zh + (entry.w.indexOf(' ') !== -1 ? '　·　' + t('quiz.phrase') : ''),
+        ),
+        spell ? h(React.Fragment, null,
+          h('div', { className: 'elz-quiz-hints' },
+            h('button', { type: 'button', className: 'elz-quiz-hint', disabled: !entry.ipa,
+              onClick: () => { setHint((v) => ({ ...v, ipa: true })); } }, t('quiz.hintIpa')),
+            h('button', { type: 'button', className: 'elz-quiz-hint',
+              onClick: () => { setHint((v) => ({ ...v, mask: true })); } }, t('quiz.hintMask')),
+            h('button', { type: 'button', className: 'elz-quiz-hint', disabled: !exText,
+              onClick: () => { setHint((v) => ({ ...v, ex: true })); } }, t('quiz.hintEx')),
+          ),
+          hint.ipa && entry.ipa ? h('div', { className: 'elz-ipa' }, entry.ipa) : null,
+          hint.mask ? h('div', { className: 'elz-quiz-mask' }, maskText) : null,
+          hint.ex && exText ? h('div', { className: 'elz-note' }, exText) : null,
+          h('input', {
+            type: 'text', className: 'elz-quiz-input', value: input,
+            placeholder: t('quiz.spellPrompt'), 'aria-label': t('quiz.spellPrompt'),
+            onChange: (event) => { setInput(event.target.value); },
+            onKeyDown: (event) => { if (event && event.key === 'Enter') submitSpell(); },
+          }),
+          verdict ? (verdict.kind === 'ok'
+            ? h('div', { className: 'elz-quiz-ok' }, '✓ ' + t('quiz.correct') + ' · ' + entry.w)
+            : verdict.kind === 'close'
+            ? h('div', { className: 'elz-quiz-close' }, t('quiz.closeTry'))
+            : h('div', { className: 'elz-quiz-bad' }, t('quiz.wrongShow') + ' · ' + entry.w)
+          ) : null,
+          h('div', { className: 'elz-quiz-actions' },
+            (verdict && (verdict.kind === 'ok' || verdict.kind === 'bad'))
+              ? h('button', { type: 'button', className: 'elz-btn elz-btn-primary', title: 'Enter / →', onClick: () => { advance(verdict.kind === 'ok'); } }, nextLabel)
+              : h('button', { type: 'button', className: 'elz-btn elz-btn-primary', disabled: input.trim() === '', onClick: submitSpell }, t('quiz.submit')),
+          ),
+        ) : h(React.Fragment, null,
+          h('div', { className: 'elz-quiz-opts' },
+            choiceOpts.map((opt) => h('button', {
+              key: opt, type: 'button',
+              className: 'elz-btn' + (choicePick && opt === entry.w ? ' elz-btn-primary' : ''),
+              disabled: !!choicePick,
+              onClick: () => { setChoicePick({ picked: opt }); },
+            }, opt)),
+          ),
+          choicePick ? (choicePick.picked === entry.w
+            ? h('div', { className: 'elz-quiz-ok' }, '✓ ' + t('quiz.correct'))
+            : h('div', { className: 'elz-quiz-bad' }, t('quiz.wrongShow') + ' · ' + entry.w)
+          ) : null,
+          choicePick ? h('div', { className: 'elz-quiz-actions' },
+            h('button', { type: 'button', className: 'elz-btn elz-btn-primary', title: 'Enter / →', onClick: () => { advance(choicePick.picked === entry.w); } }, nextLabel),
+          ) : null,
+        ),
+      );
+    }
     function BriefTab({ sessionId, useCatalog, useSessionState, t }) {
       const s = React.useSyncExternalStore(store.subscribe, store.getSnapshot);
       const catalog = typeof useCatalog === 'function' ? useCatalog((value) => value) : undefined;
@@ -15981,6 +16499,11 @@ window.__ModuleLoader__.load({
               className: 'elz-seg-btn' + (view === 'book' ? ' elz-seg-on' : ''),
               onClick: () => { setView('book'); },
             }, t('tab.viewBook') + ' (' + favWords.length + ')'),
+            h('button', {
+              type: 'button', 'aria-selected': view === 'quiz' ? 'true' : 'false',
+              className: 'elz-seg-btn' + (view === 'quiz' ? ' elz-seg-on' : ''),
+              onClick: () => { setView('quiz'); },
+            }, t('tab.viewQuiz')),
           ),
           h('button', {
             type: 'button', 'aria-selected': view === 'settings' ? 'true' : 'false',
@@ -15991,6 +16514,8 @@ window.__ModuleLoader__.load({
         ),
         view === 'settings' ?
         h(SettingsPanel, { s, t, title, convText, sessionId }) :
+        view === 'quiz' ?
+        h(QuizView, { s, t, title, convText, sessionId }) :
         view === 'book' ?
         // --- word book (saved words)
         h('section', { style: { display: 'flex', flexDirection: 'column', gap: 8 } },
@@ -16005,7 +16530,7 @@ window.__ModuleLoader__.load({
                 filteredBook.length === 0
                   ? h('p', { className: 'elz-empty' }, t('book.none'))
                   : h('div', { className: 'elz-cards' }, bookSlice.map((entry) => {
-              const state = stateIn(s.known, entry.w);
+              const state = markedState(s.known, entry.w);
               return h('div', {
                 className: 'elz-card' + (state === 'mastered' ? ' elz-card-mastered' : state === 'known' ? ' elz-card-known' : state === 'fuzzy' ? ' elz-card-fuzzy' : ''),
                 key: entry.w,
@@ -16046,7 +16571,7 @@ window.__ModuleLoader__.load({
             ),
           ),
           PACKS_ENABLED ? h('div', { className: 'elz-card-actions' },
-            h('button', { type: 'button', className: 'elz-btn elz-btn-primary', onClick: genPack, title: t('set.packGenNote') }, '＋ ' + t('set.packGenerate')),
+            PACK_MANUAL_ENABLED ? h('button', { type: 'button', className: 'elz-btn elz-btn-primary', onClick: genPack, title: t('set.packGenNote') }, '＋ ' + t('set.packGenerate')) : null,
             packMsg ? h('span', { className: 'elz-pack-ok' }, packMsg) : null,
             sessionWords.length > 0 ? h('span', { className: 'elz-count' }, t('set.packTotal') + ' ' + sessionWords.length + ' · ' + t('set.packKnown') + ' ' + packKnownCount) : null,
           ) : null,
@@ -16057,7 +16582,7 @@ window.__ModuleLoader__.load({
             onChange: (event) => { setLookup(event.target.value); },
           }),
           lookupHits.length > 0 ? h('div', { className: 'elz-cards' }, lookupHits.map((entry) => {
-            const state = stateIn(s.known, entry.w);
+            const state = markedState(s.known, entry.w);
             return h('div', {
               className: 'elz-card' + (state === 'mastered' ? ' elz-card-mastered' : state === 'known' ? ' elz-card-known' : state === 'fuzzy' ? ' elz-card-fuzzy' : ''),
               key: entry.w,
@@ -16073,8 +16598,8 @@ window.__ModuleLoader__.load({
               ),
             );
           })) : null,
-          h('div', { className: 'elz-cards' }, words.filter((entry) => stateIn(s.known, entry.w) !== 'mastered').map((entry) => {
-            const state = stateIn(s.known, entry.w);
+          h('div', { className: 'elz-cards' }, words.filter((entry) => markedState(s.known, entry.w) !== 'mastered').map((entry) => {
+            const state = markedState(s.known, entry.w);
             return h('div', {
               className: 'elz-card' + (state === 'mastered' ? ' elz-card-mastered' : state === 'known' ? ' elz-card-known' : state === 'fuzzy' ? ' elz-card-fuzzy' : ''),
               key: entry.w,
@@ -16135,8 +16660,161 @@ window.__ModuleLoader__.load({
       };
     }
 
+    // ------------------------------------------------- turn tail strip（回复尾部词条条）
+    const TAIL_REGISTRY = { bySession: new Map(), listeners: new Set() };
+    function tailRegistryMax(sessionId) {
+      const set = TAIL_REGISTRY.bySession.get(sessionId);
+      return set && set.size > 0 ? Math.max(...set) : -1;
+    }
+    function tailRegistrySubscribe(listener) {
+      TAIL_REGISTRY.listeners.add(listener);
+      return () => { TAIL_REGISTRY.listeners.delete(listener); };
+    }
+    function tailRegistryEmit() { for (const listener of TAIL_REGISTRY.listeners) listener(); }
+    function tailAttach(sessionId, turnNo) {
+      let set = TAIL_REGISTRY.bySession.get(sessionId);
+      if (!set) { set = new Set(); TAIL_REGISTRY.bySession.set(sessionId, set); }
+      set.add(turnNo);
+      tailRegistryEmit();
+      return () => {
+        set.delete(turnNo);
+        if (set.size === 0) TAIL_REGISTRY.bySession.delete(sessionId);
+        tailRegistryEmit();
+      };
+    }
+    function TailChip({ hit, t }) {
+      const entry = hit.entry;
+      const [open, setOpen] = React.useState(false);
+      const s = React.useSyncExternalStore(store.subscribe, store.getSnapshot);
+      const state = markedState(s.known, entry.w);
+      const stMeta = state ? STATE_META.find((m) => m.id === state) : null;
+      if (!open) {
+        return h('button', { type: 'button', className: 'elz-tail-chip', onClick: () => { setOpen(true); }, title: entry.zh },
+          h('span', { className: 'elz-word' }, entry.w),
+          entry.ipa ? h('span', { className: 'elz-ipa' }, entry.ipa) : null,
+          entry.__pack ? h('span', { className: 'elz-ipa' }, '·AI') : null,
+          stMeta ? h('span', { className: 'elz-ipa' }, stMeta.icon) : null,
+        );
+      }
+      return h('div', { className: 'elz-card elz-tail-card' },
+        h('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
+          h(WordLine, { entry }),
+          h(StateBadge, { state, t }),
+          h('button', { type: 'button', className: 'elz-btn elz-btn-ghost', style: { marginLeft: 'auto' }, onClick: () => { setOpen(false); }, 'aria-label': t('tail.fold') }, '×'),
+        ),
+        h('span', { className: 'elz-card-zh' }, entry.zh),
+        h('span', { className: 'elz-card-ex' }, (entry.en || '') + (entry.zhEx ? '　' + entry.zhEx : '')),
+        h('div', { className: 'elz-card-actions' }, h(StateButtons, { entry, state, t })),
+      );
+    }
+    const AI_PICK = new Map();
+    const TAIL_COOL = new Map(); // sessionKey -> Map(word -> 展示回合号)：同一词 3 回合内只展示一次（冷却，防被谈论的词必抽）
+    const AI_PICK_PROMPT = '[英语角] 请根据上面的对话内容，只输出一个 ```elpack 代码围栏，不要输出任何其他文字。围栏内是 JSON 对象：{"topic":"小写英文短横线主题","title":"中文主题名","words":[5-8 个与对话最相关的英语词汇或短语]}，每项格式 {"w":"英语词或短语","ipa":"音标","pos":"词性","zh":"中文释义","en":"英文例句","zhEx":"例句中文翻译"}。优先挑选对话中实际出现或紧扣话题的地道表达。';
+    function conversationFor(sessionsApi, sessionId) {
+      try {
+        const scoped = sessionsApi && typeof sessionsApi.scope === 'function' ? sessionsApi.scope(sessionId) : null;
+        const conv = scoped && scoped.conversation;
+        if (conv && typeof conv.send === 'function') return conv;
+      } catch (err) { /* scope unavailable */ }
+      return null;
+    }
+    function TurnWordTail({ turn, sessionId, conversation, sessions, useSessionState, t }) {
+      const turnNo = turn && typeof turn === 'object'
+        ? (typeof turn.turn === 'number' ? turn.turn : -1)
+        : (typeof turn === 'number' ? turn : -1);
+      const turnOpen = !!(turn && typeof turn === 'object' && turn.end === undefined);
+      const snap = typeof useSessionState === 'function' ? useSessionState((value) => value) : undefined;
+      const maxTurn = React.useSyncExternalStore(tailRegistrySubscribe, () => tailRegistryMax(sessionId));
+      React.useEffect(() => (turnNo >= 0 ? tailAttach(sessionId, turnNo) : undefined), [sessionId, turnNo]);
+      const [folded, setFolded] = React.useState(false);
+      const convText = React.useMemo(() => stripEpackBlocks(sessionConvText(snap)), [snap]);
+      // v1.5.0: strip shows 3-10 words; direct hits first, then seeded weighted samples from the session topic pool
+      const hits = React.useMemo(() => {
+        if (turnOpen || turnNo < 0 || turnNo !== maxTurn) return [];
+        const sid = sessionKey(sessionId);
+        const coolMap = TAIL_COOL.get(sid);
+        const cooled = (w) => { const t = coolMap ? coolMap.get(w) : undefined; return t !== undefined && turnNo - t < 3; };
+        const direct = extractHitsFromText(convText).filter((hit) => !cooled(hit.entry.w));
+        const picked = direct.slice(0, 10);
+        if (picked.length >= 6 || !String(convText || '').trim()) {
+          const m = TAIL_COOL.get(sid) || new Map();
+          picked.forEach((hit) => m.set(hit.entry.w, turnNo));
+          TAIL_COOL.set(sid, m);
+          return picked;
+        }
+        const used = new Set(picked.map((hit) => hit.entry.w));
+        const settings = storeState.settings;
+        const themed = topicPoolFor('', convText, settings, loadPacks(sessionId));
+        const base = themed.length > 0 ? themed : dockPool(settings);
+        const weight = (entry) => {
+          const v = storeState.known ? storeState.known[entry.w] : undefined;
+          let value = v === 'fuzzy' ? 2 : v ? 1 : 3;
+          if (entry.__pack) value += 1;
+          return value;
+        };
+        let seed = 0;
+        const seedSrc = sessionKey(sessionId) + '|' + turnNo;
+        for (let i = 0; i < seedSrc.length; i++) seed = (seed * 31 + seedSrc.charCodeAt(i)) >>> 0;
+        const rng = mulberry32(seed);
+        const cand = visiblePool(base).filter((entry) => !used.has(entry.w) && !cooled(entry.w));
+        const extra = [];
+        const need = 6 - picked.length;
+        for (let k = 0; k < need && cand.length > 0; k++) {
+          let total = 0;
+          for (const entry of cand) total += weight(entry);
+          let roll = rng() * total;
+          let idx = 0;
+          for (; idx < cand.length; idx++) { roll -= weight(cand[idx]); if (roll <= 0) break; }
+          if (idx >= cand.length) idx = cand.length - 1;
+          extra.push({ entry: cand[idx], at: -1 });
+          used.add(cand[idx].w);
+          cand.splice(idx, 1);
+        }
+        const shown = picked.concat(extra);
+        const m = TAIL_COOL.get(sid) || new Map();
+        shown.forEach((hit) => m.set(hit.entry.w, turnNo));
+        TAIL_COOL.set(sid, m);
+        return shown;
+      }, [convText, turnOpen, turnNo, maxTurn, sessionId]);
+      const [aiFailed, setAiFailed] = React.useState(false);
+      React.useEffect(() => {
+        if (turnOpen || turnNo < 0 || turnNo !== maxTurn) return undefined;
+        const settings = storeState.settings;
+        if (!settings || settings.aiPick !== true || !conversation || !sessions) return undefined;
+        const text = String(convText || '');
+        if (text.length < 200) return undefined;
+        const rec = AI_PICK.get(sessionKey(sessionId)) || { turn: -99, pending: false, count: 0 };
+        if (rec.pending && turnNo > rec.turn) rec.pending = false;
+        if (rec.pending || rec.count >= 12 || turnNo - rec.turn < 3) return undefined;
+        if (extractHitsFromText(text).length >= 5) return undefined;
+        const conv = conversationFor(sessions, sessionId);
+        if (!conv) { setAiFailed(true); return undefined; }
+        rec.pending = true;
+        rec.turn = turnNo;
+        rec.count += 1;
+        AI_PICK.set(sessionKey(sessionId), rec);
+        let cancelled = false;
+        conv.send(AI_PICK_PROMPT).then(() => {
+          if (!cancelled) setAiFailed(false);
+        }, () => {
+          rec.pending = false;
+          if (!cancelled) setAiFailed(true);
+        });
+        return () => { cancelled = true; };
+      }, [conversation, sessions, convText, turnOpen, turnNo, maxTurn, sessionId]);
+      if (turnOpen || turnNo < 0 || turnNo !== maxTurn || folded || hits.length === 0) return null;
+      return h('div', { className: 'elz-root elz-tail' }, h(Styles),
+        h('span', { className: 'elz-tail-label' }, t('tail.title')),
+        hits.map((hit) => h(TailChip, { key: hit.entry.w, hit, t })),
+        aiFailed ? h('button', { type: 'button', className: 'elz-btn elz-btn-ghost', onClick: () => { fillComposer(AI_PICK_PROMPT); }, title: t('tail.aiBtn') }, '↻ ' + t('tail.aiBtn')) : null,
+        h('button', { type: 'button', className: 'elz-btn elz-btn-ghost', onClick: () => { setFolded(true); }, title: t('tail.fold'), 'aria-label': t('tail.fold') }, '×'),
+      );
+    }
+    function tailInject(ctx, sessionId) {
+      return { sessionId, conversation: ctx.conversation, sessions: ctx.sessions, hooks: { sessionState: sessionStateSource(ctx, sessionId) } };
+    }
     // ------------------------------------------------------------ apply
-    const inject = ['slots', 'sessions', 'locale', 'sidebarRightTabs', 'sidebarRight'];
+    const inject = ['slots', 'sessions', 'locale', 'sidebarRightTabs', 'sidebarRight', 'conversation'];
 
     function apply(ctx) {
       const t = ctx.locale.bind(NS);
@@ -16174,7 +16852,15 @@ window.__ModuleLoader__.load({
           locale: NS,
           inject: (sessionId) => dockInject(ctx, sessionId),
         }, LoungeDock));
+        const disposeTail = ctx.slots.inject('conversation.chat.turnTail', () => ctx.slots.register({
+          name: 'conversation.chat.turnTail',
+          id: 'english-lounge-tail',
+          order: 80,
+          locale: NS,
+          inject: (sid) => tailInject(ctx, sid),
+        }, TurnWordTail));
         return () => {
+          disposeTail();
           disposeDock();
           disposeTitle();
           disposeBody();
