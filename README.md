@@ -15,6 +15,14 @@ A DeepSeek Harness (DSH) client plugin that turns idle moments into an English m
 - **Smarter matching · 匹配升级**: conversation text is now read recent-first (tail 3,800 chars); topic detection switched to scoring (title ×2 + recent text ×1, keeps the strongest 1–2 topics); a new **direct-hit channel** pins bank words/phrases that literally occur in the conversation — phrases like *walk me through* finally get activated by real dialogue. 对话文本改为最近优先（取尾部 3,800 字符）；主题识别改计分制（标题×2+近期文本×1，只留最强 1–2 个主题）；新增直接命中通道——对话里真实出现的词库词/短语直接置顶，词组短语从此能被对话真正激活。
 - **Quiz · 小测试**: a third sidebar view next to topic words and the word book. Spell-it (see the Chinese gloss, type the English) and multiple-choice questions drawn 80% from your word book and 20% from topic words, with a three-step hint ladder — IPA → letter skeleton (`g□□□ u□`, the phrase disambiguator) → blanked example; near-misses (edit distance 1) get one free retry; the summary page lists missed words with one-tap "add all to the word book". Optional setting: auto-promote words you answer correctly. 右栏第三个视图（与主题词汇/生词本并列）：拼写+四选一，抽词 80% 生词本 + 20% 主题词；三级提示——音标 → 字母骨架（词组消歧关键）→ 例句挖空；只差一个字母判「接近」并免费重试一次；结算页一键把错词全部加入生词本；可选「答对自动升级」。
 - **Topic tagging · 词库主题标注**: a new multi-label layer (TOPIC_TAGS) gives 704 formerly `core`-only entries real topic tags — daily, health, legal, education and industry benefit most, so topic matching now has real depth in everyday conversations. 新增多标签层 TOPIC_TAGS：704 个原先只有 core 标签的词补上主题标签（生活/健康/法律/教育/工业受益最大），日常对话的主题匹配覆盖面显著提升。
+## What's new in 1.5.1 · 1.5.1 更新
+
+- Quiz: Enter now submits first (so you can check the verdict), second Enter advances to the next question.
+- 测验：回车先提交看判定，再按回车下一题。
+- Turn word cards reworked: adaptive mini-card grid — word, IPA, meaning and inline state buttons all visible at once; example sentence toggles per card; no more tap-to-expand chips.
+- 本轮词汇全新排版：迷你卡片自适应网格，词/音标/释义/状态按钮一眼全见，例句按卡展开，无需逐个点开。
+- Stability: tail picks no longer reshuffle when you switch sessions and back; backfill sampling is fully decoupled from your marking; the 3-turn cooldown no longer suppresses the turn it was recorded in.
+- 稳定性：切出切回词条不再变化；补录词抽签与标注状态彻底解耦；冷却机制不再把本回合刚展示的词自己冷却掉。
 ## Features · 功能
 
 - **Composer flashcards · 输入框下方闪卡条**

@@ -15088,6 +15088,7 @@ const TOPIC_RULES = [
       'tail.title': '本轮词汇',
       'tail.fold': '收起',
       'tail.aiBtn': 'AI 选词',
+      'tail.example': '例句',
       'set.aiPick': 'AI 主题选词',
       'set.aiPickDesc': '回合结束后自动请 AI 挑选贴合对话内容的词条（会产生少量 token 消耗）',
       'dock.mastered': '太熟了 · 之后不再出现',
@@ -15190,6 +15191,7 @@ const TOPIC_RULES = [
       'tail.title': 'Words this turn',
       'tail.fold': 'Fold',
       'tail.aiBtn': 'AI pick',
+      'tail.example': 'Example',
       'set.aiPick': 'AI topic words',
       'set.aiPickDesc': 'After each turn ends, ask AI for words matching this conversation (uses a few tokens)',
       'dock.mastered': 'Mastered · never again',
@@ -15731,11 +15733,21 @@ const TOPIC_RULES = [
       'body[data-ds-dark-theme] .elz-btn-danger { color: #e06a5d; border-color: #e06a5d; }',
       '.elz-seg-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }',
       '.elz-gear { font-size: 13px; line-height: 20px; padding: 1px 9px; }',
-          '.elz-tail { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; padding: 2px 0; width: 100%; max-width: 760px; margin: 0 auto; }',
+          '.elz-tail { display: block; padding: 2px 0; width: 100%; max-width: 760px; margin: 0 auto; }',
+      '.elz-tail-head { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }',
       '.elz-tail-label { flex: none; color: var(--dsw-alias-label-tertiary); font-size: 11px; }',
-      '.elz-tail-chip { display: inline-flex; align-items: center; gap: 6px; max-width: 32ch; padding: 2px 10px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: 999px; background: var(--dsw-alias-bg-layer-1); cursor: pointer; font: inherit; font-size: 12px; }',
-      '.elz-tail-chip:hover { background: var(--dsw-alias-interactive-bg-hover); }',
-      '.elz-tail-card { margin-top: 4px; }',
+      '.elz-tail-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 6px; }',
+      '.elz-tail-card { display: flex; flex-direction: column; gap: 3px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: var(--dsw-radius-md); background: var(--dsw-alias-bg-layer-1); padding: 6px 8px; min-width: 0; }',
+      '.elz-tail-meta { display: flex; align-items: baseline; gap: 6px; min-width: 0; }',
+      '.elz-tail-w { font-weight: 600; font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }',
+      '.elz-tail-zh { font-size: 12px; color: var(--dsw-alias-label-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }',
+      '.elz-tail-states { display: flex; flex-wrap: wrap; gap: 4px; }',
+      '.elz-tail-st { padding: 1px 6px; font-size: 11px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: 6px; background: transparent; cursor: pointer; font: inherit; color: inherit; }',
+      '.elz-tail-st:hover { background: var(--dsw-alias-interactive-bg-hover); }',
+      '.elz-tail-st-on { color: #b98a1c; border-color: var(--dsw-alias-border-l3); }',
+      'body[data-ds-dark-theme] .elz-tail-st-on { color: #e3b74a; }',
+      '.elz-tail-exbtn { margin-left: auto; flex: none; padding: 0 2px; font-size: 10px; border: 0; background: transparent; cursor: pointer; color: var(--dsw-alias-label-tertiary); }',
+      '.elz-tail-ex { color: var(--dsw-alias-label-tertiary); font-size: 11px; line-height: 1.55; overflow-wrap: anywhere; }',
       '.elz-quiz { display: flex; flex-direction: column; gap: 10px; }',
       '.elz-quiz-prompt { font-weight: 600; font-size: 13px; }',
       '.elz-quiz-zh { font-size: 15px; font-weight: 600; line-height: 1.5; }',
@@ -16348,7 +16360,14 @@ const TOPIC_RULES = [
             type: 'text', className: 'elz-quiz-input', value: input,
             placeholder: t('quiz.spellPrompt'), 'aria-label': t('quiz.spellPrompt'),
             onChange: (event) => { setInput(event.target.value); },
-            onKeyDown: (event) => { if (event && event.key === 'Enter') submitSpell(); },
+            onKeyDown: (event) => {
+              if (!event || event.key !== 'Enter') return;
+              event.preventDefault();
+              event.stopPropagation();
+              const settled = verdict && (verdict.kind === 'ok' || verdict.kind === 'bad');
+              if (settled) { advance(verdict.kind === 'ok'); return; }
+              submitSpell();
+            },
           }),
           verdict ? (verdict.kind === 'ok'
             ? h('div', { className: 'elz-quiz-ok' }, '✓ ' + t('quiz.correct') + ' · ' + entry.w)
@@ -16682,29 +16701,39 @@ const TOPIC_RULES = [
         tailRegistryEmit();
       };
     }
-    function TailChip({ hit, t }) {
+    function TailStateRow({ entry, state, t }) {
+      return h('div', { className: 'elz-tail-states' },
+        STATE_META.map((meta) => {
+          const on = state === meta.id;
+          const next = on ? null : meta.id;
+          return h('button', {
+            key: meta.id, type: 'button',
+            className: 'elz-tail-st' + (on ? ' elz-tail-st-on' : ''),
+            onClick: () => { markWord(entry.w, next); },
+            'aria-pressed': on ? 'true' : 'false',
+            title: t('card.' + meta.id) + ' · ' + entry.w,
+            'aria-label': t('card.' + meta.id) + ' · ' + entry.w,
+          }, meta.icon + (on ? ' ' + t('card.' + meta.id) : ''));
+        }),
+      );
+    }
+    function TailCard({ hit, t }) {
       const entry = hit.entry;
-      const [open, setOpen] = React.useState(false);
+      const [showEx, setShowEx] = React.useState(false);
       const s = React.useSyncExternalStore(store.subscribe, store.getSnapshot);
       const state = markedState(s.known, entry.w);
       const stMeta = state ? STATE_META.find((m) => m.id === state) : null;
-      if (!open) {
-        return h('button', { type: 'button', className: 'elz-tail-chip', onClick: () => { setOpen(true); }, title: entry.zh },
-          h('span', { className: 'elz-word' }, entry.w),
+      return h('div', { className: 'elz-tail-card' },
+        h('div', { className: 'elz-tail-meta' },
+          h('span', { className: 'elz-tail-w' }, entry.w),
           entry.ipa ? h('span', { className: 'elz-ipa' }, entry.ipa) : null,
           entry.__pack ? h('span', { className: 'elz-ipa' }, '·AI') : null,
           stMeta ? h('span', { className: 'elz-ipa' }, stMeta.icon) : null,
-        );
-      }
-      return h('div', { className: 'elz-card elz-tail-card' },
-        h('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
-          h(WordLine, { entry }),
-          h(StateBadge, { state, t }),
-          h('button', { type: 'button', className: 'elz-btn elz-btn-ghost', style: { marginLeft: 'auto' }, onClick: () => { setOpen(false); }, 'aria-label': t('tail.fold') }, '×'),
+          (entry.en || entry.zhEx) ? h('button', { type: 'button', className: 'elz-tail-exbtn', onClick: () => { setShowEx((v) => !v); }, 'aria-pressed': showEx ? 'true' : 'false', title: t('tail.example') }, showEx ? '▾ 例' : '▸ 例') : null,
         ),
-        h('span', { className: 'elz-card-zh' }, entry.zh),
-        h('span', { className: 'elz-card-ex' }, (entry.en || '') + (entry.zhEx ? '　' + entry.zhEx : '')),
-        h('div', { className: 'elz-card-actions' }, h(StateButtons, { entry, state, t })),
+        h('span', { className: 'elz-tail-zh', title: entry.zh }, entry.zh),
+        h(TailStateRow, { entry, state, t }),
+        showEx ? h('span', { className: 'elz-tail-ex' }, (entry.en || '') + (entry.zhEx ? '　' + entry.zhEx : '')) : null,
       );
     }
     const AI_PICK = new Map();
@@ -16733,7 +16762,7 @@ const TOPIC_RULES = [
         if (turnOpen || turnNo < 0 || turnNo !== maxTurn) return [];
         const sid = sessionKey(sessionId);
         const coolMap = TAIL_COOL.get(sid);
-        const cooled = (w) => { const t = coolMap ? coolMap.get(w) : undefined; return t !== undefined && turnNo - t < 3; };
+        const cooled = (w) => { const t = coolMap ? coolMap.get(w) : undefined; return t !== undefined && t !== turnNo && turnNo - t < 3; };
         const direct = extractHitsFromText(convText).filter((hit) => !cooled(hit.entry.w));
         const picked = direct.slice(0, 10);
         if (picked.length >= 6 || !String(convText || '').trim()) {
@@ -16746,12 +16775,7 @@ const TOPIC_RULES = [
         const settings = storeState.settings;
         const themed = topicPoolFor('', convText, settings, loadPacks(sessionId));
         const base = themed.length > 0 ? themed : dockPool(settings);
-        const weight = (entry) => {
-          const v = storeState.known ? storeState.known[entry.w] : undefined;
-          let value = v === 'fuzzy' ? 2 : v ? 1 : 3;
-          if (entry.__pack) value += 1;
-          return value;
-        };
+        const weight = () => 1; // v1.5.1: uniform backfill sampling — marking words must not reshuffle the same turn's picks
         let seed = 0;
         const seedSrc = sessionKey(sessionId) + '|' + turnNo;
         for (let i = 0; i < seedSrc.length; i++) seed = (seed * 31 + seedSrc.charCodeAt(i)) >>> 0;
@@ -16804,10 +16828,12 @@ const TOPIC_RULES = [
       }, [conversation, sessions, convText, turnOpen, turnNo, maxTurn, sessionId]);
       if (turnOpen || turnNo < 0 || turnNo !== maxTurn || folded || hits.length === 0) return null;
       return h('div', { className: 'elz-root elz-tail' }, h(Styles),
-        h('span', { className: 'elz-tail-label' }, t('tail.title')),
-        hits.map((hit) => h(TailChip, { key: hit.entry.w, hit, t })),
-        aiFailed ? h('button', { type: 'button', className: 'elz-btn elz-btn-ghost', onClick: () => { fillComposer(AI_PICK_PROMPT); }, title: t('tail.aiBtn') }, '↻ ' + t('tail.aiBtn')) : null,
-        h('button', { type: 'button', className: 'elz-btn elz-btn-ghost', onClick: () => { setFolded(true); }, title: t('tail.fold'), 'aria-label': t('tail.fold') }, '×'),
+        h('div', { className: 'elz-tail-head' },
+          h('span', { className: 'elz-tail-label' }, t('tail.title')),
+          aiFailed ? h('button', { type: 'button', className: 'elz-btn elz-btn-ghost', onClick: () => { fillComposer(AI_PICK_PROMPT); }, title: t('tail.aiBtn') }, '↻ ' + t('tail.aiBtn')) : null,
+          h('button', { type: 'button', className: 'elz-btn elz-btn-ghost', style: { marginLeft: 'auto' }, onClick: () => { setFolded(true); }, title: t('tail.fold'), 'aria-label': t('tail.fold') }, '×'),
+        ),
+        h('div', { className: 'elz-tail-grid' }, hits.map((hit) => h(TailCard, { key: hit.entry.w, hit, t }))),
       );
     }
     function tailInject(ctx, sessionId) {

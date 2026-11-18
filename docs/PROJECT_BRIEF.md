@@ -61,7 +61,7 @@ docs/       本文档
 
 - 组件收 owner props `{ turn, seq, openFile }` + 注入 props；`turn.turn` 回合号，`turn.end === undefined` 表示回合仍在生成（此时不渲染）。
 - TAIL_REGISTRY：按 session 记录已挂载回合号集合，useSyncExternalStore 订阅 maxTurn；**只在「本会话最新回合 + 回合已结束」渲染**，历史回合不重复渲染。
-- 每轮 3–10 词：本轮英文直接命中优先（top 10；提取前先剥离 ```elpack 围栏，防止 AI 选词回复与例句自我命中，HIT_STOP 剔除 topic/title/words/example/meaning 等提示词与 JSON 键名），不足 6 个时从会话主题池回填（中文对话兜底到 6）——按 `sessionKey(sessionId)|turnNo` 种子加权随机抽样（mulberry32；权重已压平 fuzzy 2 / 未标注 3 / 显式记录 1 / 词包词 +1），同一回合稳定、跨对话不同；池空则只显示命中。冷却机制：TAIL_COOL 记录每词最近展示回合，任何词（含直接命中）3 回合内只展示一次，防止被谈论的词与高频词必抽。chip 上直接显示已标状态角标（○/≈/?/√），点开是完整卡（WordLine+StateBadge+释义+例句+四态按钮）；× 折叠本轮。
+- 每轮 3–10 词：本轮英文直接命中优先（top 10；提取前先剥离 ```elpack 围栏，防止 AI 选词回复与例句自我命中，HIT_STOP 剔除 topic/title/words/example/meaning 等提示词与 JSON 键名），不足 6 个时从会话主题池回填（中文对话兜底到 6）——按 `sessionKey(sessionId)|turnNo` 种子加权随机抽样（mulberry32 均匀抽样——v1.5.1 与标注状态解耦：标注 ○≈?√ 后重挂重算不再换词，稳定性优先），同一回合稳定、跨对话不同；池空则只显示命中。冷却机制：TAIL_COOL 记录每词最近展示回合，任何词（含直接命中）3 回合内只展示一次，防止被谈论的词与高频词必抽。chip 上直接显示已标状态角标（○/≈/?/√），点开是完整卡（WordLine+StateBadge+释义+例句+四态按钮）；× 折叠本轮。
 - AI 上下文选词（v1.5.0 增补，settings.aiPick 默认开）：回合结束后满足条件时经 `sessions.scope(sessionId).conversation.send(AI_PICK_PROMPT)` 自动请模型输出 ```elpack 围栏（5–8 个贴合对话的词条）→ parseElack 自动收录 → 尾条/dock 生效并带 ·AI 标记。触发条件：最新回合已结束、对话文本 ≥200 字、距上次触发 ≥3 回合、本会话 ≤12 次、直接命中 <5、无在途请求；发送失败时尾条显示 ↻「AI 选词」回退按钮（fillComposer 填提示词，手动发送）。
 - i18n：tail.title / tail.fold；CSS：.elz-tail*。
 
