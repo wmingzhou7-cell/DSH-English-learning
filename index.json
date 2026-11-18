@@ -121,6 +121,15 @@
             "url": "https://github.com/wmingzhou7-cell/DSH-English-learning",
             "commit": "71cb7aa48ba1bac802448d506eda0efefcceb053"
           }
+        },
+        {
+          "version": "1.5.1",
+          "publishTimestamp": 1794982190,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/wmingzhou7-cell/DSH-English-learning",
+            "commit": "86bb8924488cfd244e970c9e8a5e5093cf71197a"
+          }
         }
       ]
     }
