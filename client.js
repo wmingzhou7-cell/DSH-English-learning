@@ -14919,95 +14919,202 @@ window.__ModuleLoader__.load({
     // --------------------------------------------------------- topics
     // v1.5.0 离线批量主题标注（word → [topic]），由 tools/topic-tags.json 生成；查询一律走 tagsOf()
 const TOPIC_TAGS = {"PTO":["work"],"illustrate":["design"],"business":["business"],"leave":["work"],"machine":["industry"],"productive":["work"],"abrasion":["industry"],"academy":["education"],"ache":["health"],"adjustable":["industry"],"aerospace":["industry"],"aesthetic":["design"],"ambulance":["health"],"amends":["legal"],"amuse":["daily"],"antibiotic":["health"],"apparatus":["industry"],"appliance":["daily"],"aquarium":["daily"],"archaic":["education"],"article":["legal"],"assembly":["industry"],"assert":["industry"],"assign":["work"],"assignment":["education","work"],"attend":["health"],"attendance":["work"],"aupair":["daily"],"bacteria":["health"],"bacterium":["health"],"badminton":["daily"],"bag":["travel"],"basin":["daily"],"basketball":["daily"],"bath":["daily"],"bathe":["daily"],"bazaar":["daily"],"bearing":["industry"],"beer":["daily"],"bin":["code"],"birthday":["daily"],"blackboard":["education"],"blueprint":["design"],"boiler":["industry"],"bone":["health"],"bonus":["finance"],"bound":["legal"],"breakfast":["daily"],"breathe":["health"],"brother":["work"],"burn":["health"],"button":["frontend"],"cabin":["travel"],"cafe":["daily"],"calibration":["industry"],"campus":["education"],"cancer":["health"],"caption":["daily"],"cartoon":["daily"],"caustic":["industry"],"celebrate":["daily"],"celebrity":["daily"],"certificate":["education","legal"],"chalk":["education"],"chamber":["work","industry"],"chancellor":["legal","education"],"chat":["daily"],"checkup":["health"],"chore":["daily"],"chronic":["health","daily"],"cinema":["daily"],"circulation":["finance"],"cite":["legal"],"civilize":["education"],"class":["education"],"classmate":["education"],"classroom":["education"],"clinic":["health"],"clock":["industry"],"clone":["health","git"],"clothe":["daily"],"coed":["education"],"coffee":["daily"],"coin":["industry"],"collaborate":["work"],"collaboration":["work"],"collect":["finance"],"college":["education"],"color":["design"],"commence":["education"],"commission":["business"],"commute":["work"],"commuter":["work"],"compensate":["legal"],"compensation":["legal"],"component":["frontend"],"composition":["education"],"compress":["industry"],"compression":["industry"],"compromise":["legal"],"compulsory":["legal"],"computer":["code"],"concert":["daily"],"configuration":["code","frontend"],"conservatory":["education"],"consign":["work"],"console":["code"],"consultant":["health"],"context":["ai"],"contrive":["design"],"conventional":["daily"],"convict":["legal"],"cooperate":["work"],"cope":["finance"],"corrosion":["industry"],"cost":["finance"],"cough":["health"],"counsel":["legal"],"courier":["travel"],"course":["education"],"coverage":["finance"],"credit":["finance"],"cure":["health"],"currency":["finance"],"curriculum":["education"],"custom":["travel","daily"],"customary":["business"],"daily":["work"],"dance":["daily"],"database":["code"],"dean":["education"],"debt":["finance"],"default":["legal"],"defect":["industry"],"defendant":["legal"],"defer":["work"],"degree":["education"],"delay":["work"],"delivery":["work"],"dentist":["health"],"departure":["travel"],"depend":["code"],"dependent":["code"],"deposit":["finance"],"deposition":["finance"],"depression":["health"],"designate":["design"],"desk":["work"],"devise":["design"],"diagnose":["health"],"dictation":["education"],"diet":["daily"],"diploma":["education"],"directly":["industry"],"discount":["business"],"disposition":["code","health"],"dissertation":["education"],"distance":["design"],"distraction":["daily"],"distribute":["business"],"distribution":["business"],"ditch":["business"],"diversion":["daily"],"dividend":["finance"],"doctor":["health"],"doctorate":["education"],"dollar":["finance"],"domain":["code"],"domestic":["daily"],"dorm":["education"],"dormitory":["education"],"dose":["health"],"drink":["daily"],"drug":["health"],"duty":["work","finance","legal"],"dynamo":["industry"],"earnings":["finance"],"educate":["education"],"education":["education"],"efficiency":["work"],"efficient":["work"],"electricity":["industry"],"embed":["ai"],"engagement":["daily"],"english":["education"],"entail":["health"],"entitle":["legal"],"equipment":["industry"],"equity":["finance"],"erosion":["industry"],"everyday":["daily"],"evidence":["legal"],"exam":["education"],"examination":["education"],"excursion":["travel"],"exercise":["health"],"exist":["daily"],"existence":["daily"],"expenditure":["finance"],"expense":["finance"],"express":["daily"],"exquisite":["code"],"extraordinary":["work"],"facility":["industry"],"factory":["industry"],"family":["daily"],"fan":["daily"],"fancy":["daily"],"fault":["industry"],"feast":["daily"],"festival":["daily"],"fever":["health"],"finance":["finance"],"financial":["finance"],"fitness":["health"],"fixture":["industry"],"flabby":["health"],"flesh":["health"],"flight":["travel"],"flu":["health"],"football":["daily"],"forge":["industry"],"foundation":["finance"],"fracture":["health"],"frame":["code"],"framework":["code"],"friendship":["daily"],"fun":["daily"],"function":["code"],"fund":["finance"],"furnace":["industry"],"furniture":["daily"],"gaily":["daily"],"game":["daily"],"gathering":["daily"],"gear":["industry"],"gene":["health"],"generator":["industry"],"genetic":["health"],"germ":["health"],"gift":["daily"],"glossary":["education"],"gradient":["ai","design"],"grammar":["education"],"grammatical":["education"],"granddaughter":["daily"],"grandfather":["daily"],"grandmother":["daily"],"grandson":["daily"],"grid":["industry"],"grocery":["daily"],"guest":["travel"],"guide":["travel"],"guilt":["legal"],"gymnasium":["health"],"habit":["daily"],"habitual":["daily"],"headache":["health"],"heal":["legal","health"],"health":["health"],"healthy":["health"],"hear":["legal"],"hearing":["legal"],"hereditary":["health"],"hike":["travel"],"hobby":["daily"],"holiday":["daily"],"home":["daily"],"honor":["finance"],"horticulture":["daily"],"hospital":["health"],"household":["daily"],"housewife":["daily"],"housework":["daily"],"housing":["industry"],"hydraulic":["industry"],"hysterical":["code"],"illness":["health"],"illustration":["design"],"immediately":["industry"],"immigrate":["travel"],"immune":["health"],"impose":["finance"],"imprison":["legal"],"income":["finance"],"indemnity":["legal"],"industrial":["industry"],"industrialize":["industry"],"industrious":["industry"],"industry":["industry"],"inefficient":["work"],"infect":["health"],"infectious":["health"],"inflation":["finance"],"infringe":["legal"],"ingenuity":["design"],"inn":["travel"],"input":["finance"],"insert":["ai"],"insolvent":["finance"],"installment":["finance"],"instalment":["finance"],"institute":["education"],"instruction":["education"],"instrument":["industry"],"insulate":["industry"],"insulator":["industry"],"insurance":["finance"],"intellectual":["legal"],"interest":["finance","daily"],"interval":["design","daily"],"intrigue":["daily"],"invalid":["health"],"inventory":["business"],"invest":["finance"],"investigate":["finance"],"investigation":["finance"],"investment":["finance"],"itinerary":["travel"],"jazz":["daily"],"jog":["health"],"journal":["code","work"],"journey":["travel"],"kilowatt":["industry"],"kindergarten":["education"],"kitchen":["daily"],"landing":["travel"],"language":["education"],"lathe":["industry"],"laundry":["daily"],"law":["legal"],"lawyer":["legal"],"layout":["frontend","design"],"leak":["code"],"learn":["education"],"learning":["education"],"lecture":["education"],"legal":["legal"],"legislate":["legal"],"legislation":["legal"],"lesson":["education"],"lever":["finance"],"levy":["finance"],"liberty":["legal"],"licence":["legal"],"license":["legal"],"litre":["industry"],"liver":["health"],"living":["daily"],"loan":["finance"],"lounge":["daily"],"lover":["daily"],"lubricate":["industry"],"luggage":["travel"],"lunch":["daily"],"luncheon":["daily"],"lung":["health"],"luxurious":["daily"],"machinery":["industry"],"mackintosh":["education"],"magistrate":["legal"],"maintain":["industry"],"maintenance":["industry"],"make":["industry"],"malice":["legal"],"mall":["daily"],"malnutrition":["health"],"manage":["finance"],"manufacture":["industry"],"manufacturer":["industry"],"marriage":["daily"],"marry":["daily"],"mate":["work"],"matrimony":["daily"],"mechanic":["industry"],"mechanical":["industry"],"mechanically":["industry"],"mechanism":["industry"],"medical":["health"],"medicine":["health"],"meditate":["health"],"meditation":["health"],"meeting":["work"],"melody":["daily"],"mentality":["health"],"merchant":["business"],"metabolism":["health"],"meter":["industry"],"method":["education"],"mill":["industry"],"millimeter":["industry"],"minus":["industry"],"mission":["work"],"model":["ai"],"monetary":["finance"],"money":["finance"],"monopoly":["legal"],"mortgage":["finance"],"mould":["ai"],"movie":["daily"],"muscle":["health"],"muscular":["health"],"muse":["health"],"music":["daily"],"musical":["daily"],"musician":["daily"],"narcotic":["health"],"negotiable":["business","finance"],"neighbor":["daily"],"neighbour":["daily"],"neurotic":["health"],"nominal":["finance"],"notary":["legal"],"notation":["daily"],"nourishment":["health"],"nuance":["design"],"nurse":["health"],"nurture":["health"],"nutrition":["health"],"obligation":["legal","work"],"obligatory":["legal"],"observance":["legal"],"obsession":["health"],"odyssey":["travel"],"offence":["legal"],"offend":["legal"],"office":["work"],"operate":["health"],"operation":["health"],"opium":["health"],"overhaul":["industry"],"overload":["industry"],"overseas":["travel"],"oversee":["legal"],"overtime":["work"],"oxygen":["health"],"pain":["health"],"palpitate":["health"],"parachute":["travel"],"party":["daily"],"passenger":["travel"],"passion":["daily"],"passport":["travel"],"pastime":["daily"],"patch":["git"],"patent":["legal"],"patient":["health"],"pay":["finance"],"payment":["finance"],"pedal":["industry"],"penalty":["legal"],"pension":["finance"],"permissible":["legal"],"permission":["legal"],"permit":["legal"],"pharmaceutical":["health"],"pharmacy":["health"],"photo":["daily"],"photograph":["daily"],"photography":["daily"],"phrase":["daily"],"physician":["health"],"piracy":["legal"],"plant":["industry"],"play":["daily"],"player":["daily"],"pneumatic":["industry"],"pneumonia":["health"],"pool":["daily"],"pop":["daily"],"portfolio":["finance"],"poster":["design"],"postgraduate":["education"],"pottery":["industry"],"practitioner":["health"],"premium":["finance"],"prescribe":["health"],"prescription":["health"],"pressure":["daily"],"priority":["work"],"privacy":["legal"],"prize":["finance"],"probation":["work","legal"],"problem":["education"],"procedure":["code"],"proceeding":["code"],"process":["industry"],"produce":["industry"],"producer":["industry"],"production":["work","industry"],"productivity":["work","industry"],"professor":["education"],"profit":["finance"],"program":["code"],"programme":["code"],"proof":["legal"],"property":["finance"],"prosecute":["legal"],"prospect":["business"],"protein":["health"],"protocol":["code"],"prototype":["design"],"psychiatry":["health"],"psychological":["health"],"psychology":["health"],"pump":["industry"],"punish":["legal"],"pupil":["education"],"purchase":["business"],"queer":["finance"],"quiz":["education"],"quotation":["business"],"rack":["travel"],"racket":["daily"],"rain":["daily"],"rainy":["daily"],"rape":["daily"],"raw":["industry"],"receipt":["finance"],"recipe":["daily"],"recite":["education"],"recreation":["daily"],"recruit":["health"],"recur":["code"],"recycle":["finance"],"referee":["daily"],"regulate":["legal"],"rehabilitate":["daily"],"relieve":["legal"],"rely":["code"],"remarkable":["code"],"remedy":["health"],"rendezvous":["daily"],"repertoire":["code","industry"],"report":["work"],"repression":["health"],"resignation":["work"],"respiration":["health"],"responsibility":["legal","work"],"rest":["daily"],"restaurant":["daily"],"restless":["health"],"retail":["business"],"revenue":["finance"],"review":["education"],"ride":["travel"],"rig":["industry"],"robot":["industry"],"robust":["health"],"role":["work"],"routine":["daily"],"rub":["industry"],"rubber":["industry"],"sad":["design"],"safety":["industry"],"salesman":["business"],"sanction":["legal"],"saturate":["design"],"saturation":["design"],"saving":["finance"],"scholarship":["education"],"score":["education"],"script":["code"],"sector":["code"],"sell":["business"],"semester":["education"],"seminar":["education"],"sentence":["legal"],"service":["industry"],"session":["work"],"shadow":["design"],"share":["finance"],"shine":["daily"],"shop":["daily"],"sightseeing":["travel"],"sin":["legal"],"sing":["daily"],"sink":["daily"],"sir":["education"],"sister":["health"],"sleep":["health"],"slip":["code","legal"],"slumber":["health"],"snack":["daily"],"sneak":["education"],"snow":["daily"],"soccer":["daily"],"sociable":["daily"],"software":["code"],"song":["daily"],"sophomore":["education"],"sound":["health"],"souvenir":["travel"],"spend":["finance"],"sport":["daily"],"spot":["finance"],"spouse":["daily"],"staple":["industry"],"statement":["finance"],"statute":["legal"],"stock":["business"],"stomach":["health"],"store":["daily"],"straight":["industry"],"stretch":["health"],"stroke":["health"],"stroll":["daily"],"student":["education"],"style":["design"],"subordinate":["work"],"suit":["legal"],"suite":["daily"],"supermarket":["daily"],"supper":["daily"],"surgeon":["health"],"surgery":["health"],"sustenance":["health"],"swan":["daily"],"swim":["daily"],"syllabus":["education"],"symmetrical":["design"],"symmetry":["design"],"syndrome":["health"],"synthesis":["industry","daily"],"tariff":["finance"],"task":["work","education"],"tax":["finance"],"taxation":["finance"],"taxi":["travel"],"teacher":["education"],"team":["work"],"temper":["health"],"temperature":["health"],"term":["legal","education"],"terminate":["legal"],"testimony":["legal"],"textbook":["education"],"texture":["design"],"theater":["health","daily"],"therapy":["health"],"thesaurus":["education"],"thesis":["education"],"till":["finance"],"title":["legal"],"tour":["travel"],"tourism":["travel"],"tourist":["travel"],"trade":["finance"],"trademark":["legal"],"transaction":["finance"],"transformer":["industry"],"transgress":["legal"],"transient":["travel"],"transit":["travel"],"trauma":["health"],"treasurer":["finance"],"treatise":["education"],"treatment":["health"],"treaty":["legal"],"trek":["travel"],"trip":["travel"],"trot":["health"],"tuberculosis":["health"],"tuition":["education"],"tumour":["health"],"turbine":["industry"],"typhoon":["daily"],"undergraduate":["education"],"understanding":["legal"],"undertaking":["work"],"uphold":["industry"],"upkeep":["industry"],"vacation":["travel","work"],"vaccinate":["health"],"validity":["legal"],"valuation":["finance"],"valve":["industry"],"variable":["code"],"vector":["design"],"vegetation":["daily"],"verdict":["legal"],"vest":["daily"],"visa":["travel"],"visual":["design"],"vitamin":["health"],"vocabulary":["education"],"voltage":["industry"],"vow":["daily"],"walk":["daily"],"warrant":["legal"],"watery":["daily"],"wear":["industry"],"wedding":["daily"],"weekend":["daily","work"],"weld":["industry"],"welfare":["work"],"whirl":["travel"],"wholesale":["business"],"wholesome":["health"],"withdraw":["finance"],"witness":["legal"],"wound":["health"],"wrench":["health"],"zest":["daily"]};
-function tagsOf(entry) { const extra = TOPIC_TAGS[entry.w]; return extra ? entry.tags.concat(extra) : entry.tags; }
+// v1.6.0: 主题池每次都要把 7999 条逐个过一遍标签，这里把"合并后的标签数组"按词缓存一次，
+// 免得闪卡、尾条、小测试三条链路各自 concat 出新数组（每次上千次分配）。
+const TAG_CACHE = new Map();
+function tagsOf(entry) {
+  const key = entry.w;
+  const cached = TAG_CACHE.get(key);
+  if (cached !== undefined) return cached;
+  const extra = TOPIC_TAGS[key];
+  const merged = extra && Array.isArray(entry.tags) ? entry.tags.concat(extra) : (entry.tags || []);
+  TAG_CACHE.set(key, merged);
+  return merged;
+}
 
 const TOPIC_RULES = [
       {
         id: 'code',
         chip: '#code',
-        brief: 'This conversation is about code and engineering — building, debugging, and shipping software.',
-        keys: ['代码', '编程', '程序', '函数', '调试', '算法', '接口', '后端', '服务端', '数据库', 'sql', 'api', '脚本', '编译', '打包', '部署', 'deploy', 'compile', 'backend', 'server', '报错', '错误', '异常', '日志', 'log', '缓存', 'cache', '测试', 'test', '工具', 'tool', '依赖', '性能', 'memory', '进程', '架构', '容器', 'docker', 'k8s', '微服务'],
+        brief: 'The conversation is about building and running software: reading code, chasing down why something breaks, changing behaviour, and getting the change safely into production. Expect vocabulary around services, requests, errors, logs and testing, plus the shorthand engineers use when they explain a fault to somebody who was not there.',
+        usage: 'Useful when you explain a bug, propose a fix, or ask how a system behaves under load.',
+        patterns: [
+          { en: 'It works locally but fails in production — can you help me narrow it down?', zh: '本地能跑、生产就挂，能帮我把范围缩小吗？' },
+          { en: 'The root cause is a race condition between the two writes.', zh: '根因是两次写入之间出现了竞态。' },
+          { en: 'I would rather fix it properly than patch around it.', zh: '我宁愿正经修掉，也不想绕着打补丁。' },
+        ],
+        keys: ['代码', '编程', '程序', '函数', '调试', '算法', '接口', '后端', '服务端', '数据库', 'sql', 'api', '脚本', '编译', '打包', '部署', 'deploy', 'compile', 'backend', 'server', 'cache', '缓存', '测试', '依赖', '性能', 'memory', '进程', '架构', '容器', 'docker', 'k8s', '微服务', 'bug', 'crash', 'refactor', 'stack trace', 'unit test', 'race condition'],
       },
       {
         id: 'frontend',
         chip: '#frontend',
-        brief: 'This conversation touches on frontend work — components, styling, and user interfaces.',
-        keys: ['前端', '页面', '样式', 'css', 'vue', 'react', '组件', 'ui', '布局', '渲染', '动画', '按钮', 'tailwind', 'html', '浏览器', '交互', '暗色', '主题切换', '小程序', '适配'],
+        brief: 'The conversation is about the part of the product people actually touch: layout, components, styling and interaction. Expect vocabulary around state, rendering, responsiveness and design tokens, and phrases for describing what looks wrong on screen rather than what is wrong in the data.',
+        usage: 'Useful when you review a screen, report a visual regression, or argue for a simpler component structure.',
+        patterns: [
+          { en: 'The layout breaks on narrow screens once the sidebar opens.', zh: '侧栏一打开，窄屏下布局就乱了。' },
+          { en: 'This component re-renders on every keystroke; can we memoise it?', zh: '这个组件每敲一个字就重渲染，能加 memo 吗？' },
+          { en: 'The empty state still looks clickable, which confuses people.', zh: '空状态看起来仍可点，容易让人误解。' },
+        ],
+        keys: ['前端', '页面', '样式', 'css', 'vue', 'react', '组件', 'ui', '布局', '渲染', '动画', '按钮', 'tailwind', 'html', '浏览器', '交互', '暗色', '主题切换', '小程序', '适配', 'layout', 'component', 'render', 'button', 'animation', 'browser', 'responsive', 'viewport', 'scroll', 'hover', 'modal', 'dropdown'],
       },
       {
         id: 'git',
         chip: '#git',
-        brief: 'This conversation involves version control — commits, branches, merges, and history.',
+        brief: 'The conversation involves version control: commits, branches, merges and the history that explains why the code looks the way it does. Expect vocabulary around rebasing, reverting, tagging and resolving conflicts, and phrases for discussing how a change travels from a local branch into a release.',
+        usage: 'Useful when you tidy history, untangle a messy merge, or decide which branch a fix belongs on.',
+        patterns: [
+          { en: 'Let me rebase onto main before I open the pull request.', zh: '我先 rebase 到 main 再提 PR。' },
+          { en: 'That commit broke the build, so it needs a clean revert.', zh: '那个提交把构建搞挂了，需要干净地回滚。' },
+          { en: 'Which branch should this hotfix land on — main or the release branch?', zh: '这个热修该落在哪个分支，main 还是发布分支？' },
+        ],
         keys: ['git', '提交', 'commit', '分支', 'branch', '合并', 'merge', '仓库', 'repo', 'rebase', '推送', 'push', '回滚', 'revert', '版本控制', 'tag'],
       },
       {
         id: 'ai',
         chip: '#ai',
-        brief: 'This conversation is about AI and agent tooling — prompts, models, plugins, and agent behaviour.',
+        brief: 'The conversation is about AI and agent tooling: prompts, models, context, tools and the behaviour that emerges when they are combined. Expect vocabulary around evaluation, latency and cost, plus phrases for describing what a model does well, where it drifts, and how to keep it predictable.',
+        usage: 'Useful when you debug a prompt, compare models, or set expectations about what an agent may do on its own.',
+        patterns: [
+          { en: 'The model follows the first instruction and quietly ignores the second.', zh: '模型只听了第一条指令，第二条被悄悄忽略。' },
+          { en: 'Let us add a regression case before we touch the prompt again.', zh: '再改提示词之前，先加一个回归用例。' },
+          { en: 'This is better done offline than on every single request.', zh: '这事离线做，比每次请求都做更划算。' },
+        ],
         keys: ['模型', 'ai', 'prompt', '提示词', 'token', '推理', 'agent', '智能', 'llm', '训练', '插件', 'plugin', 'harness', 'dsh', '会话', 'session', '知识库', '向量', '翻译', '大模型', '智能体', 'rag', '微调'],
       },
       {
         id: 'design',
         chip: '#design',
-        brief: 'This conversation has a design angle — visual style, colour, and layout.',
-        keys: ['设计', '风格', '配色', '图标', '视觉', 'design', 'style', 'theme', 'icon', '插画', '动效', '品牌'],
+        brief: 'The conversation has a design angle: visual hierarchy, spacing, colour, typography and the restraint that keeps a screen readable. Expect vocabulary around tokens, contrast and states, plus phrases for describing why something feels off rather than simply declaring it ugly.',
+        usage: 'Useful when you review a screen, defend a spacing decision, or ask for less rather than more.',
+        patterns: [
+          { en: 'The hierarchy is flat, so the primary action does not stand out.', zh: '层级太扁平，主操作不突出。' },
+          { en: 'Let us keep one accent colour and let the typography do the rest.', zh: '只留一个强调色，其余交给字体层级。' },
+          { en: 'This spacing is too tight for a settings panel.', zh: '设置面板用这个间距太挤了。' },
+        ],
+        keys: ['设计', '风格', '配色', '图标', '视觉', 'design', 'style', 'theme', 'icon', '插画', '动效', '品牌', 'typography', 'hierarchy', 'spacing', 'contrast', 'palette', 'gradient', 'alignment', 'whitespace', 'illustration'],
       },
       {
         id: 'work',
         chip: '#planning',
-        brief: 'This conversation is about planning and day-to-day work — tasks, schedules, and follow-ups.',
-        keys: ['任务', '计划', '日程', 'schedule', '待办', 'todo', '会议', '安排', 'deadline', '项目', '需求', '文档', '报告', '总结', '提醒', '清单', 'review', '评审', '复盘', '汇报', '周报', '排期', '里程碑', '跨部门', '进度'],
+        brief: 'The conversation is about planning and day-to-day delivery: tasks, schedules, owners, reviews and follow-ups. Expect vocabulary around scope, priorities, deadlines and hand-offs, plus the polite phrasing people use to push back, renegotiate a date, or park something without killing it.',
+        usage: 'Useful in stand-ups and status updates, and in any message where you must say no without sounding difficult.',
+        patterns: [
+          { en: 'I will take the first half and hand it over on Thursday.', zh: '我做前半段，周四交接。' },
+          { en: 'Let us park that and revisit it after the release.', zh: '这条先挂起，发布后再议。' },
+          { en: 'Who owns it, and what does done look like?', zh: '谁负责？完成的定义是什么？' },
+        ],
+        keys: ['任务', '计划', '日程', 'schedule', '待办', 'todo', '会议', '安排', 'deadline', '项目', '需求', '文档', '报告', '总结', '提醒', '清单', 'review', '评审', '复盘', '汇报', '周报', '排期', '里程碑', '跨部门', '进度', 'release', 'sprint', 'standup', 'retrospective', 'roadmap', 'backlog', 'ticket', 'stakeholder', 'colleague', 'manager', 'deliverable', 'priority', 'meeting', 'team'],
       },
       {
         id: 'business',
         chip: '#business',
-        brief: 'This conversation is business-facing — clients, negotiations, vendors, and deals.',
+        brief: 'The conversation is business-facing: clients, vendors, proposals, pricing and the negotiation that happens before anything is signed. Expect vocabulary around scope, terms and follow-up, plus phrasing that keeps the relationship intact while a commercial point is being pushed.',
+        usage: 'Useful when you confirm an agreement, decline extra scope, or move a discussion from chat into writing.',
+        patterns: [
+          { en: 'We can hold the timeline if the scope stays as agreed.', zh: '范围不变的话，时间表可以守住。' },
+          { en: 'That sits outside the agreed scope, so it needs a separate quote.', zh: '这超出既定范围，需要单独报价。' },
+          { en: 'Let me put the commercial terms in writing so we are aligned.', zh: '我把商务条款写下来，确保我们对齐。' },
+        ],
         keys: ['商务', '客户', '谈判', '甲方', '乙方', '投标', '招标', '提案', '售前', '签约', '合作方', '供应商', '销售', 'business', 'client', 'customer', 'negotiation', 'proposal', 'vendor', 'partner', 'pitch', 'deal', 'sales', '采购', '物流', '供应链', '招投标', '客户服务', '市场营销', '运营管理', '需求计划'],
       },
       {
         id: 'finance',
         chip: '#finance',
-        brief: 'This conversation involves money matters — pricing, settlement, budgets, and markets.',
+        brief: 'The conversation involves money: prices, settlement, budgets, invoices and the markets behind them. Expect vocabulary around cost, revenue, variance and reconciliation, plus phrasing for questioning a number politely and for reconciling two sources that should agree but do not.',
+        usage: 'Useful when a figure looks wrong, when you report a month, or when you explain a price movement to a non-specialist.',
+        patterns: [
+          { en: 'The invoice does not match the settlement statement by about two percent.', zh: '发票和结算单差了大约两个点。' },
+          { en: 'The spot price moved against us for most of the month.', zh: '这个月大部分时间现货价格对我不利。' },
+          { en: 'Let us reconcile the numbers before anyone reports them.', zh: '对外报数之前，先把账对上。' },
+        ],
         keys: ['电力交易', '售电', '现货', '电价', '结算', '财务', '预算', '报价', '发票', '付款', '成本', '收益', '市场化', '结算单', 'finance', 'settlement', 'invoice', 'budget', 'pricing', 'billing', 'payment', 'cost', 'revenue', 'market', 'trading', 'tariff', '绿证', '碳交易', '购电协议', '分时电价', '容量市场', '偏差考核', '结算单', '节点电价'],
       },
       {
         id: 'industry',
         chip: '#industry',
-        brief: 'This conversation is about industrial IoT and field operations — devices, metering, and plants.',
+        brief: 'The conversation is about industrial IoT and field operations: sensors, gateways, meters, plants and the people who keep them running. Expect vocabulary around collection, calibration, uptime and maintenance, plus phrasing for describing a device that misbehaves intermittently — the hardest kind of fault to explain.',
+        usage: 'Useful when you report a device fault, plan a maintenance window, or find out where a data gap came from.',
+        patterns: [
+          { en: 'The meter stopped reporting at two in the morning and came back at six.', zh: '电表凌晨两点停止上报，六点又恢复了。' },
+          { en: 'We need a fallback reading when the gateway drops offline.', zh: '网关掉线时需要一个兜底读数。' },
+          { en: 'Let us check the calibration before blaming the software.', zh: '先查校准，再怪软件。' },
+        ],
         keys: ['物联', '工业', '工厂', '车间', '产线', '设备', '采集', '传感器', '网关', '电表', '变电站', '调度', '运维', '检修', '能耗', '立项', '平台升级', '数据采集', '遥测', 'iot', 'scada', 'plc', 'sensor', 'gateway', 'telemetry', 'meter', 'maintenance', 'equipment', 'factory', '光伏', '风电', '储能', '新能源', '日前', '日内', '出清', '偏差', '负荷预测', '虚拟电厂', '需求响应', '中长期', '零售套餐', '并网', '辅助服务', '调频', '削峰'],
       },
       {
         id: 'legal',
         chip: '#legal',
-        brief: 'This conversation touches contracts and compliance — terms, clauses, and obligations.',
+        brief: 'The conversation touches contracts and compliance: terms, clauses, obligations and the evidence that proves something was agreed. Expect vocabulary around liability, breach, notice and approval, plus phrasing for flagging risk without sounding like a refusal to cooperate.',
+        usage: 'Useful when you summarise a clause, request written approval, or separate a commercial wish from a contractual duty.',
+        patterns: [
+          { en: 'Clause five caps liability at the contract value.', zh: '第五条把责任上限锁在合同金额。' },
+          { en: 'We need written approval before this change takes effect.', zh: '变更生效前需要书面批准。' },
+          { en: 'Please confirm this does not conflict with the existing agreement.', zh: '请确认这与现有协议不冲突。' },
+        ],
         keys: ['合同', '法务', '条款', '协议', '法律', '合规', '违约', '知识产权', '验收标准', 'contract', 'clause', 'agreement', 'legal', 'compliance', 'liability', 'breach', 'regulation', 'terms'],
       },
       {
         id: 'health',
         chip: '#health',
-        brief: 'This conversation is about health and wellbeing — symptoms, habits, and fitness.',
+        brief: 'The conversation is about health and wellbeing: symptoms, sleep, exercise, food and the habits that quietly shape all of them. Expect vocabulary around how long something has lasted, how bad it is, and what changed, plus phrasing for describing a complaint precisely enough to be useful.',
+        usage: 'Useful when you describe a symptom, explain a habit change, or report how a treatment is going.',
+        patterns: [
+          { en: 'I have had a dull headache for three days, worse in the evening.', zh: '我隐隐头痛三天了，晚上更明显。' },
+          { en: 'My sleep improved once I stopped eating late.', zh: '戒掉宵夜之后，睡眠变好了。' },
+          { en: 'The doctor suggested a blood test before any treatment.', zh: '医生建议先抽血，再谈治疗。' },
+        ],
         keys: ['健康', '医生', '医院', '体检', '症状', '药品', '治疗', '睡眠', '运动', '健身', '饮食', 'health', 'doctor', 'hospital', 'symptom', 'medicine', 'treatment', 'sleep', 'exercise', 'fitness', 'diet'],
       },
       {
         id: 'travel',
         chip: '#travel',
-        brief: 'This conversation involves travel — trips, flights, hotels, and itineraries.',
+        brief: 'The conversation involves travel: flights, hotels, itineraries, visas and the small disasters in between. Expect vocabulary around bookings, delays, connections and reimbursement, plus phrasing for asking for help when a plan has already fallen apart.',
+        usage: 'Useful when you rebook a flight, ask for a late check-out, or explain a delay to whoever is waiting for you.',
+        patterns: [
+          { en: 'My flight was delayed, so I missed the connection.', zh: '航班延误，我错过了转机。' },
+          { en: 'Could you book a hotel within walking distance of the venue?', zh: '能订个离会场步行可达的酒店吗？' },
+          { en: 'Do I need a visa for a two-day stopover?', zh: '两天的中转停留需要签证吗？' },
+        ],
         keys: ['旅行', '出行', '出差', '航班', '酒店', '签证', '行程', '护照', '攻略', 'travel', 'flight', 'hotel', 'visa', 'trip', 'itinerary', 'passport', 'airport', 'tour'],
       },
       {
         id: 'education',
         chip: '#learning',
-        brief: 'This conversation is about learning — courses, exams, and vocabulary.',
+        brief: 'The conversation is about learning: courses, exams, vocabulary and the slow work of turning recognition into recall. Expect vocabulary around practice, revision and progress, plus phrasing for asking about the difference between two similar things — the question learners ask most often.',
+        usage: 'Useful when you plan a study session, review mistakes, or ask a teacher to unpack a subtle distinction.',
+        patterns: [
+          { en: 'I am reviewing the questions I got wrong last week.', zh: '我在复习上周做错的题。' },
+          { en: 'The exam rewards accuracy more than speed.', zh: '这场考试更看准确率，不是速度。' },
+          { en: 'Could you explain the difference between these two words?', zh: '能讲讲这两个词的区别吗？' },
+        ],
         keys: ['学习', '英语', '单词', '课程', '考试', '培训', '论文', '雅思', '托福', '教育', '背单词', 'study', 'learn', 'exam', 'course', 'lesson', 'paper', 'thesis', 'ielts', 'toefl', 'vocabulary', 'school'],
       },
       {
         id: 'daily',
         chip: '#daily',
-        brief: 'This conversation is everyday life — food, hobbies, family, and shopping.',
-        keys: ['生活', '日常', '购物', '做饭', '电影', '音乐', '朋友', '家人', '宠物', '装修', '周末', '爱好', 'life', 'movie', 'music', 'food', 'friend', 'family', 'pet', 'hobby', 'weekend', 'shopping', 'game'],
+        brief: 'The conversation is everyday life: food, family, hobbies, errands and the small plans that fill a week. Expect vocabulary that is plain but easy to over-translate, plus phrasing for suggesting, declining and arranging things without sounding formal.',
+        usage: 'Useful in small talk, when making plans with friends, or when you want a sentence that sounds natural rather than translated.',
+        patterns: [
+          { en: 'We ended up cooking at home instead of going out.', zh: '最后我们在家做饭，没出去吃。' },
+          { en: 'I have been trying to walk more at weekends.', zh: '我最近周末尽量多走走。' },
+          { en: 'Do you mind if I bring a friend along?', zh: '我带个朋友一起，你介意吗？' },
+        ],
+        // v1.6.0: ASCII 键必须 >= 4 字符——detectTopics 用的是 indexOf 子串匹配，
+        // 'tea' 会命中 team/teacher/steady，'cat' 会命中 category/catch，所以短的英文键一律不放。
+        keys: ['生活', '日常', '购物', '做饭', '吃饭', '早餐', '午饭', '晚饭', '天气', '咖啡', '打扫', '洗衣服', '邻居', '生日', '聚会', '搬家', '电影', '音乐', '朋友', '家人', '宠物', '装修', '周末', '爱好', 'life', 'movie', 'music', 'food', 'friend', 'family', 'pets', 'hobby', 'weekend', 'shopping', 'game', 'cook', 'dinner', 'lunch', 'breakfast', 'coffee', 'weather', 'holiday', 'vacation', 'birthday', 'party', 'groceries', 'laundry', 'neighbor'],
       },
     ];
-    const GENERAL_BRIEF = 'This session is still unfolding — a good moment to absorb general-purpose words and phrases.';
+    const GENERAL_TOPIC = {
+      id: 'general',
+      chip: '#general',
+      brief: 'This session has not settled on a topic yet, so the brief stays deliberately general: the English that travels across work, errands and small talk. Treat it as a warm-up — a few words and three sentence frames you can borrow the moment the conversation finds its direction.',
+      usage: 'Useful as a warm-up before the conversation develops a vocabulary of its own.',
+      patterns: [
+        { en: 'Just to make sure I follow — you mean the second option, not the first?', zh: '我确认一下——你说的是第二个方案，不是第一个？' },
+        { en: 'Give me a moment to think that through before I answer.', zh: '让我想一下再回答。' },
+        { en: 'That makes sense. What would you like me to do next?', zh: '明白了。接下来你希望我做什么？' },
+      ],
+    };
 
     // ------------------------------------------------------- settings
     // English level presets cap the pushed difficulty (max) and name the band
@@ -15026,6 +15133,7 @@ const TOPIC_RULES = [
       pace: 'normal',
       quizAutoPromote: false,
       aiPick: true,
+      tts: true,
     };
     function normalizeSettings(raw) {
       const v = raw && typeof raw === 'object' ? raw : {};
@@ -15035,6 +15143,7 @@ const TOPIC_RULES = [
         pace: PACES.includes(v.pace) ? v.pace : DEFAULT_SETTINGS.pace,
         quizAutoPromote: v.quizAutoPromote === true,
         aiPick: v.aiPick !== false,
+        tts: v.tts !== false,
       };
     }
     function levelPreset(id) {
@@ -15051,12 +15160,52 @@ const TOPIC_RULES = [
       shuffle(pool, mulberry32(20260101));
       return pool;
     }
-    function visiblePool(entries) {
-      return entries.filter((entry) => stateIn(storeState.known, entry.w) !== 'mastered');
+    // v1.6.0 性能：等级带只跟档位有关（洗牌种子是常量），排一次就能一直复用。
+    // 之前 dockPool 每次调用都要把全库过滤三遍再洗牌，实测 1.75ms/次，而它挂在闪卡条的 useMemo 上。
+    const BAND_ORDER = new Map();
+    function bandOrder(preset) {
+      const cached = BAND_ORDER.get(preset.id);
+      if (cached) return cached;
+      const core = [];
+      const stretch = [];
+      const easy = [];
+      for (const entry of WORDS) {
+        if (!passesLevel(entry, preset)) continue;
+        const level = wordLevel(entry);
+        if (level < preset.core[0]) easy.push(entry);
+        else if (level > preset.core[1]) stretch.push(entry);
+        else core.push(entry);
+      }
+      const easyKeep = easy.slice(0, Math.ceil(easy.length * 0.15) + 8);
+      const pool = core.concat(stretch, easyKeep);
+      shuffle(pool, mulberry32(20260101));
+      BAND_ORDER.set(preset.id, pool);
+      return pool;
     }
+    // v1.6.0 性能：同一个池子会被反复过一遍（一次全程 filter，池子几千条就是 ~1.1ms）。
+    // 输入数组是缓存出来的稳定引用，所以按「数组引用 + 标记版本」记住上一次的结果即可。
+    const VISIBLE_CACHE = new WeakMap();
+    function visiblePool(entries) {
+      // v1.6.0: 虚词与 mastered 一起被剔出所有词池（闪卡条、尾条、小测试、主题词）
+      const cached = VISIBLE_CACHE.get(entries);
+      if (cached && cached.rev === KNOWN_REV) return cached.pool;
+      const pool = entries.filter((entry) => stateIn(storeState.known, entry.w) !== 'mastered'
+        && !FUNCTION_WORD.has(String(entry.w || '').toLowerCase()));
+      VISIBLE_CACHE.set(entries, { rev: KNOWN_REV, pool });
+      return pool;
+    }
+    // visiblePool 依赖"哪些词被标成 mastered"，所以池子跟着 KNOWN_REV 一起失效。
+    let KNOWN_REV = 0;
+    const DOCK_CACHE = new Map();
     function dockPool(settings) {
       const preset = levelPreset(settings && settings.level);
-      return bandPool(visiblePool(WORDS.filter((entry) => passesLevel(entry, preset))), preset);
+      const key = preset.id + '#' + KNOWN_REV;
+      const cached = DOCK_CACHE.get(key);
+      if (cached) return cached;
+      const pool = visiblePool(bandOrder(preset));
+      if (DOCK_CACHE.size > 8) DOCK_CACHE.clear();
+      DOCK_CACHE.set(key, pool);
+      return pool;
     }
     function paceIntervals(pace) {
       return PACE_INTERVALS[pace] || PACE_INTERVALS.normal;
@@ -15093,19 +15242,19 @@ const TOPIC_RULES = [
       'set.aiPickDesc': '回合结束后自动请 AI 挑选贴合对话内容的词条（会产生少量 token 消耗）',
       'dock.mastered': '太熟了 · 之后不再出现',
       'dock.known': '认识了 · 之后低频出现',
-      'dock.fuzzy': '有点模糊 · 收进生词本，会多出现',
-      'dock.new': '标为生词 · 收进生词本并换下一个',
+      'dock.fuzzy': '有点模糊 · 收进单词本，会多出现',
+      'dock.new': '标为生词 · 收进单词本并换下一个',
       'dock.show': '展开英语角',
       'dock.openBrief': '在右侧栏查看主题英文简报',
       'tab.title': '英语角',
       'tab.briefHeading': '主题简报',
       'tab.wordsHeading': '主题词汇',
       'tab.viewWords': '主题词汇',
-      'tab.viewBook': '生词本',
+      'tab.viewBook': '单词本',
       'tab.viewQuiz': '小测试',
       'quiz.count': '题数',
       'quiz.start': '开始测试',
-      'quiz.pool': '本轮题池：生词本 {n} · 主题 {m}',
+      'quiz.pool': '本轮题池：单词本 {n} · 主题 {m}',
       'quiz.spellPrompt': '看中文释义，拼出英文',
       'quiz.choicePrompt': '选出正确的英文表达',
       'quiz.submit': '提交',
@@ -15114,22 +15263,26 @@ const TOPIC_RULES = [
       'quiz.closeTry': '很接近，再试一次',
       'quiz.wrongShow': '正确答案',
       'quiz.hintIpa': '音标',
+      'quiz.noIpa': '该词暂无音标',
       'quiz.hintMask': '字母骨架',
       'quiz.hintEx': '例句提示',
       'quiz.phrase': '词组',
       'quiz.done': '本轮完成',
       'quiz.score': '正确率',
-      'quiz.addWrong': '错词全部加入生词本',
-      'quiz.added': '已加入生词本',
+      'quiz.drillWrong': '只练这些错词',
+      'quiz.addWrong': '错词全部加入单词本',
+      'quiz.added': '已加入单词本',
       'quiz.again': '再来一轮',
       'quiz.back': '返回',
-      'quiz.empty': '题池太小，先在词汇页/生词本积累一些词',
+      'quiz.empty': '题池太小，先在词汇页/单词本积累一些词',
       'set.quizAuto': '小测试答对自动升级',
-      'set.quizAutoDesc': '答对的生词本词条自动标为「认识」',
+      'set.quizAutoDesc': '答对的单词本词条自动标为「认识」',
       'set.on': '开',
       'set.off': '关',
       'tab.knownCount': '已认识',
-      'book.empty': '生词本是空的——把词标为「? 生词」或「≈ 模糊」，就会自动收进来。',
+      'book.empty': '这个词本还是空的——用卡片下方的按钮给词标个状态，就会自动收进来。',
+ 'book.emptyFiltered': '当前筛选下没有词。点上面的状态按钮换一组看看。',
+ 'book.filter': '按状态筛选',
       'book.prev': '上一页',
       'book.next': '下一页',
       'book.page': '页码 ',
@@ -15145,6 +15298,23 @@ const TOPIC_RULES = [
       'card.fuzzyOn': '模糊',
       'card.masteredOn': '已熟悉',
       'card.newOn': '生词',
+      'common.speak': '朗读',
+      'tab.briefUsage': '适用场景',
+      'tab.briefCollapse': '收起',
+      'tab.briefExpand': '展开',
+      'tab.briefPatterns': '常用句式',
+      'tab.briefPatternsMore': '再换一组句式',
+      'tab.briefPatternsLead': '把词汇放进句子，才算真正学会。',
+      'quiz.buildPrompt': '把句子补完整',
+ 'quiz.dictPrompt': '听发音，拼出你听到的词',
+ 'quiz.hintZh': '看释义',
+ 'quiz.hintZhOn': '释义已显示',
+ 'quiz.replay': '再听一次',
+ 'set.ttsUnsupported': '当前浏览器不支持朗读，相关按钮自动隐藏。',
+      'quiz.review': '复习',
+      'quiz.reviewNote': '其中 {n} 题来自你标过「认识」的词。',
+      'set.tts': '朗读发音',
+      'set.ttsDesc': '用系统自带语音朗读单词与例句，不联网、不引入额外依赖。',
       'guide.title': '英语角',
       'guide.desc': '等待时刷单词短语，看当前主题的英文简报',
       'tab.viewSettings': '设置',
@@ -15182,8 +15352,8 @@ const TOPIC_RULES = [
       'set.packFilled': '已填入输入框，请确认后发送',
       'set.packCopied': '已复制提示词，请粘贴到输入框发送',
       'set.packManual': '无法自动填入，请手动复制下方提示词发送',
-      'book.search': '在生词本中检索（单词或释义）',
-      'book.none': '生词本中没有匹配的词',
+      'book.search': '在单词本中检索（单词或释义）',
+      'book.none': '单词本中没有匹配的词',
       'tab.lookup': '查词：输入英文单词或中文释义',
     };
     const en = {
@@ -15217,11 +15387,13 @@ const TOPIC_RULES = [
       'quiz.closeTry': 'So close — try again',
       'quiz.wrongShow': 'Answer',
       'quiz.hintIpa': 'IPA',
+      'quiz.noIpa': 'No phonetic for this word yet',
       'quiz.hintMask': 'Letters',
       'quiz.hintEx': 'Example',
       'quiz.phrase': 'phrase',
       'quiz.done': 'Round complete',
       'quiz.score': 'Accuracy',
+      'quiz.drillWrong': 'Drill these misses',
       'quiz.addWrong': 'Add all missed words to book',
       'quiz.added': 'Added to book',
       'quiz.again': 'Another round',
@@ -15232,7 +15404,9 @@ const TOPIC_RULES = [
       'set.on': 'On',
       'set.off': 'Off',
       'tab.knownCount': 'Known',
-      'book.empty': 'Your word book is empty. Mark a word as “? new” or “≈ fuzzy” and it lands here automatically.',
+      'book.empty': 'This book is empty. Give a word a state with the buttons on its card and it lands here.',
+ 'book.emptyFiltered': 'Nothing under this filter. Tap a state button above to look at another set.',
+ 'book.filter': 'Filter by state',
       'book.prev': 'Previous page',
       'book.next': 'Next page',
       'book.page': 'Page ',
@@ -15248,6 +15422,23 @@ const TOPIC_RULES = [
       'card.fuzzyOn': 'Fuzzy',
       'card.masteredOn': 'Mastered',
       'card.newOn': 'New',
+      'common.speak': 'Play pronunciation',
+      'tab.briefUsage': 'When it helps',
+      'tab.briefCollapse': 'Hide',
+      'tab.briefExpand': 'Show',
+      'tab.briefPatterns': 'Sentence patterns',
+      'tab.briefPatternsMore': 'Another set',
+      'tab.briefPatternsLead': 'Words only stick once you can put them in a sentence.',
+      'quiz.buildPrompt': 'Complete the sentence',
+ 'quiz.dictPrompt': 'Listen and spell the word you hear',
+ 'quiz.hintZh': 'Show meaning',
+ 'quiz.hintZhOn': 'Meaning shown',
+ 'quiz.replay': 'Play again',
+ 'set.ttsUnsupported': 'Speech is unavailable in this browser; listen buttons stay hidden.',
+      'quiz.review': 'Review',
+      'quiz.reviewNote': '{n} of these are words you already marked as known.',
+      'set.tts': 'Pronunciation',
+      'set.ttsDesc': 'Reads words and examples aloud with the system voice — offline, no extra dependency.',
       'guide.title': 'English Lounge',
       'guide.desc': 'Flashcards while you wait, plus an English topic brief',
       'tab.viewSettings': 'Settings',
@@ -15305,15 +15496,31 @@ const TOPIC_RULES = [
             known: v && typeof v.known === 'object' && v.known !== null ? v.known : {},
             fav: v && typeof v.fav === 'object' && v.fav !== null ? v.fav : {},
             collapsed: !!(v && v.collapsed),
-            view: v && (v.view === 'book' || v.view === 'settings') ? v.view : 'words',
+            briefFold: !!(v && v.briefFold),
+            view: v && (v.view === 'book' || v.view === 'quiz' || v.view === 'settings') ? v.view : 'words',
             settings: normalizeSettings(v && v.settings),
           };
         }
       } catch (error) { /* storage unavailable; start fresh */ }
-      return { known: {}, fav: {}, collapsed: false, view: 'words', settings: normalizeSettings(null) };
+      return { known: {}, fav: {}, collapsed: false, briefFold: false, view: 'words', settings: normalizeSettings(null) };
     }
+    // v1.6.0 性能：每次点状态按钮都会整份写回 localStorage（词库标记多了以后是几十 KB 的 JSON）。
+    // 写盘改成合并到下一帧之后，页面隐藏/关闭前强制落盘，语义不变但点击不再卡。
+    let persistTimer = null;
     function persistState() {
+      if (persistTimer !== null) return;
+      persistTimer = setTimeout(() => {
+        persistTimer = null;
+        try { localStorage.setItem(STORE_KEY, JSON.stringify(storeState)); } catch (error) { /* ignore */ }
+      }, 120);
+    }
+    function flushPersist() {
+      if (persistTimer !== null) { clearTimeout(persistTimer); persistTimer = null; }
       try { localStorage.setItem(STORE_KEY, JSON.stringify(storeState)); } catch (error) { /* ignore */ }
+    }
+    if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {
+      window.addEventListener('pagehide', flushPersist);
+      window.addEventListener('beforeunload', flushPersist);
     }
     const store = {
       getSnapshot: () => storeState,
@@ -15349,6 +15556,7 @@ const TOPIC_RULES = [
     function markWord(word, state) {
       const known = { ...storeState.known };
       if (state) known[word] = state; else delete known[word];
+      KNOWN_REV += 1;
       setStore({ known });
     }
     function setCollapsed(value) { setStore({ collapsed: value }); }
@@ -15357,7 +15565,7 @@ const TOPIC_RULES = [
       setStore({ settings: normalizeSettings({ ...storeState.settings, ...patch }) });
     }
     function resetSettings() { setStore({ settings: normalizeSettings(null) }); }
-    function clearRecords() { setStore({ known: {}, fav: {} }); }
+    function clearRecords() { KNOWN_REV += 1; setStore({ known: {}, fav: {} }); }
 
     // ------------------------------------------------------- helpers
     const MISSING_SOURCE = { getSnapshot: () => undefined, subscribe: () => () => {} };
@@ -15402,15 +15610,27 @@ const TOPIC_RULES = [
       return {};
     }
     function sessionKey(sessionId) { return sessionId ? String(sessionId) : '__global__'; }
+    // v1.6.0 性能：词包存在 localStorage 里，读一次要 JSON.parse 整个表。
+    // 闪卡、尾条、小测试都会调 loadPacks，所以按会话缓存，写入时清掉对应条目。
+    const PACK_CACHE = new Map();
+    let PACK_REV = 0;
     function loadPacks(sessionId) {
       if (!PACKS_ENABLED) return [];
-      const arr = loadAllPacks()[sessionKey(sessionId)];
-      return Array.isArray(arr) ? arr : [];
+      const sid = sessionKey(sessionId);
+      const cached = PACK_CACHE.get(sid);
+      if (cached) return cached;
+      const arr = loadAllPacks()[sid];
+      const out = Array.isArray(arr) ? arr : [];
+      if (PACK_CACHE.size > 24) PACK_CACHE.clear();
+      PACK_CACHE.set(sid, out);
+      return out;
     }
     function savePacks(sessionId, packs) {
+      const sid = sessionKey(sessionId);
+      PACK_REV += 1;
+      PACK_CACHE.delete(sid);
       try {
         const all = loadAllPacks();
-        const sid = sessionKey(sessionId);
         if (packs.length === 0) delete all[sid]; else all[sid] = packs;
         localStorage.setItem(PACK_KEY, JSON.stringify(all));
       } catch (err) { /* storage blocked */ }
@@ -15472,16 +15692,34 @@ const TOPIC_RULES = [
       }
       return null;
     }
+    // v1.6.0：只取"人话"。旧实现把整个会话快照（含 status/id/id 名/工具名/路径等系统字段）摊平成一段文本，
+    // 于是快照里恒为 'idle' 的 historyLoadStatus 被当成对话里出现过的单词，词库中恰好有 idle 词条，
+    // 它就作为"直接命中"每 3 回合必现——用户看到的"idle 魔咒"就是这个。
+    const CONV_SKIP_KEY = new Set(['settings', 'fav', 'known', 'id', 'ids', 'key', 'kind', 'type', 'role', 'status', 'state', 'openState', 'historyLoadStatus',
+      'phase', 'seq', 'turn', 'index', 'timestamp', 'time', 'at', 'version', 'tool', 'toolName', 'toolUseId', 'name', 'path', 'cwd', 'model', 'provider',
+      'mediaType', 'mimeType', 'hash', 'revision', 'address', 'sessionId', 'turnId', 'callId', 'uri', 'url', 'code', 'exitCode', 'signal']);
+    const CJK_RE = /[\u3400-\u9fff\u3040-\u30ff\uac00-\ud7af]/;
+    // 判据：含空白或含中日韩字符的一段文字才算"人话"；裸标识符（'idle'、'loading'、'ses_abc123'）一律丢弃
+    function looksLikeProse(text) {
+      const s = String(text || '').trim();
+      if (s.length < 2) return false;
+      if (CJK_RE.test(s)) return true;
+      return /\s/.test(s) && s.length >= 8;
+    }
     function collectConvText(value, depth, out) {
       if (out.text.length >= 5000 || value == null || depth > 6) return;
-      if (typeof value === 'string') { out.text += (out.text ? ' ' : '') + value.slice(0, 600); return; }
+      if (typeof value === 'string') {
+        if (!looksLikeProse(value)) return;
+        out.text += (out.text ? ' ' : '') + value.slice(0, 600);
+        return;
+      }
       if (typeof value !== 'object') return;
       if (Array.isArray(value)) {
         for (const item of value.slice(0, 120)) collectConvText(item, depth + 1, out);
         return;
       }
       for (const key of Object.keys(value)) {
-        if (key === 'settings' || key === 'fav' || key === 'known') continue;
+        if (CONV_SKIP_KEY.has(key)) continue;
         collectConvText(value[key], depth + 1, out);
       }
     }
@@ -15496,6 +15734,20 @@ const TOPIC_RULES = [
     // v1.5 直接命中通道：从对话文本中找出真实出现过的词库词条（英文词 token + 短语）
     // HIT_STOP：提示词/JSON 键名等永不作为直接命中（AI 选词提示词与 elpack 围栏的键名）
     const HIT_STOP = new Set(['topic', 'title', 'words', 'word', 'elpack', 'ipa', 'pos', 'zh', 'en', 'example', 'meaning', 'zhex', 'zhexample']);
+    // FUNCTION_WORD：虚词黑名单。词库里带 a/an/the/of/for/from 这类功能词（Oxford 3000 收录），
+    // 它们出现在每一段对话里，于是永远霸占直接命中名额——用户看到的就是"这些词跟话题没关系"。
+    // 这里把纯语法词排除出所有词池与直接命中通道（不影响它们在单词本里已标记的状态）。
+    const FUNCTION_WORD = new Set([
+      'a', 'an', 'the', 'of', 'to', 'in', 'on', 'at', 'by', 'for', 'from', 'with', 'into', 'onto', 'upon', 'about',
+      'and', 'or', 'but', 'nor', 'so', 'yet', 'if', 'as', 'than', 'then', 'that', 'this', 'these', 'those', 'there',
+      'here', 'i', 'you', 'he', 'she', 'it', 'we', 'they', 'me', 'him', 'her', 'us', 'them', 'my', 'your', 'his',
+      'its', 'our', 'their', 'mine', 'yours', 'hers', 'ours', 'theirs', 'who', 'whom', 'whose', 'which', 'what',
+      'when', 'where', 'why', 'how', 'be', 'am', 'is', 'are', 'was', 'were', 'been', 'being', 'do', 'does', 'did',
+      'done', 'have', 'has', 'had', 'will', 'would', 'shall', 'should', 'can', 'could', 'may', 'might', 'must',
+      'not', 'no', 'yes', 'all', 'any', 'both', 'each', 'every', 'few', 'more', 'most', 'other', 'some', 'such',
+      'only', 'own', 'same', 'too', 'very', 'just', 'also', 'than', 'now', 'up', 'down', 'out', 'off', 'over',
+      'again', 'once', 'ever', 'never', 'still', 'even', 'much', 'many', 'one', 'two',
+    ]);
     function stripEpackBlocks(text) { return String(text || '').replace(/```elpack\s*[\s\S]*?```/g, ' '); }
     let HIT_INDEX = null;
     function hitIndex() {
@@ -15538,7 +15790,106 @@ const TOPIC_RULES = [
       }
       return single.get(stem) || null;
     }
-    function extractHitsFromText(text) {
+    // v1.6.0 feedback: 音标提示要尽量给得出——先查词库原形，再走复数/时态还原；
+    // 多词短语只有每个词都能查到音标时才拼起来，查不到就老实留空，不编造。
+    // v1.6.0: 词库里有 1219 条没有音标（799 个单词 + 420 条短语），所以「音标」提示经常点不出东西。
+    // 下面这张表从 data_raw 的四本词书（CET4/CET6/IELTS/KaoYan 的 usphone 字段）清洗而成，
+    // 只保留 374 条美音标注干净、与词库风格一致的条目；查不到就老实留空，绝不编造。
+    const IPA_EXTRA = {
+      dry: "draɪ", abide: "ə'baɪd", aboard: "ə'bɔrd", abolish: "ə'bɑlɪʃ", about: "ə'baʊt", above: "ə'bʌv",
+      abroad: "ə'brɔd", absence: "'æbsns", absent: "'æbsənt", absolute: "'æbsəlut", absolutely: "'æbsəlutli", absorb: "æb'sɔrb",
+      absorption: "əb'sɔrpʃən", abstract: "'æbstrækt", abundant: "ə'bʌndənt", abuse: "ə'bjus", academic: ",ækə'dɛmɪk", accelerate: "ək'sɛlə,ret",
+      acceleration: "ək'sɛlə'reʃən", accent: "'æksɛnt", accept: "æk'sɛpt", acceptable: "ək'sɛptəbl", acceptance: "ək'sɛptəns", access: "'æksɛs",
+      accessory: "ək'sɛsəri", accident: "'æksədənt", acclaim: "ə'klem", accommodate: "ə'kɑmədet", accommodation: "ə,kɑmə'deʃən", accompany: "ə'kʌmpəni",
+      accomplish: "ə'kɑmplɪʃ", accord: "ə'kɔrd", accordance: "ə'kɔrdns", account: "ə'kaʊnt", accountable: "ə'kaʊntəbl", accountant: "ə'kaʊntənt",
+      accuracy: "'ækjərəsi", accurate: "'ækjərət", accuse: "ə'kjuz", accustom: "ə'kʌstəm", accustomed: "ə'kʌstəmd", achieve: "ə'tʃiv",
+      achievement: "ə'tʃivmənt", acquaint: "ə'kwent", acquaintance: "ə'kwentəns", acquire: "ə'kwaɪr", acquisition: ",ækwɪ'zɪʃən", across: "ə'krɔs",
+      act: "ækt", action: "'ækʃən", activate: "'æktə'vet", active: "'æktɪv", activity: "æk'tɪviti", actor: "'æktɚ",
+      actual: "'æktʃuəl", actually: "'æktʃuəli", acute: "ə'kjut", adapt: "ə'dæpt", addition: "ə'dɪʃən", additional: "ə'dɪʃənl",
+      address: "ə'drɛs", adequate: "'ædɪkwət", adhere: "əd'hɪr", adjacent: "ə'dʒesnt", adjust: "ə'dʒʌst", administer: "əd'mɪnɪstɚ",
+      administration: "əd,mɪnɪ'streʃən", admire: "əd'maɪr", admission: "əd'mɪʃən", admit: "əd'mɪt", adopt: "ə'dɑpt", adoption: "ə'dɑpʃən",
+      adult: "'ædʌlt", advance: "əd'væns", advanced: "əd'vænst", adventure: "əd'vɛntʃɚ", advertise: "'ædvɚtaɪz", advertisement: ",ædvɚ'taɪzmənt",
+      advisable: "əd'vaɪzəbl", advise: "əd'vaɪz", affair: "ə'fɛr", affect: "ə'fɛkt", affiliate: "ə'fɪlɪet", affirm: "ə'fɝm",
+      afford: "ə'fɔrd", afraid: "ə'fred", after: "'æftɚ", afternoon: ",æftɚ'nun", afterward: "'æftərwərd", against: "ə'ɡɛnst",
+      agency: "'edʒənsi", agent: "'edʒənt", aggravate: "'æɡrəvet", aggressive: "ə'ɡrɛsɪv", agree: "ə'ɡri", agreeable: "ə'ɡriəbl",
+      agreement: "ə'grimənt", agriculture: "'æɡrɪkʌltʃɚ", ahead: "ə'hɛd", aircraft: "'ɛr'kræft", airline: "'ɛrlaɪn", airplane: "'erpleɪn",
+      airport: "'ɛr'pɔrt", aisle: "aɪl", alarm: "ə'lɑrm", album: "'ælbəm", alignment: "ə'laɪnmənt", alike: "ə'laɪk",
+      alive: "ə'laɪv", allege: "ə'lɛdʒ", alleviate: "ə'livɪ'et", alliance: "ə'laɪəns", allocate: "'æləket", allot: "ə'lɑt",
+      allow: "ə'laʊ", allowance: "ə'laʊəns", ally: "'ælaɪ", alone: "ə'lon", alongside: "ə'lɔŋ'saɪd", also: "'ɔlso",
+      alteration: ",ɔltə'reʃən", altitude: "'æltɪtud", amateur: "'æmətər", amaze: "ə'mez", ambition: "æm'bɪʃən", ambitious: "æm'bɪʃəs",
+      amid: "ə'mɪd", amongst: "ə'mʌŋst", amount: "ə'maʊnt", amplify: "'æmplɪfaɪ", amusement: "ə'mjuzmənt", analytic: ",ænə'lɪtɪk",
+      analytical: ",ænə'lɪtɪkl", angry: "'æŋɡri", announce: "ə'naʊns", announcer: "ə'naʊnsɚ", annual: "'ænjuəl", annually: "'ænjuəli",
+      anonymous: "ə'nɑnəməs", answer: "'ænsɚ", antique: "æn'tik", anxiety: "æŋ'zaɪəti", anyhow: "'ɛnɪ'haʊ", anyone: "'ɛnɪ'wʌn",
+      anyway: "'ɛnɪ'we", apartment: "ə'pɑrtmənt", apologize: "ə'pɑlədʒaɪz", apology: "ə'pɑlədʒi", apparent: "ə'pærənt", appeal: "ə'pil",
+      appearance: "ə'pɪrəns", appetite: "'æpɪtaɪt", applicable: "'æplɪkəbl", applicant: "'æplɪkənt", application: ",æplə'keʃən", apply: "ə'plaɪ",
+      appoint: "ə'pɔɪnt", appraisal: "ə'prezl", apprentice: "ə'prɛntɪs", approximate: "ə'prɑksɪmət", aptitude: "'æptɪ,tud", architecture: "'ɑrkə'tɛktʃɚ",
+      arm: "ɑrm", array: "ə're", arrest: "ə'rɛst", arrival: "ə'raɪvəl", arrive: "ə'raɪv", arrow: "'æro",
+      art: "ɑrt", artificial: ",ɑrtɪ'fɪʃl", artist: "'ɑrtɪst", artistic: "ɑr'tɪstɪk", aspiration: "'æspə'reʃən", assemble: "ə'sɛmbl",
+      assess: "ə'sɛs", assessment: "ə'sɛsmənt", asset: "'æsɛt", assistance: "ə'sɪstəns", association: "ə,soʃɪ'eʃən", assorted: "ə'sɔrtəd",
+      athlete: "'æθlit", atmosphere: "'ætməsfɪr", attack: "ə'tæk", attain: "ə'ten", attendant: "ə'tɛndənt", attention: "ə'tɛnʃən",
+      attorney: "ə'tɝni", attract: "ə'trækt", attraction: "ə'trækʃən", attractive: "ə'træktɪv", auction: "'ɔkʃən", audio: "'ɔdɪo",
+      audit: "'ɔdɪt", audition: "ɔ'dɪʃən", auditorium: ",ɔdɪ'tɔrɪəm", augment: "ɔɡ'mɛnt", auto: "'ɔto", automate: "'ɔtəmet",
+      automatic: "'ɔtə'mætɪk", automation: ",ɔtə'meʃən", automobile: ",ɔtəmə'bil", autonomy: "ɔ'tɑnəmi", autumn: "'ɔtəm", avenue: "'ævənu",
+      aviation: ",evɪ'eʃən", award: "ə'wɔrd", awful: "'ɔfl", bachelor: "'bætʃəlɚ", background: "'bækɡraʊnd", backward: "'bækwɚd",
+      baggage: "'bæɡɪdʒ", balcony: "'bælkəni", ball: "bɔl", ballot: "'bælət", ban: "bæn", band: "bænd",
+      bank: "bæŋk", banker: "'bæŋkɚ", bankrupt: "'bæŋkrʌpt", banner: "'bænɚ", banquet: "'bæŋkwɪt", bar: "bɑr",
+      barbecue: "'bɑrbɪkju", barrel: "'bærəl", basement: "'besmənt", basket: "'bæskɪt", batch: "bætʃ", bathroom: "'bæθrum",
+      battle: "'bætl", bear: "bɛr", beautiful: "'bjʊtəfəl", bed: "bɛd", before: "bɪ'fɔr", below: "bɪ'lo",
+      belt: "bɛlt", bench: "bɛntʃ", benefit: "'bɛnɪfɪt", bet: "bɛt", bias: "'baɪəs", bicycle: "'baɪsɪkl",
+      bike: "baɪk", bill: "bɪl", bit: "bɪt", blast: "blæst", body: "'bɑdi", bond: "bɑnd",
+      bottle: "'bɑtl", bottom: "'bɑtəm", bow: "baʊ", box: "bɑks", boycott: "'bɔɪkɑt", bracket: "'brækɪt",
+      brand: "brænd", breath: "brɛθ", bribe: "braɪb", brick: "brɪk", bridge: "brɪdʒ", brilliant: "'brɪljənt",
+      broaden: "'brɔdn", brochure: "bro'ʃʊr", broken: "'brokən", browse: "braʊz", bubble: "'bʌbl", bucket: "'bʌkɪt",
+      bulk: "bʌlk", bunch: "bʌntʃ", bundle: "'bʌndl", buy: "baɪ", cabinet: "'kæbɪnət", calculate: "'kælkjulet",
+      calculation: ",kælkju'leʃən", calorie: "'kæləri", camera: "'kæmərə", canvas: "'kænvəs", capital: "'kæpɪtl", capture: "'kæptʃɚ",
+      carbon: "'kɑrbən", card: "kɑrd", careless: "'kɛrləs", cargo: "'kɑrɡo", carrier: "'kærɪɚ", carry: "'kæri",
+      cart: "kɑrt", carton: "'kɑrtn", cartridge: "'kɑrtrɪdʒ", casualty: "'kæʒuəlti", catalog: "'kætəlɔg", catalogue: "'kætəlɔɡ",
+      caution: "'kɔʃən", cell: "sɛl", cent: "sɛnt", chairman: "'tʃɛrmən", channel: "'tʃænl", chemical: "'kɛmɪkl",
+      chemist: "'kɛmɪst", chemistry: "'kɛmɪstri", chip: "tʃɪp", circuit: "'sɝkɪt", clause: "klɔz", clearance: "'klɪrəns",
+      clearing: "'klɪrɪŋ", click: "klɪk", closet: "'klɑzət", cloud: "klaʊd", commerce: "'kɑmɝs", compatible: "kəm'pætəbl",
+      compile: "kəm'paɪl", complaint: "kəm'plent", comply: "kəm'plaɪ", confer: "kən'fɝ", conference: "'kɑnfərəns", confidence: "'kɑnfɪdəns",
+      congress: "'kɑŋɡrəs", convene: "kən'vin", convention: "kən'vɛnʃən", copyright: "'kɑpɪraɪt", corrupt: "kə'rʌpt", counterfeit: "'kaʊntɚ'fɪt",
+      court: "kɔrt", courtyard: "'kɔrtjɑrd", crime: "kraɪm", criminal: "'krɪmɪnl", customer: "'kʌstəmɚ", dangerous: "'dendʒərəs",
+      defend: "dɪ'fɛnd", diagram: "'daɪəɡræm", dissatisfaction: "dɪs'sætɪs'fækʃən", distress: "dɪ'strɛs", district: "'dɪstrɪkt", elderly: "'ɛldɚli",
+      estate: "ɪ'stet", guarantee: ",ɡærən'ti", advent: "'ædvənt", ascertain: "'æsɚ'ten", charm: "tʃɑrm", china: "tʃaɪnə",
+      christmas: "'krɪsməs", commonsense: "'kɔmən'sens", courtesy: "'kɝtəsi", disorder: "dɪs'ɔrdɚ", eclipse: "ɪ'klɪps", egyptian: "i'dʒipʃən",
+      errand: "'ɛrənd", experimentally: "iks,peri'mentəli", extent: "ɪk'stɛnt", finite: "'faɪnaɪt", hull: "hʌl", import: "'ɪmpɔt",
+      job: "dʒɔb", layout: "'leaʊt", mackintosh: "'mækintɔʃ", manifest: "'mænɪfɛst", mingle: "'mɪŋɡl", mister: "'mistə",
+      mortgage: "'mɔrɡɪdʒ", orchestra: "'ɔrkɪstrə", paint: "peɪnt", pedlar: "'pedlə", penetrate: "'pɛnətret", provided: "prə'vaɪdɪd",
+      psychology: "saɪ'kɑlədʒi", punch: "pʌntʃ", radical: "'rædɪkl", reptile: "'rɛptaɪl", reservoir: "'rɛzɚ,vɔr", specific: "spɪ'sɪfɪk",
+      stuntman: "'stʌntmæn", summit: "'sʌmɪt", systematic: ",sistə'mætikl", tenable: "'tenəbl", thanksgiving: "'θæŋks,ɡiviŋ", unfit: ",ʌn'fit",
+      valve: "vælv", xerox: "'ziərɔks",
+    };
+    const IPA_CACHE = new Map();
+    function ipaOf(word) {
+      const raw = String(word || '').trim();
+      if (!raw) return '';
+      const low = raw.toLowerCase();
+      if (IPA_CACHE.has(low)) return IPA_CACHE.get(low);
+      const direct = wordByWord[raw] || wordByWord[low];
+      let out = direct && direct.ipa ? String(direct.ipa).trim() : '';
+      if (!out && IPA_EXTRA[low]) out = IPA_EXTRA[low];
+      if (!out) {
+        const parts = low.split(/\s+/).filter(Boolean);
+        const chunks = [];
+        const single = hitIndex().single;
+        for (const part of parts) {
+          if (part.length < 2) { chunks.length = 0; break; }
+          const hit = stemLookup(single, part);
+          const ipa = (hit && hit.ipa ? String(hit.ipa).trim() : '') || IPA_EXTRA[part] || '';
+          if (!ipa) { chunks.length = 0; break; }
+          chunks.push(ipa);
+        }
+        if (chunks.length > 0) {
+          out = chunks.length === 1
+            ? chunks[0]
+            : '/' + chunks.map((chunk) => chunk.replace(/^\//, '').replace(/\/$/, '')).join(' ') + '/';
+        }
+      }
+      IPA_CACHE.set(low, out);
+      return out;
+    }
+    function extractHitsFromText(text, topicIds) {
       const lower = stripEpackBlocks(text).toLowerCase();
       if (!lower.trim()) return [];
       const { single, phrases } = hitIndex();
@@ -15557,10 +15908,28 @@ const TOPIC_RULES = [
         const at = lower.indexOf(item.needle);
         if (at !== -1) note(item.entry, at);
       }
+      // v1.6.0: 命中分「贴题」与「不贴题」两档——对话里出现的词很多是代码标识符等噪音，
+      // 只按出现位置排序会把它们排到主题词前面，所以贴题命中优先
+      const wanted = Array.isArray(topicIds) && topicIds.length > 0 ? new Set(topicIds) : null;
+      const isTopical = (entry) => (wanted ? tagsOf(entry).some((tag) => wanted.has(tag)) : false);
       return Array.from(found.values())
-        .filter((hit) => wordState(hit.entry.w) !== 'mastered' && !HIT_STOP.has(hit.entry.w.toLowerCase()))
-        .sort((a, b) => b.at - a.at)
+        .filter((hit) => wordState(hit.entry.w) !== 'mastered'
+          && !HIT_STOP.has(hit.entry.w.toLowerCase())
+          && !FUNCTION_WORD.has(hit.entry.w.toLowerCase()))
+        .map((hit) => ({ entry: hit.entry, at: hit.at, topical: isTopical(hit.entry) }))
+        .sort((a, b) => (a.topical === b.topical ? b.at - a.at : (b.topical ? 1 : -1)))
         .slice(0, 12);
+    }
+
+    // v1.6.0: 英文主题键按"词首"匹配（见 detectTopics 内注释），这里缓存编译好的正则
+    const KEY_ASCII_RE = /^[a-z0-9+#._-]+$/;
+    const KEY_START_RE = new Map();
+    function keyStartRe(needle) {
+      const cached = KEY_START_RE.get(needle);
+      if (cached) return new RegExp(cached.source, 'g');
+      const src = '\\b' + needle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      KEY_START_RE.set(needle, { source: src });
+      return new RegExp(src, 'g');
     }
 
     // v1.5 主题识别升级：计分制（命中次数×关键长度×位置权重），只取得分最高的前 2 个
@@ -15576,13 +15945,25 @@ const TOPIC_RULES = [
           let score = 0;
           for (const key of rule.keys) {
             const needle = key.toLowerCase();
-            let at = 0;
             let hits = 0;
-            while (hits < 12) {
-              const found = lower.indexOf(needle, at);
-              if (found === -1) break;
-              hits += 1;
-              at = found + needle.length;
+            if (KEY_ASCII_RE.test(needle)) {
+              // v1.6.0: 英文键必须是"词首"匹配。之前用裸 indexOf，'ai' 会命中 maintain / explained /
+              // email，'ui' 会命中 build，'log' 会命中 blog——于是大量不相关会话被误判成 ai / frontend 主题，
+              // 抽出来的词自然跟话题对不上。词首匹配保留了 deploy → deployment 这类派生，又切掉了词中误伤。
+              const re = keyStartRe(needle);
+              let m;
+              while (hits < 12 && (m = re.exec(lower)) !== null) {
+                hits += 1;
+                if (m.index === re.lastIndex) re.lastIndex += 1;
+              }
+            } else {
+              let at = 0;
+              while (hits < 12) {
+                const found = lower.indexOf(needle, at);
+                if (found === -1) break;
+                hits += 1;
+                at = found + needle.length;
+              }
             }
             if (hits > 0) score += Math.min(hits, 6) * (needle.length >= 4 ? 2 : 1);
           }
@@ -15609,11 +15990,70 @@ const TOPIC_RULES = [
       return WORDS.filter((entry) => tagsOf(entry).some((tag) => wanted.has(tag)));
     }
 
+    // v1.6.0 主题相关度分档：
+    //   2 档 = 词条本身带该主题标签（TOPIC_TAGS，704 条）——最贴题
+    //   1 档 = 词条/例句/释义里出现该主题的关键词——次贴题（把"只有英文没标签"的相关词捞回来）
+    //   0 档 = 与主题无关的通用词，只在主题池不够时兜底
+    // 关键词命中按主题缓存一次，避免每回合对 7999 条做全量字符串匹配。
+    const TOPIC_KEY_HITS = new Map(); // topicId -> Set(word)
+    function topicKeyHits(topicId) {
+      const cached = TOPIC_KEY_HITS.get(topicId);
+      if (cached) return cached;
+      const set = new Set();
+      const rule = TOPIC_RULES.find((item) => item.id === topicId);
+      if (rule) {
+        // ASCII 关键词必须整词命中（'ai' 不能匹配 sail/airfare），且至少 3 个字母；
+        // 中文关键词本来就是词，直接子串匹配即可。
+        const cjkKeys = [];
+        const wordKeys = [];
+        for (const raw of rule.keys) {
+          const key = String(raw).toLowerCase().trim();
+          if (!key) continue;
+          if (/[\u3400-\u9fff]/.test(key)) { if (key.length >= 2) cjkKeys.push(key); }
+          else if (/^[a-z][a-z'-]*$/.test(key) && key.length >= 3) wordKeys.push(key);
+        }
+        const re = wordKeys.length > 0
+          ? new RegExp('\\b(?:' + wordKeys.map((key) => key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')\\b')
+          : null;
+        for (const entry of WORDS) {
+          // v1.6.0: 英文关键词只比词条本身，不再比例句（entry.en）。
+          // 比例句会让任何"例句里顺带提到 log/tool/cache"的通用词混进主题池：
+          // cabin（例句 log cabin）、make（例句里出现 tool）就是这么进来的。
+          const hay = String(entry.w || '').toLowerCase();
+          // 中文键只比释义，不比例句：例句里出现「音乐」「吃饭」的通用词不该算主题词
+          const hayZh = String(entry.zh || '');
+          if (re && re.test(hay)) { set.add(entry.w); continue; }
+          for (const key of cjkKeys) {
+            if (hayZh.includes(key)) { set.add(entry.w); break; }
+          }
+        }
+      }
+      TOPIC_KEY_HITS.set(topicId, set);
+      return set;
+    }
+    function topicTier(entry, want) {
+      if (tagsOf(entry).some((tag) => want.has(tag))) return 2;
+      for (const id of want) {
+        if (topicKeyHits(id).has(entry.w)) return 1;
+      }
+      return 0;
+    }
+
+    // v1.6.0 性能：主题池是 7999 条全表扫一遍（实测 2.5ms），而闪卡条、尾条、小测试
+    // 会反复要同一个（标题, 对话文本, 档位）的组合。这里按这几个维度缓存，词包/等级变化会自动失效。
+    const TOPIC_POOL_CACHE = new Map();
     function topicPoolFor(title, extraText, settings, sessionPacks) {
       const preset = levelPreset(settings && settings.level);
       const n = Math.max(1, Math.min(30, (settings && settings.batchSize) || 10));
+      const cacheKey = preset.id + '#' + n + '#' + PACK_REV + '#' + hash(String(title || '') + '\u0000' + String(extraText || ''));
+      const cachedPool = TOPIC_POOL_CACHE.get(cacheKey);
+      if (cachedPool) return cachedPool;
       const topicIds = detectTopics(title, extraText).map((rule) => rule.id);
-      const want = new Set(topicIds);
+      // v1.6.0: 一个主题都没识别出来时，用 daily（日常话题）兜底。
+      // 之前这里返回空池，调用方只能退回 dockPool（按等级过滤后的整个词库，basic 档 6614 条），
+      // 于是"没有主题"的会话抽到的词横跨天南地北——正是用户说的"跟话题没关系"。
+      const effIds = topicIds.length > 0 ? topicIds : ['daily'];
+      const want = new Set(effIds);
       const packWords = [];
       const seenPack = new Set();
       const packs = Array.isArray(sessionPacks) ? sessionPacks : [];
@@ -15624,10 +16064,13 @@ const TOPIC_RULES = [
           packWords.push(Object.assign({}, entry, { __pack: true }));
         }
       }
-      if (topicIds.length === 0 && packWords.length === 0) return [];
-      let pool = topicIds.length > 0
-        ? WORDS.filter((entry) => tagsOf(entry).some((tag) => want.has(tag) || tag === 'core'))
-        : WORDS.filter((entry) => entry.tags.includes('core'));
+      // v1.6.0: 旧写法把 'core'（6698 条，占全库 84%）并进主题池，"主题词"实际约等于整个词库。
+      // 现在只收 1 档以上（带主题标签 / 命中主题关键词），0 档通用词仅作兜底。
+      let pool = [];
+      for (const entry of WORDS) {
+        const tier = topicTier(entry, want);
+        if (tier > 0) pool.push(Object.assign({}, entry, { __tier: tier }));
+      }
       if (packWords.length > 0) {
         const seen = new Set(pool.map((entry) => entry.w));
         for (const entry of packWords) {
@@ -15635,18 +16078,32 @@ const TOPIC_RULES = [
         }
       }
       if (pool.length < Math.max(8, n)) {
+        const seen = new Set(pool.map((entry) => entry.w));
         for (const entry of WORDS) {
           if (pool.length >= Math.max(12, n)) break;
-          if (!pool.includes(entry)) pool.push(entry);
+          if (seen.has(entry.w) || !passesLevel(entry, preset)) continue;
+          seen.add(entry.w);
+          pool.push(Object.assign({}, entry, { __tier: 0 }));
         }
       }
-      return bandPool(pool.filter((entry) => passesLevel(entry, preset)), preset);
+      const built = bandPool(pool.filter((entry) => passesLevel(entry, preset)), preset);
+      if (TOPIC_POOL_CACHE.size > 24) TOPIC_POOL_CACHE.clear();
+      TOPIC_POOL_CACHE.set(cacheKey, built);
+      return built;
+    }
+
+    // v1.6.0: 「主题池为空就退回整库」这条兜底逻辑原本抄了三份（闪卡、尾条、小测试），
+    // 现在统一走这里，改口径只要改一处。
+    function themedBase(title, extraText, settings, sessionPacks) {
+      const themed = topicPoolFor(title, extraText, settings, sessionPacks);
+      if (themed.length > 0) return themed;
+      return dockPool(settings);
     }
 
     function pickTopicWords(title, offset, settings, extraText, sessionPacks) {
       const preset = levelPreset(settings && settings.level);
       const n = Math.max(1, Math.min(30, (settings && settings.batchSize) || 10));
-      let pool = visiblePool(topicPoolFor(title, extraText, settings, sessionPacks));
+      let pool = visiblePool(themedBase(title, extraText, settings, sessionPacks));
       if (pool.length === 0) pool = visiblePool(WORDS.filter((entry) => passesLevel(entry, preset)));
       const rng = mulberry32(hash(String(title || '') + '|' + String(offset)));
       return pickWeighted(pool, preset, Math.min(n, pool.length), rng);
@@ -15674,7 +16131,7 @@ const TOPIC_RULES = [
     const CSS = [
       '.elz-root { font-size: 13px; }',
       '.elz-dock { box-sizing: border-box; display: flex; justify-content: center; }',
-      '.elz-bar { display: flex; align-items: center; gap: 8px; box-sizing: border-box; width: 760px; max-width: 100%; padding: 3px 10px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: var(--dsw-radius-md); background: var(--dsw-alias-bg-layer-1); flex-wrap: nowrap; overflow: hidden; }',
+      '.elz-bar { display: flex; align-items: center; gap: 8px; box-sizing: border-box; min-height: 30px; width: 760px; max-width: 100%; padding: 3px 10px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: var(--dsw-radius-md); background: var(--dsw-alias-bg-layer-1); flex-wrap: nowrap; overflow: hidden; }',
       '.elz-chipbar { display: flex; align-items: center; gap: 8px; box-sizing: border-box; padding: 4px 10px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: 999px; background: var(--dsw-alias-bg-layer-1); width: max-content; }',
       '.elz-word { color: var(--dsw-alias-label-primary); font-weight: 600; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; max-width: 26ch; flex: 0 2 auto; }',
       '.elz-ipa { color: var(--dsw-alias-label-tertiary); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }',
@@ -15697,17 +16154,37 @@ const TOPIC_RULES = [
       '.elz-h { color: var(--dsw-alias-label-tertiary); font-size: 12px; font-weight: 600; }',
       '.elz-topic { display: flex; flex-direction: column; gap: 8px; }',
       '.elz-topic-title { color: var(--dsw-alias-label-primary); font-size: 15px; font-weight: 600; line-height: 1.45; overflow-wrap: anywhere; }',
-      '.elz-brief { color: var(--dsw-alias-label-secondary); font-size: 13px; line-height: 1.65; }',
+      '.elz-brief { color: var(--dsw-alias-label-secondary); font-size: 13px; line-height: 1.65; margin: 0; }',
+      '.elz-brief-body { display: flex; flex-direction: column; gap: 12px; }',
+      '.elz-head-tools { display: flex; align-items: center; gap: 8px; flex: none; }',
+      '.elz-fold { font: inherit; font-size: 11px; line-height: 18px; padding: 0 8px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: 999px; background: transparent; color: var(--dsw-alias-label-tertiary); cursor: pointer; }',
+      '.elz-fold:hover { color: var(--dsw-alias-label-primary); border-color: var(--dsw-alias-border-l3); }',
+      '.elz-topic-min { gap: 4px; }',
+      '.elz-chip-lead { color: var(--dsw-alias-label-primary); border-color: var(--dsw-alias-border-l3); }',
+      '.elz-brief-use { color: var(--dsw-alias-label-tertiary); font-size: 12px; line-height: 1.6; display: flex; gap: 6px; }',
+      '.elz-brief-use-label { flex: none; color: var(--dsw-alias-label-tertiary); font-weight: 600; font-size: 11px; letter-spacing: 0.02em; padding-top: 1px; }',
+      '.elz-patterns { display: flex; flex-direction: column; gap: 6px; }',
+      '.elz-pattern { display: flex; flex-direction: column; gap: 2px; border-left: 2px solid var(--dsw-alias-border-l1); padding: 2px 0 2px 9px; }',
+      '.elz-pattern-en { color: var(--dsw-alias-label-primary); font-size: 13px; line-height: 1.55; overflow-wrap: anywhere; }',
+      '.elz-pattern-zh { color: var(--dsw-alias-label-tertiary); font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }',
+      '.elz-speak { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; padding: 0; border: 0; border-radius: 999px; background: transparent; color: var(--dsw-alias-label-tertiary); cursor: pointer; }',
+      '.elz-speak:hover { background: var(--dsw-alias-interactive-bg-hover); color: var(--dsw-alias-label-primary); }',
+      '.elz-speak:focus-visible { outline: 1px solid var(--dsw-alias-border-active); }',
+      '.elz-quiz-sentence { font-size: 15px; font-weight: 600; line-height: 1.6; color: var(--dsw-alias-label-primary); overflow-wrap: anywhere; }',
+      '.elz-quiz-full { font-size: 12px; line-height: 1.55; color: var(--dsw-alias-label-tertiary); margin-top: 3px; }',
+      '.elz-quiz-review { font-size: 10px; line-height: 16px; color: var(--dsw-alias-label-tertiary); border: 0.5px solid var(--dsw-alias-border-l3); border-radius: 999px; padding: 0 6px; margin-left: 6px; }',
       '.elz-note { color: var(--dsw-alias-label-tertiary); font-size: 12px; opacity: 0.72; }',
       '.elz-chips { display: flex; flex-wrap: wrap; gap: 6px; }',
       '.elz-chip { font-size: 11px; line-height: 18px; color: var(--dsw-alias-label-secondary); border: 0.5px solid var(--dsw-alias-border-l1); border-radius: 999px; padding: 0 8px; }',
       '.elz-cards { display: flex; flex-direction: column; gap: 8px; }',
       '.elz-card { display: flex; flex-direction: column; gap: 4px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: var(--dsw-radius-md); background: var(--dsw-alias-bg-layer-1); padding: 10px 12px; }',
       '.elz-card-top { display: flex; align-items: baseline; gap: 8px; flex-wrap: nowrap; }',
+      '.elz-word-line { display: inline-flex; align-items: center; gap: 6px; flex-wrap: nowrap; min-width: 0; min-height: 20px; }',
       '.elz-card-zh { color: var(--dsw-alias-label-primary-dimmed, var(--dsw-alias-label-secondary)); font-size: 13px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }',
       '.elz-card-ex { color: var(--dsw-alias-label-tertiary); font-size: 12px; line-height: 1.55; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }',
       '.elz-card-actions { display: flex; gap: 6px; margin-top: 2px; }',
       '.elz-empty { color: var(--dsw-alias-label-tertiary); font-size: 12px; }',
+      '.elz-filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }',
       '.elz-head-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }',
       '.elz-title-chip { display: inline-flex; align-items: center; gap: 6px; }',
       '.elz-seg { display: flex; gap: 4px; padding: 3px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: 999px; background: var(--dsw-alias-bg-layer-1); width: max-content; }',
@@ -15715,7 +16192,6 @@ const TOPIC_RULES = [
       '.elz-seg-btn:hover { color: var(--dsw-alias-label-primary); }',
       '.elz-seg-on { background: var(--dsw-alias-interactive-bg-hover); color: var(--dsw-alias-label-primary); font-weight: 600; }',
       '.elz-card-known { opacity: 0.55; }',
-      '.elz-known-badge { font-size: 11px; line-height: 18px; color: var(--dsw-alias-label-tertiary); border: 0.5px solid var(--dsw-alias-border-l3); border-radius: 999px; padding: 0 8px; margin-left: auto; white-space: nowrap; }',
       '.elz-range { width: 100%; accent-color: var(--dsw-alias-interactive-primary); }',
       '.elz-lookup-input { width: 100%; font: inherit; font-size: 12px; color: var(--dsw-alias-label-primary); background: transparent; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: 8px; padding: 5px 10px; outline: none; }',
       '.elz-lookup-input:focus { border-color: var(--dsw-alias-interactive-primary); }',
@@ -15725,9 +16201,6 @@ const TOPIC_RULES = [
       '.elz-count { color: var(--dsw-alias-label-tertiary); font-size: 12px; white-space: nowrap; }',
       '.elz-set { display: flex; flex-direction: column; gap: 16px; }',
       '.elz-set-group { display: flex; flex-direction: column; gap: 6px; }',
-      '.elz-chip-btn { font: inherit; font-size: 12px; line-height: 20px; color: var(--dsw-alias-label-secondary); background: transparent; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: 999px; padding: 1px 12px; cursor: pointer; }',
-      '.elz-chip-btn:hover { color: var(--dsw-alias-label-primary); }',
-      '.elz-chip-on { background: var(--dsw-alias-interactive-bg-hover); color: var(--dsw-alias-label-primary); font-weight: 600; border-color: var(--dsw-alias-border-l3); }',
       '.elz-actions { display: flex; flex-wrap: wrap; gap: 8px; }',
       '.elz-btn-danger { color: #b3392c; border-color: #b3392c; }',
       'body[data-ds-dark-theme] .elz-btn-danger { color: #e06a5d; border-color: #e06a5d; }',
@@ -15757,6 +16230,7 @@ const TOPIC_RULES = [
       '.elz-quiz-hint { font-size: 12px; padding: 2px 8px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: 999px; background: var(--dsw-alias-bg-layer-1); color: var(--dsw-alias-label-primary); cursor: pointer; font: inherit; }',
       '.elz-quiz-hint:disabled { opacity: 0.4; cursor: default; }',
       '.elz-quiz-mask { font-family: monospace; letter-spacing: 2px; font-size: 14px; }',
+      '.elz-quiz-ipa { color: var(--dsw-alias-label-primary); font-size: 15px; line-height: 1.5; letter-spacing: 0.02em; white-space: normal; overflow-wrap: anywhere; }',
       '.elz-quiz-ok { color: var(--dsw-alias-label-primary); font-size: 12px; }',
       '.elz-quiz-close { color: var(--dsw-alias-label-secondary); font-size: 12px; }',
       '.elz-quiz-bad { color: var(--dsw-alias-label-primary); font-size: 12px; }',
@@ -15766,7 +16240,13 @@ const TOPIC_RULES = [
       '.elz-quiz-wrong { display: flex; flex-direction: column; gap: 4px; }',
     ].join('\n');
 
-    function Styles() { return h('style', null, CSS); }
+    // v1.6.0: 每个挂点（闪卡、尾条、右栏、小测试）都各插一份同样的样式。
+    // 元素描述符复用成常量后，React 不必在每次重渲染时重新构造并把 13.6KB 的样式文本重新比对一遍。
+    let STYLE_NODE = null;
+    function Styles() {
+      if (STYLE_NODE === null) STYLE_NODE = h('style', null, CSS);
+      return STYLE_NODE;
+    }
 
     // --------------------------------------------------------- glyphs
     function BrandGlyph({ size = 16, className }) {
@@ -15784,23 +16264,98 @@ const TOPIC_RULES = [
       );
     }
 
+    // ------------------------------------------------- speech (v1.6.0)
+    // Pronunciation through the Web Speech API: no network, no dependency, no audio assets.
+    function speechAvailable() {
+      return typeof window !== 'undefined'
+        && !!window.speechSynthesis
+        && typeof window.SpeechSynthesisUtterance === 'function';
+    }
+    let TTS_VOICE = null;
+    function pickVoice() {
+      try {
+        const voices = window.speechSynthesis.getVoices() || [];
+        const en = voices.filter((voice) => /^en[-_]/i.test(String(voice.lang || '')));
+        if (en.length === 0) return null;
+        const named = en.find((voice) => /^en[-_]US/i.test(voice.lang) && /samantha|zira|aria|google us/i.test(String(voice.name || '')));
+        TTS_VOICE = named || en.find((voice) => /^en[-_]US/i.test(voice.lang)) || en[0];
+      } catch (error) { TTS_VOICE = null; }
+      return TTS_VOICE;
+    }
+    function speak(text) {
+      const body = String(text || '').trim().slice(0, 240);
+      if (!body || !speechAvailable()) return;
+      if (storeState.settings && storeState.settings.tts === false) return;
+      try {
+        const synth = window.speechSynthesis;
+        synth.cancel();
+        const utter = new window.SpeechSynthesisUtterance(body);
+        utter.lang = 'en-US';
+        utter.rate = 0.92;
+        const voice = TTS_VOICE || pickVoice();
+        if (voice) utter.voice = voice;
+        synth.speak(utter);
+      } catch (error) { /* speech unavailable; stay silent */ }
+    }
+    if (typeof window !== 'undefined' && window.speechSynthesis && typeof window.speechSynthesis.addEventListener === 'function') {
+      try {
+        window.speechSynthesis.addEventListener('voiceschanged', () => { TTS_VOICE = null; pickVoice(); });
+      } catch (error) { /* ignore */ }
+    }
+    function SpeakGlyph({ size = 13 }) {
+      return h('svg', {
+        width: size, height: size, viewBox: '0 0 16 16', 'aria-hidden': true,
+        style: { display: 'inline-block', verticalAlign: '-2px' },
+      },
+        h('path', { d: 'M6.4 3.1 3.5 5.5H1.6v5h1.9l2.9 2.4z', fill: 'currentColor' }),
+        h('path', { d: 'M9.3 5.3a3.5 3.5 0 0 1 0 5.4', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.3, 'stroke-linecap': 'round' }),
+        h('path', { d: 'M11.5 3.5a6 6 0 0 1 0 9', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.3, 'stroke-linecap': 'round' }),
+      );
+    }
+    function SpeakButton({ text, t, label }) {
+      if (!speechAvailable()) return null;
+      const body = String(text || '');
+      const caption = label || t('common.speak');
+      return h('button', {
+        type: 'button', className: 'elz-speak',
+        onClick: (event) => { if (event && event.stopPropagation) event.stopPropagation(); speak(body); },
+        title: caption, 'aria-label': caption + ' · ' + body,
+      }, h(SpeakGlyph, { size: 13 }));
+    }
+
     // ------------------------------------------------- shared card body
-    function WordLine({ entry }) {
-      return h('span', { className: 'elz-card-top' },
+    // The speak button lives inside the word line so every surface (card, dock strip, tail)
+    // shows word → 🔊 in exactly the same order.
+    function WordLine({ entry, t }) {
+      return h('span', { className: 'elz-word-line' },
         h('span', { className: 'elz-word' }, entry.w),
+        t ? h(SpeakButton, { text: entry.w, t }) : null,
         entry.ipa ? h('span', { className: 'elz-ipa' }, entry.ipa) : null,
         h('span', { className: 'elz-pos' }, entry.pos),
       );
     }
+    // default book filter: the two states that mean "needs another look"
+    const BOOK_DEFAULT_FILTER = ['fuzzy', 'new'];
     const STATE_META = [
       { id: 'mastered', icon: '√' },
       { id: 'known', icon: '○' },
       { id: 'fuzzy', icon: '≈' },
       { id: 'new', icon: '?' },
     ];
-    function StateBadge({ state, t }) {
-      const meta = state ? STATE_META.find((m) => m.id === state) : null;
-      return meta ? h('span', { className: 'elz-known-badge' }, meta.icon + ' ' + t('card.' + meta.id + 'On')) : null;
+    // v1.6.0 feedback: pronunciation sits right after the word (same as the dock strip), and the
+    // state badge is gone — the lit button in the row below already says which state is active.
+    function WordCard({ entry, state, t }) {
+      return h('div', {
+        className: 'elz-card' + (state === 'mastered' ? ' elz-card-mastered' : state === 'known' ? ' elz-card-known' : state === 'fuzzy' ? ' elz-card-fuzzy' : ''),
+        key: entry.w,
+      },
+        h(WordLine, { entry, t }),
+        h('span', { className: 'elz-card-zh' }, entry.zh),
+        h('span', { className: 'elz-card-ex' }, (entry.en || '') + (entry.zhEx ? '　' + entry.zhEx : '')),
+        h('div', { className: 'elz-card-actions' },
+          h(StateButtons, { entry, state, t }),
+        ),
+      );
     }
     function StateButtons({ entry, state, t }) {
       return h('div', { className: 'elz-card-actions' },
@@ -15835,12 +16390,20 @@ const TOPIC_RULES = [
       }, [packHit]);
       const pool = React.useMemo(() => {
         const sessionPacks = loadPacks(sessionId);
-        const themed = topicPoolFor(title, stripEpackBlocks(convText), settings, sessionPacks);
-        const base = themed.length > 0 ? themed : dockPool(settings);
+        const base = themedBase(title, stripEpackBlocks(convText), settings, sessionPacks);
         const want = new Set(detectTopics(title, convText).map((rule) => rule.id));
         const hits = new Set(extractHitsFromText(convText).slice(0, 6).map((hit) => hit.entry.w));
-        const rank = (entry) => hits.has(entry.w) ? -1 : (entry.__pack || tagsOf(entry).some((tag) => want.has(tag))) ? 0 : 1;
-        return visiblePool([...base].sort((a, b) => rank(a) - rank(b)));
+        // v1.6.0 性能：rank 只有 -1/0/1 三档，却对整个池子做了一次全排序（池子常有几千条）。
+        // 改成一次分桶，顺序语义（对话命中 → 主题/词包 → 其他）与原来完全一致。
+        const hitBucket = [];
+        const themeBucket = [];
+        const restBucket = [];
+        for (const entry of base) {
+          if (hits.has(entry.w)) hitBucket.push(entry);
+          else if (entry.__pack || tagsOf(entry).some((tag) => want.has(tag))) themeBucket.push(entry);
+          else restBucket.push(entry);
+        }
+        return visiblePool(hitBucket.concat(themeBucket, restBucket));
       }, [sessionId, settings, title, convText, packHit, s.packsTick]);
       // rotation = pool woven by mastery weight: fuzzy x3, new x2, known x1 (low frequency); mastered never enters
       const rotation = React.useMemo(() => {
@@ -15887,7 +16450,7 @@ const TOPIC_RULES = [
           onMouseLeave: () => { setPaused(false); },
         },
           h(BrandGlyph, { size: 18 }),
-          h(WordLine, { entry }),
+          h(WordLine, { entry, t }),
           h('span', { className: 'elz-zh' }, entry.zh),
           h('span', { className: 'elz-ex', title: (entry.en || '') + (entry.zhEx ? '\n' + entry.zhEx : '') }, entry.en),
           running ? h('span', { className: 'elz-running' }, h('span', { className: 'elz-dot' })) : null,
@@ -16043,6 +16606,18 @@ const TOPIC_RULES = [
           ),
           h('span', { className: 'elz-note' }, t('set.aiPickDesc')),
         ),
+        h('div', { className: 'elz-set-group' },
+          h('span', { className: 'elz-h' }, t('set.tts')),
+          h('div', { className: 'elz-seg', role: 'group' },
+            [true, false].map((v) => h('button', {
+              key: String(v), type: 'button',
+              'aria-pressed': (settings.tts !== false) === v ? 'true' : 'false',
+              className: 'elz-seg-btn' + ((settings.tts !== false) === v ? ' elz-seg-on' : ''),
+              onClick: () => { updateSettings({ tts: v }); },
+            }, t(v ? 'set.on' : 'set.off'))),
+          ),
+          h('span', { className: 'elz-note' }, speechAvailable() ? t('set.ttsDesc') : t('set.ttsUnsupported')),
+        ),
         PACKS_ENABLED ? h('div', { className: 'elz-set-group' },
         h('span', { className: 'elz-h' }, t('set.packHeading')),
         (() => {
@@ -16179,19 +16754,72 @@ const TOPIC_RULES = [
       }
       return Array.from(options).sort(() => Math.random() - 0.5);
     }
+    // v1.6.0: sentence-pattern cloze — take a topic pattern, blank its most useful word,
+    // and show the Chinese line as the prompt. Single words finally get used in a sentence.
+    const CLOZE_STOP = new Set(['this', 'that', 'have', 'with', 'from', 'your', 'there', 'what', 'when', 'them', 'they', 'will', 'would', 'about', 'which', 'been', 'were', 'does', 'just', 'like', 'some', 'than', 'then', 'into', 'over', 'also', 'only', 'because', 'before', 'after']);
+    function buildPatternItems(title, convText, known, limit, exclude) {
+      const taken = exclude instanceof Set ? exclude : new Set();
+      const topics = detectTopics(title, convText);
+      const out = [];
+      const seenWord = new Set();
+      for (const topic of topics) {
+        const list = Array.isArray(topic.patterns) ? topic.patterns : [];
+        for (const pattern of list) {
+          if (out.length >= limit) return out;
+          const en = String(pattern.en || '');
+          const tokens = en.match(/[A-Za-z][A-Za-z'-]{3,}/g) || [];
+          let target = '';
+          for (const token of tokens) {
+            const low = token.toLowerCase();
+            if (CLOZE_STOP.has(low) || seenWord.has(low) || taken.has(low)) continue;
+            if (known && known[low] === 'mastered') continue;
+            if (!target || low.length > target.length) target = low;
+          }
+          if (!target) continue;
+          const re = new RegExp('\\b' + target.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i');
+          const blanked = en.replace(re, '______');
+          if (blanked === en) continue;
+          seenWord.add(target);
+          const base = wordByWord[target];
+          out.push({
+            entry: {
+              w: target,
+              ipa: ipaOf(target),
+              pos: (base && base.pos) || '',
+              zh: (base && base.zh) || '',
+              en,
+              zhEx: pattern.zh || '',
+              tags: [topic.id],
+            },
+            mode: 'build',
+            review: false,
+            patternZh: String(pattern.zh || ''),
+            blanked,
+          });
+        }
+      }
+      return out;
+    }
     function buildQuizItems(opts) {
       const known = opts.known;
       const settings = opts.settings;
       const count = Math.max(1, Math.min(20, opts.count || 10));
       const rand = Math.random;
-      const favPairs = [];
+      // v1.6.0: words already marked known come back for spaced review (lower weight, capped share)
+      const bookPairs = [];
+      const knownPool = [];
       for (const entry of WORDS) {
         const v = known && known[entry.w];
-        if (v === 'new') favPairs.push({ entry, weight: 2 });
-        else if (v === 'fuzzy') favPairs.push({ entry, weight: 1 });
+        if (v === 'new') bookPairs.push({ entry, weight: 2 });
+        else if (v === 'fuzzy') bookPairs.push({ entry, weight: 1 });
+        else if (v === 'known') knownPool.push(entry);
       }
-      const favN = Math.min(favPairs.length, Math.max(1, Math.round(count * 0.8)));
-      const favPick = weightedSample(favPairs, favN, rand);
+      // v1.6.0 feedback: 0.35 of a round felt like too many already-known words. 0.2 keeps a
+      // light refresher without turning the quiz into a victory lap.
+      const reviewN = knownPool.length > 0 ? Math.min(knownPool.length, Math.max(1, Math.round(count * 0.2))) : 0;
+      const reviewPick = weightedSample(knownPool.map((entry) => ({ entry, weight: 1 })), reviewN, rand);
+      const favN = Math.min(bookPairs.length, Math.max(0, Math.round(count * 0.8) - reviewPick.length));
+      const favPick = weightedSample(bookPairs, favN, rand).concat(reviewPick);
       const used = new Set(favPick.map((entry) => entry.w));
       const topicPool = visiblePool(topicPoolFor(opts.title, opts.convText, settings, loadPacks(opts.sessionId)))
         .filter((entry) => !used.has(entry.w));
@@ -16208,7 +16836,20 @@ const TOPIC_RULES = [
           picked.push(rest.splice(Math.floor(rand() * rest.length), 1)[0]);
         }
       }
-      const items = picked.map((entry) => ({ entry, mode: rand() < 0.3 ? 'choice' : 'spell' }));
+      // v1.6.0: listening dictation — hear the word, spell it back (skipped when speech is unavailable or the entry has no audio-friendly headword)
+      const dictOk = speechAvailable();
+      const items = picked.map((entry) => {
+        const marked = known && known[entry.w];
+        let mode = rand() < 0.3 ? 'choice' : 'spell';
+        if (mode === 'spell' && dictOk && rand() < 0.22) mode = 'dictation';
+        return { entry, review: marked === 'known', mode };
+      });
+      const pickedSet = new Set(picked.map((entry) => entry.w.toLowerCase()));
+      const patternItems = buildPatternItems(opts.title, opts.convText, known, Math.min(2, Math.max(1, Math.round(count / 4))), pickedSet);
+      for (const item of patternItems) {
+        if (items.length < count) items.push(item);
+        else items[items.length - 1] = item;
+      }
       for (let i = items.length - 1; i > 0; i--) {
         const j = Math.floor(rand() * (i + 1));
         const tmp = items[i]; items[i] = items[j]; items[j] = tmp;
@@ -16223,7 +16864,7 @@ const TOPIC_RULES = [
       const [done, setDone] = React.useState(false);
       const [log, setLog] = React.useState([]);
       const [input, setInput] = React.useState('');
-      const [hint, setHint] = React.useState(() => ({ ipa: false, mask: false, ex: false }));
+      const [hint, setHint] = React.useState(() => ({ ipa: false, mask: false, ex: false, zh: false }));
       const [verdict, setVerdict] = React.useState(null);
       const [closeTried, setCloseTried] = React.useState(false);
       const [choicePick, setChoicePick] = React.useState(null);
@@ -16234,6 +16875,8 @@ const TOPIC_RULES = [
       }).length, [s.known]);
       const topicCount = React.useMemo(() => visiblePool(topicPoolFor(title, convText, settings, loadPacks(sessionId))).length,
         [title, convText, settings, sessionId, s.packsTick]);
+      const knownCount = React.useMemo(() => WORDS.filter((entry) => s.known && s.known[entry.w] === 'known').length, [s.known]);
+      const reviewPlanned = knownCount > 0 ? Math.min(knownCount, Math.max(1, Math.round(count * 0.2))) : 0;
       const quizEntry = items && items[idx] ? items[idx].entry : null;
       const choiceOpts = React.useMemo(
         () => (quizEntry ? quizChoiceOptions(quizEntry, s.known) : []),
@@ -16247,26 +16890,33 @@ const TOPIC_RULES = [
           if (event.key !== 'Enter' && event.key !== 'ArrowRight') return;
           const it = items[idx];
           if (!it) return;
-          const isSpell = it.mode === 'spell';
+          const isSpell = it.mode !== 'choice';
           const judged = isSpell
             ? !!(verdict && (verdict.kind === 'ok' || verdict.kind === 'bad'))
             : !!choicePick;
           if (!judged) return;
           event.preventDefault();
           const ok = isSpell ? verdict.kind === 'ok' : choicePick.picked === it.entry.w;
-          const nextLog = log.concat([{ w: it.entry.w, zh: it.entry.zh, ok }]);
+          const nextLog = log.concat([{ w: it.entry.w, zh: it.entry.zh, en: it.mode === 'build' ? it.entry.en : '', ok }]);
           if (ok && settings.quizAutoPromote === true) {
             const v = stateIn(storeState.known, it.entry.w);
             if (v === 'new' || v === 'fuzzy') markWord(it.entry.w, 'known');
           }
           setLog(nextLog);
           if (idx + 1 >= items.length) { setDone(true); return; }
-          setIdx(idx + 1); setInput(''); setHint({ ipa: false, mask: false, ex: false });
+          setIdx(idx + 1); setInput(''); setHint({ ipa: false, mask: false, ex: false, zh: false });
           setVerdict(null); setCloseTried(false); setChoicePick(null);
         };
         window.addEventListener('keydown', onKey);
         return () => { window.removeEventListener('keydown', onKey); };
       }, [items, idx, done, verdict, choicePick, log, settings]);
+      // v1.6.0: dictation questions speak themselves once per question
+      React.useEffect(() => {
+        if (!items || done) return;
+        const it = items[idx];
+        if (!it || it.mode !== 'dictation') return;
+        speak(it.entry.w);
+      }, [items, idx, done]);
       if (items === null) {
         const empty = favCount + topicCount === 0;
         return h('section', { className: 'elz-root elz-page elz-quiz' }, h(Styles),
@@ -16279,12 +16929,13 @@ const TOPIC_RULES = [
             }, String(n))),
           ),
           h('span', { className: 'elz-note' }, t('quiz.pool').replace('{n}', String(favCount)).replace('{m}', String(topicCount))),
+          knownCount > 0 ? h('span', { className: 'elz-note' }, t('quiz.reviewNote').replace('{n}', String(reviewPlanned))) : null,
           empty ? h('p', { className: 'elz-empty' }, t('quiz.empty')) : null,
           h('button', { type: 'button', className: 'elz-btn elz-btn-primary', disabled: empty,
             onClick: () => {
               setItems(buildQuizItems({ known: s.known, settings, title, convText, sessionId, count }));
               setIdx(0); setDone(false); setLog([]); setInput('');
-              setHint({ ipa: false, mask: false, ex: false }); setVerdict(null); setCloseTried(false); setChoicePick(null); setAdded(false);
+              setHint({ ipa: false, mask: false, ex: false, zh: false }); setVerdict(null); setCloseTried(false); setChoicePick(null); setAdded(false);
             } }, t('quiz.start')),
         );
       }
@@ -16298,6 +16949,7 @@ const TOPIC_RULES = [
             wrongRows.map((row) => h('div', { className: 'elz-card elz-quiz-wrong', key: row.w },
               h('div', { className: 'elz-word' }, row.w),
               h('span', { className: 'elz-card-zh' }, row.zh),
+              row.en ? h('span', { className: 'elz-card-ex' }, row.en) : null,
             )),
           ),
           wrongRows.length > 0 ? h('button', { type: 'button', className: 'elz-btn', disabled: added,
@@ -16308,6 +16960,29 @@ const TOPIC_RULES = [
               }
               setAdded(true);
             } }, added ? t('quiz.added') : t('quiz.addWrong')) : null,
+          wrongRows.length > 0 ? h('button', { type: 'button', className: 'elz-btn',
+            onClick: () => {
+              const picked = [];
+              const seen = new Set();
+              for (const row of wrongRows) {
+                if (seen.has(row.w)) continue;
+                const base = wordByWord[row.w];
+                if (!base) continue;
+                seen.add(row.w);
+                picked.push(base);
+              }
+              if (picked.length === 0) return;
+              const speakOk = speechAvailable();
+              setItems(picked.map((entry) => {
+                let mode = Math.random() < 0.3 ? 'choice' : 'spell';
+                if (mode === 'spell' && speakOk && Math.random() < 0.22) mode = 'dictation';
+                return { entry, review: false, mode };
+              }));
+              setIdx(0); setDone(false); setLog([]); setInput('');
+              setHint({ ipa: false, mask: false, ex: false, zh: false });
+              setVerdict(null); setCloseTried(false); setChoicePick(null); setAdded(false);
+            },
+          }, t('quiz.drillWrong')) : null,
           h('div', { className: 'elz-quiz-actions' },
             h('button', { type: 'button', className: 'elz-btn elz-btn-primary', onClick: () => { setItems(null); } }, t('quiz.again')),
             h('button', { type: 'button', className: 'elz-btn', onClick: () => { setItems(null); setCount(count); } }, t('quiz.back')),
@@ -16316,15 +16991,17 @@ const TOPIC_RULES = [
       }
       const item = items[idx];
       const entry = item.entry;
+      const isBuild = item.mode === 'build';
+      const isDictation = item.mode === 'dictation';
       const advance = (ok) => {
-        const nextLog = log.concat([{ w: entry.w, zh: entry.zh, ok }]);
+        const nextLog = log.concat([{ w: entry.w, zh: entry.zh, en: isBuild ? entry.en : '', ok }]);
         if (ok && settings.quizAutoPromote === true) {
           const v = stateIn(storeState.known, entry.w);
           if (v === 'new' || v === 'fuzzy') markWord(entry.w, 'known');
         }
         setLog(nextLog);
         if (idx + 1 >= items.length) { setDone(true); return; }
-        setIdx(idx + 1); setInput(''); setHint({ ipa: false, mask: false, ex: false });
+        setIdx(idx + 1); setInput(''); setHint({ ipa: false, mask: false, ex: false, zh: false });
         setVerdict(null); setCloseTried(false); setChoicePick(null);
       };
       const submitSpell = () => {
@@ -16334,26 +17011,51 @@ const TOPIC_RULES = [
         else if (kind === 'close' && !closeTried) { setCloseTried(true); setVerdict({ kind: 'close' }); }
         else setVerdict({ kind: 'bad' });
       };
-      const spell = item.mode === 'spell';
+      const spell = item.mode !== 'choice';
+      // v1.6.0 feedback: 音标按钮点了没反应——很多时候不是按钮坏了，是这个词本身没有音标，
+      // 按钮却是灰的、点了也没有任何反馈。统一走 ipaOf 兜底，拿不到就明说。
+      const ipaText = entry.ipa || ipaOf(entry.w);
       const maskText = letterMask(entry.w);
       const exText = blankedExample(entry);
       const nextLabel = idx + 1 >= items.length ? t('quiz.done') : t('quiz.next');
       return h('section', { className: 'elz-root elz-page elz-quiz' }, h(Styles),
-        h('span', { className: 'elz-note' }, (idx + 1) + ' / ' + items.length),
-        h('span', { className: 'elz-quiz-prompt' }, spell ? t('quiz.spellPrompt') : t('quiz.choicePrompt')),
-        h('div', { className: 'elz-quiz-zh' },
-          entry.zh + (entry.w.indexOf(' ') !== -1 ? '　·　' + t('quiz.phrase') : ''),
+        h('div', { style: { display: 'flex', alignItems: 'center' } },
+          h('span', { className: 'elz-note' }, (idx + 1) + ' / ' + items.length),
+          item.review ? h('span', { className: 'elz-quiz-review' }, t('quiz.review')) : null,
         ),
+        h('span', { className: 'elz-quiz-prompt' },
+          isBuild ? t('quiz.buildPrompt') : isDictation ? t('quiz.dictPrompt') : spell ? t('quiz.spellPrompt') : t('quiz.choicePrompt')),
+        isBuild ? h('div', { className: 'elz-quiz-sentence' }, item.blanked) : null,
+        isDictation ? h('div', { className: 'elz-quiz-actions' },
+          h('button', {
+            type: 'button', className: 'elz-quiz-hint',
+            onClick: () => { speak(entry.w); },
+            title: t('quiz.replay'),
+          },
+            h('span', { style: { display: 'inline-flex', alignItems: 'center', gap: 4 } },
+              h(SpeakGlyph, { size: 12 }), t('quiz.replay')),
+          ),
+        ) : null,
+        isBuild
+          ? h('div', { className: 'elz-quiz-zh' }, item.patternZh)
+          : isDictation
+          ? (hint.zh ? h('div', { className: 'elz-quiz-zh' }, entry.zh) : null)
+          : h('div', { className: 'elz-quiz-zh' },
+              entry.zh + (entry.w.indexOf(' ') !== -1 ? '　·　' + t('quiz.phrase') : ''),
+            ),
         spell ? h(React.Fragment, null,
           h('div', { className: 'elz-quiz-hints' },
-            h('button', { type: 'button', className: 'elz-quiz-hint', disabled: !entry.ipa,
-              onClick: () => { setHint((v) => ({ ...v, ipa: true })); } }, t('quiz.hintIpa')),
+            h('button', { type: 'button', className: 'elz-quiz-hint', disabled: !ipaText,
+              title: ipaText ? undefined : t('quiz.noIpa'),
+              onClick: () => { setHint((v) => ({ ...v, ipa: ipaText ? true : v.ipa })); } }, t('quiz.hintIpa')),
             h('button', { type: 'button', className: 'elz-quiz-hint',
               onClick: () => { setHint((v) => ({ ...v, mask: true })); } }, t('quiz.hintMask')),
-            h('button', { type: 'button', className: 'elz-quiz-hint', disabled: !exText,
+            h('button', { type: 'button', className: 'elz-quiz-hint', disabled: isBuild || !exText,
               onClick: () => { setHint((v) => ({ ...v, ex: true })); } }, t('quiz.hintEx')),
+            isDictation ? h('button', { type: 'button', className: 'elz-quiz-hint', disabled: hint.zh,
+              onClick: () => { setHint((v) => ({ ...v, zh: true })); } }, t(hint.zh ? 'quiz.hintZhOn' : 'quiz.hintZh')) : null,
           ),
-          hint.ipa && entry.ipa ? h('div', { className: 'elz-ipa' }, entry.ipa) : null,
+          hint.ipa && ipaText ? h('div', { className: 'elz-quiz-ipa' }, ipaText) : null,
           hint.mask ? h('div', { className: 'elz-quiz-mask' }, maskText) : null,
           hint.ex && exText ? h('div', { className: 'elz-note' }, exText) : null,
           h('input', {
@@ -16370,10 +17072,22 @@ const TOPIC_RULES = [
             },
           }),
           verdict ? (verdict.kind === 'ok'
-            ? h('div', { className: 'elz-quiz-ok' }, '✓ ' + t('quiz.correct') + ' · ' + entry.w)
+            ? h('div', { className: 'elz-quiz-ok' },
+                h('span', { style: { display: 'inline-flex', alignItems: 'center', gap: 4 } },
+                  '✓ ' + t('quiz.correct') + ' · ' + entry.w,
+                  h(SpeakButton, { text: isBuild ? entry.en : entry.w, t }),
+                ),
+                isBuild ? h('div', { className: 'elz-quiz-full' }, entry.en) : null,
+              )
             : verdict.kind === 'close'
             ? h('div', { className: 'elz-quiz-close' }, t('quiz.closeTry'))
-            : h('div', { className: 'elz-quiz-bad' }, t('quiz.wrongShow') + ' · ' + entry.w)
+            : h('div', { className: 'elz-quiz-bad' },
+                h('span', { style: { display: 'inline-flex', alignItems: 'center', gap: 4 } },
+                  t('quiz.wrongShow') + ' · ' + entry.w,
+                  h(SpeakButton, { text: isBuild ? entry.en : entry.w, t }),
+                ),
+                isBuild ? h('div', { className: 'elz-quiz-full' }, entry.en) : null,
+              )
           ) : null,
           h('div', { className: 'elz-quiz-actions' },
             (verdict && (verdict.kind === 'ok' || verdict.kind === 'bad'))
@@ -16407,6 +17121,8 @@ const TOPIC_RULES = [
       const [offset, setOffset] = React.useState(0);
       const view = s.view || 'words';
       const setView = (value) => { setStore({ view: value }); };
+      const briefFold = !!s.briefFold;
+      const setBriefFold = (value) => { setStore({ briefFold: !!value }); };
 
       const row = catalog && catalog.byId ? catalog.byId[sessionId] : undefined;
       const title = (row && (row.title || row.displayTitle)) || '';
@@ -16419,23 +17135,75 @@ const TOPIC_RULES = [
         return undefined;
       }, [packHit]);
       const topics = React.useMemo(() => detectTopics(title, convText), [title, convText]);
-      const briefLines = topics.length > 0 ? topics.map((topic) => topic.brief) : [GENERAL_BRIEF];
+      const briefTopics = topics.length > 0 ? topics : [GENERAL_TOPIC];
+      const leadTopic = briefTopics[0];
+      const briefIds = briefTopics.map((topic) => topic.id).join(',');
+      const [patternOffset, setPatternOffset] = React.useState(0);
+      React.useEffect(() => { setPatternOffset(0); }, [briefIds]);
+      // one rotated pair of sentence frames per topic; "another set" walks the list
+      const patternRows = React.useMemo(() => {
+        const rows = [];
+        const seen = new Set();
+        for (const topic of [leadTopic]) {
+          const list = Array.isArray(topic.patterns) ? topic.patterns : [];
+          if (list.length === 0) continue;
+          for (let step = 0; step < 2; step += 1) {
+            const at = (patternOffset + step) % list.length;
+            const item = list[at];
+            if (!item) continue;
+            const key = topic.id + '|' + at;
+            if (seen.has(key)) continue;
+            seen.add(key);
+            rows.push({ key, en: item.en, zh: item.zh });
+          }
+        }
+        return rows;
+      }, [briefIds, patternOffset]);
 
       const words = React.useMemo(() => pickTopicWords(title, offset, s.settings, convText, loadPacks(sessionId)), [sessionId, title, offset, s.settings, convText, s.packsTick]);
-      const favWords = React.useMemo(
-        () => WORDS.filter((entry) => { const v = s.known && s.known[entry.w]; return v === 'new' || v === 'fuzzy'; }),
-        [s.known],
-      );
       const [bookPage, setBookPage] = React.useState(0);
       const [bookQuery, setBookQuery] = React.useState('');
+      // v1.6.0 feedback: the book is now a four-state word list, defaulting to fuzzy + new.
+      // markedState (not stateIn) matters here: an untouched word is NOT "? 生词" — it is unmarked.
+      const [bookFilter, setBookFilter] = React.useState(BOOK_DEFAULT_FILTER);
+      const bookMarks = React.useMemo(() => {
+        const byState = { mastered: [], known: [], fuzzy: [], new: [] };
+        for (const entry of WORDS) {
+          const st = markedState(s.known, entry.w);
+          if (st && byState[st]) byState[st].push(entry);
+        }
+        return byState;
+      }, [s.known]);
+      const bookWords = React.useMemo(() => {
+        const selected = STATE_META.filter((meta) => bookFilter.indexOf(meta.id) !== -1);
+        const pools = selected.map((meta) => (bookMarks[meta.id] || []).slice());
+        const out = [];
+        if (pools.length <= 1) {
+          for (const pool of pools) {
+            for (const entry of pool) out.push(entry);
+          }
+          return out;
+        }
+        // v1.6.0 feedback: with multiple states selected the book must not group by
+        // state (a fuzzy wall followed by a new wall). Weave the pools round-robin in
+        // STATE_META order so every page mixes statuses; single state keeps its order.
+        for (let i = 0; ; i++) {
+          let pushed = false;
+          for (const pool of pools) {
+            if (pool.length > i) { out.push(pool[i]); pushed = true; }
+          }
+          if (!pushed) break;
+        }
+        return out;
+      }, [bookFilter, bookMarks]);
       const bookQueryTrim = bookQuery.trim().toLowerCase();
       const filteredBook = React.useMemo(() => {
-        if (!bookQueryTrim) return favWords;
-        return favWords.filter((entry) =>
+        if (!bookQueryTrim) return bookWords;
+        return bookWords.filter((entry) =>
           entry.w.toLowerCase().includes(bookQueryTrim) ||
           String(entry.zh || '').toLowerCase().includes(bookQueryTrim) ||
           String(entry.en || '').toLowerCase().includes(bookQueryTrim));
-      }, [favWords, bookQueryTrim]);
+      }, [bookWords, bookQueryTrim]);
       const bookPages = Math.max(1, Math.ceil(filteredBook.length / 20));
       const bookPageSafe = Math.min(bookPage, bookPages - 1);
       const bookSlice = filteredBook.slice(bookPageSafe * 20, (bookPageSafe + 1) * 20);
@@ -16493,17 +17261,58 @@ const TOPIC_RULES = [
 
       return h('div', { className: 'elz-root elz-page' }, h(Styles),
         // --- topic brief
-        h('section', { className: 'elz-topic' },
+        // v1.6.0 feedback: the brief ate the whole pane, so it folds. The fold is persisted
+        // (store.briefFold), and the topic chips stay visible even when folded — they are one
+        // compact line and they tell you which topic the word list below belongs to.
+        h('section', { className: 'elz-topic' + (briefFold ? ' elz-topic-min' : '') },
           h('div', { className: 'elz-head-row' },
             h('span', { className: 'elz-h' }, t('tab.briefHeading')),
-            running ? h('span', { className: 'elz-running' }, h('span', { className: 'elz-dot' }), t('tab.running')) : null,
+            h('div', { className: 'elz-head-tools' },
+              running ? h('span', { className: 'elz-running' }, h('span', { className: 'elz-dot' }), t('tab.running')) : null,
+              h('button', {
+                type: 'button', className: 'elz-fold',
+                'aria-expanded': briefFold ? 'false' : 'true',
+                title: briefFold ? t('tab.briefExpand') : t('tab.briefCollapse'),
+                onClick: () => { setBriefFold(!briefFold); },
+              }, briefFold ? '▸ ' + t('tab.briefExpand') : '▾ ' + t('tab.briefCollapse')),
+            ),
           ),
           title === ''
             ? h('p', { className: 'elz-note' }, t('tab.blank'))
             : h('p', { className: 'elz-topic-title' }, title),
-          h('p', { className: 'elz-brief' }, briefLines.join(' ')),
-          topics.length > 0 ? h('div', { className: 'elz-chips' },
-            topics.map((topic) => h('span', { className: 'elz-chip', key: topic.id }, topic.chip))) : null,
+          // v1.6.0 feedback: one brief block, not one per detected topic.
+          // The strongest topic carries the paragraph; any second topic is only a chip.
+          briefFold ? null : h('div', { className: 'elz-brief-body' },
+            h('p', { className: 'elz-brief' }, leadTopic.brief),
+            leadTopic.usage ? h('div', { className: 'elz-brief-use' },
+              h('span', { className: 'elz-brief-use-label' }, t('tab.briefUsage')),
+              h('span', null, leadTopic.usage),
+            ) : null,
+          ),
+          h('div', { className: 'elz-head-row' },
+            h('div', { className: 'elz-chips' },
+              briefTopics.map((topic) => h('span', {
+                className: 'elz-chip' + (topic.id === leadTopic.id ? ' elz-chip-lead' : ''),
+                key: topic.id,
+              }, topic.chip)),
+            ),
+            !briefFold && patternRows.length > 0 ? h('button', {
+              type: 'button', className: 'elz-btn elz-btn-ghost',
+              onClick: () => { setPatternOffset((value) => value + 1); },
+              title: t('tab.briefPatternsMore'),
+            }, '↻ ' + t('tab.briefPatternsMore')) : null,
+          ),
+          briefFold ? null : (patternRows.length > 0 ? h('div', { className: 'elz-patterns' },
+            h('span', { className: 'elz-h' }, t('tab.briefPatterns')),
+            patternRows.map((row) => h('div', { className: 'elz-pattern', key: row.key },
+              h('div', { style: { display: 'flex', alignItems: 'flex-start', gap: 6 } },
+                h('span', { className: 'elz-pattern-en' }, row.en),
+                h(SpeakButton, { text: row.en, t }),
+              ),
+              h('span', { className: 'elz-pattern-zh' }, row.zh),
+            )),
+            h('span', { className: 'elz-note' }, t('tab.briefPatternsLead')),
+          ) : null),
         ),
         // --- view switch: topic words / word book, gear opens settings
         h('div', { className: 'elz-seg-row' },
@@ -16517,7 +17326,7 @@ const TOPIC_RULES = [
               type: 'button', 'aria-selected': view === 'book' ? 'true' : 'false',
               className: 'elz-seg-btn' + (view === 'book' ? ' elz-seg-on' : ''),
               onClick: () => { setView('book'); },
-            }, t('tab.viewBook') + ' (' + favWords.length + ')'),
+            }, t('tab.viewBook') + ' (' + bookWords.length + ')'),
             h('button', {
               type: 'button', 'aria-selected': view === 'quiz' ? 'true' : 'false',
               className: 'elz-seg-btn' + (view === 'quiz' ? ' elz-seg-on' : ''),
@@ -16538,8 +17347,28 @@ const TOPIC_RULES = [
         view === 'book' ?
         // --- word book (saved words)
         h('section', { style: { display: 'flex', flexDirection: 'column', gap: 8 } },
-          favWords.length === 0
+          // v1.6.0 feedback: the book is a four-state word list, not just "saved" words.
+          h('div', { className: 'elz-filter-row' },
+            h('span', { className: 'elz-h' }, t('book.filter')),
+            h('div', { className: 'elz-seg', role: 'group' },
+              STATE_META.map((meta) => h('button', {
+                type: 'button', key: meta.id,
+                className: 'elz-seg-btn' + (bookFilter.indexOf(meta.id) !== -1 ? ' elz-seg-on' : ''),
+                'aria-pressed': bookFilter.indexOf(meta.id) !== -1 ? 'true' : 'false',
+                title: t('card.' + meta.id + 'On'),
+                onClick: () => {
+                  setBookFilter((prev) => prev.indexOf(meta.id) === -1
+                    ? prev.concat([meta.id])
+                    : (prev.length > 1 ? prev.filter((id) => id !== meta.id) : prev));
+                  setBookPage(0);
+                },
+              }, meta.icon + ' ' + t('card.' + meta.id) + ' (' + (bookMarks[meta.id] || []).length + ')')),
+            ),
+          ),
+          (bookMarks.mastered.length + bookMarks.known.length + bookMarks.fuzzy.length + bookMarks.new.length) === 0
             ? h('p', { className: 'elz-empty' }, t('book.empty'))
+            : bookWords.length === 0
+            ? h('p', { className: 'elz-empty' }, t('book.emptyFiltered'))
             : h(React.Fragment, null,
                 h('input', {
                   type: 'search', className: 'elz-lookup-input', placeholder: t('book.search'),
@@ -16548,23 +17377,9 @@ const TOPIC_RULES = [
                 }),
                 filteredBook.length === 0
                   ? h('p', { className: 'elz-empty' }, t('book.none'))
-                  : h('div', { className: 'elz-cards' }, bookSlice.map((entry) => {
-              const state = markedState(s.known, entry.w);
-              return h('div', {
-                className: 'elz-card' + (state === 'mastered' ? ' elz-card-mastered' : state === 'known' ? ' elz-card-known' : state === 'fuzzy' ? ' elz-card-fuzzy' : ''),
-                key: entry.w,
-              },
-                h('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
-                  h(WordLine, { entry }),
-                  h(StateBadge, { state, t }),
-                ),
-                h('span', { className: 'elz-card-zh' }, entry.zh),
-                h('span', { className: 'elz-card-ex' }, (entry.en || '') + (entry.zhEx ? '　' + entry.zhEx : '')),
-                h('div', { className: 'elz-card-actions' },
-                  h(StateButtons, { entry, state, t }),
-                ),
-              );
-            })),
+                  : h('div', { className: 'elz-cards' }, bookSlice.map((entry) => h(WordCard, {
+              key: entry.w, entry, state: markedState(s.known, entry.w), t,
+            }))),
                 bookPages > 1 ? h('div', { className: 'elz-seg-row', style: { justifyContent: 'center' } },
                   h('button', {
                     type: 'button', className: 'elz-btn elz-btn-ghost', disabled: bookPageSafe === 0,
@@ -16600,40 +17415,12 @@ const TOPIC_RULES = [
             value: lookup, 'aria-label': t('tab.lookup'),
             onChange: (event) => { setLookup(event.target.value); },
           }),
-          lookupHits.length > 0 ? h('div', { className: 'elz-cards' }, lookupHits.map((entry) => {
-            const state = markedState(s.known, entry.w);
-            return h('div', {
-              className: 'elz-card' + (state === 'mastered' ? ' elz-card-mastered' : state === 'known' ? ' elz-card-known' : state === 'fuzzy' ? ' elz-card-fuzzy' : ''),
-              key: entry.w,
-            },
-              h('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
-                h(WordLine, { entry }),
-                h(StateBadge, { state, t }),
-              ),
-              h('span', { className: 'elz-card-zh' }, entry.zh),
-              h('span', { className: 'elz-card-ex' }, (entry.en || '') + (entry.zhEx ? '　' + entry.zhEx : '')),
-              h('div', { className: 'elz-card-actions' },
-                h(StateButtons, { entry, state, t }),
-              ),
-            );
-          })) : null,
-          h('div', { className: 'elz-cards' }, words.filter((entry) => markedState(s.known, entry.w) !== 'mastered').map((entry) => {
-            const state = markedState(s.known, entry.w);
-            return h('div', {
-              className: 'elz-card' + (state === 'mastered' ? ' elz-card-mastered' : state === 'known' ? ' elz-card-known' : state === 'fuzzy' ? ' elz-card-fuzzy' : ''),
-              key: entry.w,
-            },
-              h('div', { style: { display: 'flex', alignItems: 'center', gap: 8 } },
-                h(WordLine, { entry }),
-                h(StateBadge, { state, t }),
-              ),
-              h('span', { className: 'elz-card-zh' }, entry.zh),
-              h('span', { className: 'elz-card-ex' }, (entry.en || '') + (entry.zhEx ? '　' + entry.zhEx : '')),
-              h('div', { className: 'elz-card-actions' },
-                h(StateButtons, { entry, state, t }),
-              ),
-            );
-          })),
+          lookupHits.length > 0 ? h('div', { className: 'elz-cards' }, lookupHits.map((entry) => h(WordCard, {
+            key: entry.w, entry, state: markedState(s.known, entry.w), t,
+          }))) : null,
+          h('div', { className: 'elz-cards' }, words.filter((entry) => markedState(s.known, entry.w) !== 'mastered').map((entry) => h(WordCard, {
+            key: entry.w, entry, state: markedState(s.known, entry.w), t,
+          }))),
         ),
       );
     }
@@ -16680,10 +17467,12 @@ const TOPIC_RULES = [
     }
 
     // ------------------------------------------------- turn tail strip（回复尾部词条条）
-    const TAIL_REGISTRY = { bySession: new Map(), listeners: new Set() };
+    const TAIL_REGISTRY = { bySession: new Map(), high: new Map(), listeners: new Set() };
     function tailRegistryMax(sessionId) {
       const set = TAIL_REGISTRY.bySession.get(sessionId);
-      return set && set.size > 0 ? Math.max(...set) : -1;
+      const live = set && set.size > 0 ? Math.max(...set) : -1;
+      const high = TAIL_REGISTRY.high.has(sessionId) ? TAIL_REGISTRY.high.get(sessionId) : -1;
+      return Math.max(live, high);
     }
     function tailRegistrySubscribe(listener) {
       TAIL_REGISTRY.listeners.add(listener);
@@ -16694,6 +17483,12 @@ const TOPIC_RULES = [
       let set = TAIL_REGISTRY.bySession.get(sessionId);
       if (!set) { set = new Set(); TAIL_REGISTRY.bySession.set(sessionId, set); }
       set.add(turnNo);
+      // v1.6.0: 记下「到达过的最大回合号」，只增不减。
+      // 宿主会卸载 / 虚拟化旧回合节点，卸载时 dispose 会把这个回合号从 set 里删掉；
+      // 只看 set 的最大值时，最后一轮一旦被卸载 maxTurn 就退回 -1，全部尾条同时隐藏，
+      // 这就是用户报告的「本轮词汇不见了」。
+      const prevHigh = TAIL_REGISTRY.high.get(sessionId);
+      if (prevHigh === undefined || turnNo > prevHigh) TAIL_REGISTRY.high.set(sessionId, turnNo);
       tailRegistryEmit();
       return () => {
         set.delete(turnNo);
@@ -16722,13 +17517,12 @@ const TOPIC_RULES = [
       const [showEx, setShowEx] = React.useState(false);
       const s = React.useSyncExternalStore(store.subscribe, store.getSnapshot);
       const state = markedState(s.known, entry.w);
-      const stMeta = state ? STATE_META.find((m) => m.id === state) : null;
       return h('div', { className: 'elz-tail-card' },
         h('div', { className: 'elz-tail-meta' },
           h('span', { className: 'elz-tail-w' }, entry.w),
+          h(SpeakButton, { text: entry.w, t }),
           entry.ipa ? h('span', { className: 'elz-ipa' }, entry.ipa) : null,
           entry.__pack ? h('span', { className: 'elz-ipa' }, '·AI') : null,
-          stMeta ? h('span', { className: 'elz-ipa' }, stMeta.icon) : null,
           (entry.en || entry.zhEx) ? h('button', { type: 'button', className: 'elz-tail-exbtn', onClick: () => { setShowEx((v) => !v); }, 'aria-pressed': showEx ? 'true' : 'false', title: t('tail.example') }, showEx ? '▾ 例' : '▸ 例') : null,
         ),
         h('span', { className: 'elz-tail-zh', title: entry.zh }, entry.zh),
@@ -16737,7 +17531,37 @@ const TOPIC_RULES = [
       );
     }
     const AI_PICK = new Map();
-    const TAIL_COOL = new Map(); // sessionKey -> Map(word -> 展示回合号)：同一词 3 回合内只展示一次（冷却，防被谈论的词必抽）
+    const TAIL_COOL = new Map(); // sessionKey -> Map(word -> 展示回合号)：同一词冷却期内只展示一次（防被谈论的词必抽）
+    const TAIL_SEEN = new Map(); // sessionKey -> Map(word -> 本轮会话说露脸次数)：防止同一个词在会话里反复出现
+    const TAIL_COOL_TURNS = 6;
+    const TAIL_MAX_SHOWS = 2;
+    // v1.6.0: 「本轮词汇」按 session|turnNo 缓存选词结果。
+    // 组件每次重挂（切换对话、面板重开、标记状态后父级重渲染）都会重跑 useMemo，
+    // 而重跑时「已掌握」会被 visiblePool 过滤掉、露脸计数也会继续累加，
+    // 于是同一回合的尾条会换一批词——用户看到的就是「切个对话就刷新了、维持不住」。
+    // 缓存后同一回合永远是同一批词，标记状态只影响之后的回合。
+    const TAIL_PICK = new Map();
+    const TAIL_PICK_MAX = 240; // 缓存上限，超出按插入顺序淘汰最旧的会话/回合
+    function tailPickStore(key, value) {
+      if (TAIL_PICK.size >= TAIL_PICK_MAX && !TAIL_PICK.has(key)) {
+        const oldest = TAIL_PICK.keys().next();
+        if (!oldest.done) TAIL_PICK.delete(oldest.value);
+      }
+      TAIL_PICK.set(key, value);
+    }
+    const TIER_WEIGHT = { 0: 1, 1: 4, 2: 14 }; // 主题档位 → 回填抽样权重
+    function tailRemember(sid, words, turnNo) {
+      const m = TAIL_COOL.get(sid) || new Map();
+      const s = TAIL_SEEN.get(sid) || new Map();
+      for (const w of words) {
+        // 同一回合重复记录不累加，否则重挂几次就把露脸上限吃满、整条尾条被迫换词
+        if (m.get(w) === turnNo) continue;
+        m.set(w, turnNo);
+        s.set(w, (s.get(w) || 0) + 1);
+      }
+      TAIL_COOL.set(sid, m);
+      TAIL_SEEN.set(sid, s);
+    }
     const AI_PICK_PROMPT = '[英语角] 请根据上面的对话内容，只输出一个 ```elpack 代码围栏，不要输出任何其他文字。围栏内是 JSON 对象：{"topic":"小写英文短横线主题","title":"中文主题名","words":[5-8 个与对话最相关的英语词汇或短语]}，每项格式 {"w":"英语词或短语","ipa":"音标","pos":"词性","zh":"中文释义","en":"英文例句","zhEx":"例句中文翻译"}。优先挑选对话中实际出现或紧扣话题的地道表达。';
     function conversationFor(sessionsApi, sessionId) {
       try {
@@ -16759,30 +17583,68 @@ const TOPIC_RULES = [
       const convText = React.useMemo(() => stripEpackBlocks(sessionConvText(snap)), [snap]);
       // v1.5.0: strip shows 3-10 words; direct hits first, then seeded weighted samples from the session topic pool
       const hits = React.useMemo(() => {
-        if (turnOpen || turnNo < 0 || turnNo !== maxTurn) return [];
+        if (turnOpen || turnNo < 0) return [];
+        // v1.6.0: 原来要求 turnNo === maxTurn（注册表最大值）。注册表靠每个回合的组件挂载时登记，
+        // 一旦最后那个回合的节点被宿主折叠/虚拟化卸载，登记表就清空，maxTurn 变回 -1，
+        // 于是所有尾条都不渲染——用户看到的就是「本轮词汇整条消失」。
+        // 现在放宽为：注册表为空（-1）时照常渲染，只在明确知道自己不是最后一轮时才隐藏。
+        if (maxTurn >= 0 && turnNo < maxTurn) return [];
         const sid = sessionKey(sessionId);
+        // 同一回合的选词结果只算一次，之后重挂直接复用（见 TAIL_PICK 的注释）
+        const pickKey = sid + '|' + turnNo;
+        const cachedPick = TAIL_PICK.get(pickKey);
+        if (cachedPick) return cachedPick;
+        // v1.6.0: 抽样里任何一步抛异常（主题表、词库索引、冷却表）都会让 React 卸载整块组件，
+        // 用户看到的就是「本轮词汇」整条消失。兜底：异常时退回等级池取 6 个词，尾条永远有内容。
+        try {
         const coolMap = TAIL_COOL.get(sid);
-        const cooled = (w) => { const t = coolMap ? coolMap.get(w) : undefined; return t !== undefined && t !== turnNo && turnNo - t < 3; };
-        const direct = extractHitsFromText(convText).filter((hit) => !cooled(hit.entry.w));
-        const picked = direct.slice(0, 10);
-        if (picked.length >= 6 || !String(convText || '').trim()) {
-          const m = TAIL_COOL.get(sid) || new Map();
-          picked.forEach((hit) => m.set(hit.entry.w, turnNo));
-          TAIL_COOL.set(sid, m);
+        const seenMap = TAIL_SEEN.get(sid);
+        // 冷却 + 露脸上限：一个词在会话里露够次数后不再抽，必须靠用户标记来"解禁"
+        const cooled = (w) => {
+          const at = coolMap ? coolMap.get(w) : undefined;
+          if (at !== undefined && at !== turnNo && turnNo - at < TAIL_COOL_TURNS) return true;
+          const times = seenMap ? (seenMap.get(w) || 0) : 0;
+          const marked = markedState(storeState.known, w);
+          const cap = marked === 'fuzzy' || marked === 'new' ? TAIL_MAX_SHOWS * 2 : TAIL_MAX_SHOWS;
+          return times >= cap;
+        };
+        const tailTopics = detectTopics('', convText).map((rule) => rule.id);
+        const direct = extractHitsFromText(convText, tailTopics).filter((hit) => !cooled(hit.entry.w));
+        // 不贴题的命中最多留 2 个，其余名额交给真正的主题池回填
+        const picked = direct.filter((hit) => hit.topical)
+          .concat(direct.filter((hit) => !hit.topical).slice(0, 2))
+          .slice(0, 10);
+        if (picked.length >= 6) {
+          tailRemember(sid, picked.map((hit) => hit.entry.w), turnNo);
+          tailPickStore(pickKey, picked);
           return picked;
         }
         const used = new Set(picked.map((hit) => hit.entry.w));
         const settings = storeState.settings;
-        const themed = topicPoolFor('', convText, settings, loadPacks(sessionId));
-        const base = themed.length > 0 ? themed : dockPool(settings);
-        const weight = () => 1; // v1.5.1: uniform backfill sampling — marking words must not reshuffle the same turn's picks
+        const base = themedBase('', convText, settings, loadPacks(sessionId));
+        // v1.6.0: 回填不再是均匀抽样——贴题词权重高，通用词只是偶尔露脸。
+        // 权重只跟词条的稳定属性（主题档位）有关，不随标记变化，所以同一回合的取样仍然可复现。
+        const weight = (entry) => {
+          const tier = typeof entry.__tier === 'number' ? entry.__tier : 0;
+          if (tier >= 2) return TIER_WEIGHT[2];
+          if (tier === 1) return TIER_WEIGHT[1];
+          return TIER_WEIGHT[0];
+        };
         let seed = 0;
         const seedSrc = sessionKey(sessionId) + '|' + turnNo;
         for (let i = 0; i < seedSrc.length; i++) seed = (seed * 31 + seedSrc.charCodeAt(i)) >>> 0;
         const rng = mulberry32(seed);
-        const cand = visiblePool(base).filter((entry) => !used.has(entry.w) && !cooled(entry.w));
-        const extra = [];
         const need = 6 - picked.length;
+        // 主题池可能很小（git 池只有几十个词），严格冷却会让候选很快抽干。
+        // 分三级放宽：先严格（冷却 6 回合 + 露脸上限），不够就只保留露脸上限，再不够就整体放开。
+        const fresh = visiblePool(base).filter((entry) => !used.has(entry.w));
+        const strict = fresh.filter((entry) => !cooled(entry.w));
+        const capped = fresh.filter((entry) => {
+          const times = seenMap ? (seenMap.get(entry.w) || 0) : 0;
+          return times < TAIL_MAX_SHOWS * 2;
+        });
+        const cand = (strict.length >= need ? strict : (capped.length >= need ? capped : fresh)).slice();
+        const extra = [];
         for (let k = 0; k < need && cand.length > 0; k++) {
           let total = 0;
           for (const entry of cand) total += weight(entry);
@@ -16794,15 +17656,28 @@ const TOPIC_RULES = [
           used.add(cand[idx].w);
           cand.splice(idx, 1);
         }
-        const shown = picked.concat(extra);
-        const m = TAIL_COOL.get(sid) || new Map();
-        shown.forEach((hit) => m.set(hit.entry.w, turnNo));
-        TAIL_COOL.set(sid, m);
+        // v1.6.0: 兜底。空文本、主题池被冷却抽干、或 direct 命中全部被过滤时，这里必须仍给出词，
+        // 否则 hits.length === 0 会让整条「本轮词汇」返回 null 直接消失。
+        const fallback = picked.length === 0 && extra.length === 0
+          ? dockPool(settings).slice(0, 6).map((entry) => ({ entry, at: -1 }))
+          : [];
+        const shown = picked.concat(extra, fallback);
+        tailRemember(sid, shown.map((hit) => hit.entry.w), turnNo);
+        tailPickStore(pickKey, shown);
         return shown;
+        } catch (error) {
+          const rescue = dockPool(storeState.settings).slice(0, 6).map((entry) => ({ entry, at: -1 }));
+          if (rescue.length > 0) {
+            tailRemember(sid, rescue.map((hit) => hit.entry.w), turnNo);
+            tailPickStore(pickKey, rescue);
+          }
+          return rescue;
+        }
       }, [convText, turnOpen, turnNo, maxTurn, sessionId]);
       const [aiFailed, setAiFailed] = React.useState(false);
       React.useEffect(() => {
-        if (turnOpen || turnNo < 0 || turnNo !== maxTurn) return undefined;
+        if (turnOpen || turnNo < 0) return undefined;
+        if (maxTurn >= 0 && turnNo < maxTurn) return undefined;
         const settings = storeState.settings;
         if (!settings || settings.aiPick !== true || !conversation || !sessions) return undefined;
         const text = String(convText || '');
@@ -16826,7 +17701,8 @@ const TOPIC_RULES = [
         });
         return () => { cancelled = true; };
       }, [conversation, sessions, convText, turnOpen, turnNo, maxTurn, sessionId]);
-      if (turnOpen || turnNo < 0 || turnNo !== maxTurn || folded || hits.length === 0) return null;
+      if (turnOpen || turnNo < 0 || folded || hits.length === 0) return null;
+      if (maxTurn >= 0 && turnNo < maxTurn) return null;
       return h('div', { className: 'elz-root elz-tail' }, h(Styles),
         h('div', { className: 'elz-tail-head' },
           h('span', { className: 'elz-tail-label' }, t('tail.title')),
