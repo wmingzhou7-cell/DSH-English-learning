@@ -1,7 +1,7 @@
 # English Lounge · 项目简报（AI 维护）
 
 > 本文档面向后续接手本项目的 AI / 新任务：读完即可理解产品形态、数据体系、代码结构与开发/发布约定，无需重新勘察。与 client.js 同步维护，重大改动须更新本文档。
-> 最后更新：v1.6.0 开发完成（2026-11-19）。
+> 最后更新：v1.7.0 开发完成（2026-11-20）。
 
 ## 1. 项目定位
 
@@ -12,7 +12,7 @@
 ## 2. 仓库结构
 
 ```
-client.js   唯一运行时：词库(WORDS 7999 条)+全部逻辑+UI（~17.3k 行 / ~1.58MB，v1.6.0 实测）
+client.js   唯一运行时：词库(WORDS 7999 条)+全部逻辑+UI（~18.0k 行 / ~1.94MB，v1.7.0 实测）
 index.js    插件入口（引入 client.js）
 index.json  发布索引：plugins[0].versions[] 记录每次发布 {version, publishTimestamp, source.commit}
 locale/     zh.json / en.json——只装插件元信息 meta.title / meta.description（市场列表用）；真正的界面文案在 client.js 内嵌 DICTS，引导卡文案是 DICTS 里的 guide.title / guide.desc
@@ -35,17 +35,18 @@ docs/       本文档
   - **新增/修正标签一律直接改 TOPIC_TAGS 词条**（如 `"slip": ["code"]`）；不要重跑打标脚本（规则表未落盘）。抽检清单：tools/topic-tags-review.md。
   - 打标方法（历史）：中文释义关键词规则+词头英文词干白名单，AI 离线批量，低置信不标、保持 core 兜底。
 - 主题体系：14 个固定 id：code / frontend / git / ai / design / work / business / finance / industry / legal / health / travel / education / daily。
-  - `TOPIC_RULES`：每主题 {id, brief(英文简报段，v1.6.0 起 2–3 句), usage(一句适用场景), patterns[3]({en,zh} 地道句式), chip, keys[]}；主题识别只靠 keys。未命中主题时用 `GENERAL_TOPIC`（同为该结构，v1.6.0 取代旧 GENERAL_BRIEF 常量）。
+  - `TOPIC_RULES`：每主题 {id, brief(英文简报段，v1.6.0 起 2–3 句), usage(一句适用场景), patterns[8]({en,zh} 地道句式，v1.7.0 UX 轮从 3 扩到 8), chip, keys[]}；句式块另有**词库例句层**（v1.7.0 收藏轮）：按检出主题筛 WORDS 的 en/zhEx（6–22 词、有翻译、剔 FUNCTION_WORD），按会话标题 hash 稳定抽样 ≤60 条（无主题回退 daily 标签），与手作句式合并按 en 去重，`patternRows` 按 `(patternOffset+i) % n` 滑窗 4 行循环；例句行渲染来源词 chip（`.elz-pattern-word`）；主题识别只靠 keys。未命中主题时用 `GENERAL_TOPIC`（同为该结构，v1.6.0 取代旧 GENERAL_BRIEF 常量）。
 - 来源与许可：Oxford 3000/5000（CEFR 分级）、TOEIC 词库 moomoosir/toeic-vocab-tw（CC-BY-SA-4.0，转简体重分级）、kajweb/dict（CET4/6/考研/IELTS）、开发者场景短语+电力/工业手写词。README 有许可声明，新增词库数据须延续声明。
 
 ## 4. 运行时架构（函数名为锚，行号会漂移）
 
 - 挂点（apply(ctx)）：`sidebar.right.pane.tab`（右栏「英语角」页）、`conversation.composer.dock`（输入框下方闪卡条，order 40）、`conversation.chat.turnTail`（每轮回复尾部词条条，order 80，v1.5 新增）。
 - 注入契约：inject(sessionId) 返回 `{ sessionId, hooks: { sessionState: sessionStateSource(ctx,sessionId), catalog: catalogSource(ctx) } }`；宿主把 hooks 映射为组件 props `useSessionState` / `useCatalog`（useSyncExternalStore）。
-- 状态：STORE_KEY `'dsh.english-lounge.v1'`（localStorage）：known{word:state} / fav / collapsed / view / settings。**view 白名单在 loadState 里是硬编码的**（'words' 之外只认 'book' / 'quiz' / 'settings'，其余回退 'words'）——新增右栏视图必须同时改这一行，v1.6.0 就曾因漏改导致「小测试」刷新后跳回词汇页。fav 目前只被读取与清空，没有写入路径（单词本已改为四态派生视图）。
+- 状态：STORE_KEY `'dsh.english-lounge.v1'`（localStorage）：known{word:state} / fav / collapsed / view / settings。**view 白名单在 loadState 里是硬编码的**（'words' 之外只认 'book' / 'quiz' / 'stats'（v1.7.0 统计页）/ 'settings'，其余回退 'words'）——新增右栏视图必须同时改这一行，v1.6.0 就曾因漏改导致「小测试」刷新后跳回词汇页。fav 目前只被读取与清空，没有写入路径（单词本已改为四态派生视图）。
 - 四态状态机：`'new' | 'fuzzy' | 'known' | 'mastered'`（legacy true→known）；`wordState / markWord / stateIn`；STATE_META：√ 熟悉 / ○ 认识 / ≈ 模糊 / ? 生词。
   - 单词本（v1.6.0 由「生词本」改名）= **四态派生视图**，无手动收藏。`bookMarks` 单遍遍历 WORDS 用 **markedState** 分桶（未标记返回 `''`，绝不能落进 new 桶——这是 v1.6.0 用户反馈的核心 bug：旧进度条用 stateIn 把没学过的词都算成「?」，与显式标「生词」混淆）；`bookWords` 多选状态时按 STATE_META 桶序对选中桶做 round-robin 交织（v1.6.1 用户反馈：不按状态分组，每页混合状态利于学习），单选时保持该桶原序；默认筛选 `BOOK_DEFAULT_FILTER = ['fuzzy','new']`，筛选按钮可多选但至少保留一个。
-  - 轮换权重（LoungeDock）：fuzzy 3 / new 2 / known 1，mastered 全池剔除（visiblePool）。
+  - 轮换权重（LoungeDock）：fuzzy 3 / new 2 / known 1，mastered 全池剔除（visiblePool）。v1.7.0 起序列先按到期排序（拖得越久越靠前，`dueOverdue` 读 `storeState.at`），再按权重编织；rotation useMemo 依赖 pool/s.known/s.at，纯时间流逝不触发重算（见 §11）。
+- 间隔复习（v1.7.0）：`markWord` 标记时同步写 `at[word]=Date.now()` 与按天日志 `log[day][word]=1`（清空标记删 at、不动 log；同一天重复标记只算一个词）；`SRS_INTERVALS`：fuzzy/new 12h、known 3d、mastered 21d；到期词闪卡条置顶、测验抽词 ×3（`dueBoost`，`buildQuizItems` 读 `opts.at`）；`countDueWords` 只算 fuzzy/known/new（mastered 不进任何词池），供测验开局「今日到期 {n}」提示与统计页；`log` 经 `pruneLog` 在 loadState 时只留 200 天。`clearRecords` 一并清 at/log。
 - 设置：DEFAULT_SETTINGS `{ level:'basic', batchSize:10, pace:'normal', quizAutoPromote:false, aiPick:true, tts:true }`；LEVEL_PRESETS starter/basic/solid/pro；PACE_INTERVALS fast/normal/slow。
 - elpack 词包：`PACKS_ENABLED = true`（v1.5.0 增补复活：回复尾 AI 选词 + 对话中 ```elpack 围栏自动收录，每会话最多 12 包；手动提示词入口由 `PACK_MANUAL_ENABLED = false` 继续隐藏，issuePackPrompt/buildPackPrompt 代码保留）。
 
@@ -102,21 +103,31 @@ docs/       本文档
 ## 7. 小测试（QuizView，右栏第三视图）
 
 - 入口：右栏 seg 行「小测试」（tab.viewQuiz），view='quiz' 分支。
-- 题池 `buildQuizItems`：**单词本 80%**（new×2 / fuzzy×1 加权不放回）+ **known 复习 20%**（v1.6.0：已标「认识」的词回流复习，题卡带「复习」角标；首版取 35%，用户反馈「认识词概率有点高」后下调到 0.2）+ 当前主题池补足；题型 30% 四选一 / 70% 拼写，其中拼写有 22% 概率变「听写」（`mode:'dictation'`，需 `speechAvailable()`，进题自动朗读一次 + 再听一次按钮 + 可选释义提示）。
+- 题池 `buildQuizItems`：**单词本 80%**（new×2 / fuzzy×1 加权不放回）+ **known 复习 20%**（v1.6.0：已标「认识」的词回流复习，题卡带「复习」角标；首版取 35%，用户反馈「认识词概率有点高」后下调到 0.2）；v1.7.0 起抽词按到期状态加权 ×3（`dueBoost` 读 `opts.at`——new/fuzzy/known 到期即 ×3），开局页有「今天有 {n} 个词到了复习时间」提示（`quiz.dueNote`）+ 当前主题池补足；题型 30% 四选一 / 70% 拼写，其中拼写有 22% 概率变「听写」（`mode:'dictation'`，需 `speechAvailable()`，进题自动朗读一次 + 再听一次按钮 + 可选释义提示）。
 - 句式挖空题（v1.6.0，`buildPatternItems`）：从识别到的主题 patterns 取句，正则 `/[A-Za-z][A-Za-z'-]{3,}/g` 分词，跳过 CLOZE_STOP / 已用词 / mastered / 本轮已选词，选最长词按词边界替换为 `______`；题面显示挖空英文 + 中文对照（`patternZh`），判分后显示完整英文。数量 `min(2, max(1, round(count/4)))`，不足则追加、满则替换最后一项。
 - 音标兜底（v1.6.0 末轮）：词库 1219 条无音标，算式题常点不出音标。`ipaOf(word)` 依次查 `wordByWord` 原形 → `IPA_EXTRA` 表 → 复数/时态还原 `stemLookup`，词组逐词拼（任一缺则整条留空）。`IPA_EXTRA` 是从 `data_raw/` 四本词书（CET4/CET6/IELTS/KaoYan 的 `usphone||phone||ukphone`）清洗出的 **374 条**静态表，规则：取分号前第一变体、`ˈ→'` `ˌ→,`、丢弃旧式合体拼写（ei/ai/au/ou/əu）、丢弃截断行与 ipa 等于原词的行、字母比 <0.6 丢弃。实测：小测试题目无音标率 31.8% → 17.8%。查不到就留空、绝不编造。
 - 拼写提示阶梯（逐级点开、可叠加）：音标 → 字母骨架 `letterMask`（`g□□□ u□`，**词组消歧关键**，词组无音标）→ 例句挖空 `blankedExample`（w 替换为 ______；w 不在例句中则不给该提示）。
 - 判分：`normalizeAnswer`（小写/弯引号/连字符→空格/去尾标点/压空白）→ `answerMatch`：exact / close（编辑距离≤1，**close 只免费重试一次**）/ bad。四选一 `quizChoiceOptions`：3 干扰项（难度±1、剔 mastered），**选项按题冻结**（quizEntry+choiceOpts useMemo，防每次渲染重排）。**判定后 Enter / → 下一题**（window keydown；拼写题 Enter 仍先用于提交）。
 - 结算：正确率+错词清单+「只练这些错词」（v1.6.0：直接用错词重建一轮，走 wordByWord 取完整词条）+「错词全部加入单词本」（一键 markWord new）；设置「答对自动升级」（quizAutoPromote，默认关）把答对的生词本词标为 known。
 - 题数 5/10/20 开局可选；空池显示 quiz.empty。
+- 快捷键（v1.7.0 UX 轮）：选择题 `1`–`4` 直接作答（选项按钮带序号前缀 `(i+1) · word`，按展示顺序映射）；拼写/听写 `Alt+1` 音标 / `Alt+2` 字母骨架 / `Alt+3` 例句 / `Alt+4` 释义（仅 dictation）/ `Alt+R` 重听；提示按钮 title 标注对应快捷键。Enter 提交/下一题不变。keydown 统一 window 层监听、`INPUT/TEXTAREA` 聚焦时不抢键（拼写打数字/字母不受影响）；开局页新增 `quiz.hotkeys` 说明行。右栏另有 `/` 聚焦查词（`elz-lookup`）与单词本搜索（`elz-book-search`）。选择题新 keydown effect 的 deps 是 `[items, idx, done, choicePick, choiceOpts]`，ipa/ex 可用性在 handler 内现算（不能引用声明在早退 return 之后的 const）。
 
 ## 7.5 主题简报与单词本（v1.6.0）
 
 - 简报**只渲染一块**：`leadTopic = briefTopics[0]` 输出 brief + usage；检测到的第二主题降级为 chip（主主题 chip 带 `elz-chip-lead`），句式行也只取主主题。首版曾为每个检测到的主题各渲染一段，用户反馈「主题简报现在有两块，比较疑惑」。
 - 简报可**收起**（v1.6.0 末轮）：标题行右侧 `elz-head-tools` 内有 `elz-fold` 按钮（`▾ 收起` / `▸ 展开`），状态存 `state.briefFold`（`loadState` 白名单 + 默认 false）。收起时 `elz-brief-body` 与 `elz-patterns`（含 ↻ 换一组）都不渲染，但**主题 chip 行始终保留**，section 加 `elz-topic-min` 收紧间距。理由：简报 + 句式占满右栏，下面词表/小测试被挤得没空间。
+- **简报暂时整体隐藏（v1.7.0）**：用户反馈鸡肋、占空间，`BRIEF_ENABLED = false`（在 PACK 开关旁）使整个 `section.elz-topic` 不渲染（含段落/chip/句式）；代码与 `briefFold` 状态保留，改回 true 即恢复。**句式学习不受影响**（同版 UX 轮回归）：`!BRIEF_ENABLED && patternRows.length > 0` 时在视图切换行之上渲染独立 `section.elz-topic-min`——只有 `tab.briefPatterns` 标题 + ↻ 换一组 + 句式行（可朗读）+ lead note；`patternRows` 复用原有 patternOffset 状态；`GENERAL_TOPIC` 自带 patterns（无主题会话也有句式）；`BRIEF_ENABLED` 恢复时本块自动让位，避免句式出现两份。轮换与池子（v1.7.0 句式扩容轮）：`patternRows` 遍历 `briefTopics`（不再只取主主题）、窗口 3 条、`slice(0,4)` 封顶、按 en 去重；patterns 每主题 3→8 条（15 块共 120 条，新增 75 条双语地道句式）——旧逻辑只取主主题 2 条、来回仅 3 种组合，是用户反馈「来回就那么几句」的根因；测验句式挖空题（buildPatternItems）共用该池自动受益。
 - 音标提示的揭示行用独立类 `elz-quiz-ipa`（`white-space: normal` 可换行），**不要复用词卡的 `.elz-ipa`**——后者 `nowrap + ellipsis + min-width:0`，在测验窄列里会塌成 0 宽，看起来就是「点了没反应」。音标为空时按钮 `disabled` + `title=t('quiz.noIpa')`。
 - 词库总数与学习进度条**已移除**（同一轮反馈：进度条把未学词算成「?」、且不需要在简报页展示）。`.elz-stats` / `.elz-stat*` CSS 与 `tab.progress*` i18n 均已删除，勿再加回。
 - 单词本视图顶部是 `elz-filter-row`：四枚状态按钮（√ 熟悉 / ○ 认识 / ≈ 模糊 / ? 生词）各带数量，可多选（至少保留一个），默认 `['fuzzy','new']`；视图切换行的计数取 `bookWords.length`（当前筛选下），不是全库总数；多选状态时列表按状态交织混排、不按状态分组（v1.6.1）。
+
+## 7.8 学习统计（v1.7.0）
+
+- 右栏第四视图「统计」（`view === 'stats'`，`tab.viewStats`；**loadState 白名单已加 'stats'**）。`StatsView` 展示：今日刷词（`dayCount(log, today)`，同一天重复标记只算一个词）、连续天数（`streakFromLog`：今天没刷则从昨天回溯连续段）、待复习（`countDueWords`）、四态分布 + 16 周热力图（`heatmapCells` 112 格，`heatLevel` 0–4 五档，`elz-ls-h0..h4`）。
+- **口径**：四态分布只统计**标记过的词**（`markedState` 非 `''`），绝不把未学词算进任何状态——v1.6.0 删旧进度条就是因为把未学词算成「?」，勿回退。
+- **类名**：`.elz-ls-*`（elz-ls/elz-ls-row/elz-ls-num/elz-ls-v/elz-ls-k/elz-ls-dist*/elz-ls-bar/elz-ls-fill/elz-ls-heat/elz-ls-cell/elz-ls-h0..4）。v1.6.0 删除的旧进度条用过 `.elz-stat*`（§7.5 明确勿再加回），两套无关、勿混用。
+- i18n 新键（zh/en 双份，实测 135/135 parity）：`tab.viewStats`、`stat.heading/today/streak/due/dist/marked/heat/heatNone/dueNote`、`quiz.dueNote`、`quiz.hotkeys`、`quiz.hotkeyChoice`。`guide.desc` 已随简报隐藏改为「右栏管生词、小测验和学习统计」口径。
+- UI 修缮（同版 UX 轮，2026-11-20 下午）：分布条/热力图填充色改 `var(--dsw-alias-interactive-primary, #2f6f4f)`——**该 token 在右栏语境不生效**，原写法整条 CSS 声明失效（用户看到的就是灰色底槽、热力图隐身）；热力图空态 `elz-ls-h0` 改 `interactive-bg-hover` 浅灰可见（GitHub 式空网格），格子加 0.5px 边框；计数列 `elz-ls-count` 定宽 26px 右对齐（修四条槽长短不一）；`.elz-seg` 加 `flex-wrap + max-width:100%`（右栏现在 6 个分段标签，防溢出）。热力图色板二轮（按用户参考图）：换 **GitHub 贡献图双主题固定色板**——浅色 h0–h4 = #ebedf0/#9be9a8/#40c463/#30a14e/#216e39，深色 = #161b22/#0e4429/#006d32/#26a641/#39d353（`body[data-ds-dark-theme]` 覆写），格子无边框纯填充、悬停 1px 描边（浅 rgba(0,0,0,.3)/深 rgba(255,255,255,.3)）——此前「interactive-primary 兜底绿」口径作废（仅 dist 条默认绿仍兜底）。**四态分色**（同轮）：`.elz-st-*` 熟悉绿 #2e7d32/认识蓝 #1565c0/模糊琥珀 #b98a1c/生词红 #b3392c（深色主题各提亮），用于状态按钮、卡片 3px 左缘色条（替代原 opacity 变暗——勿恢复）、单词本筛选、统计分布条（`.elz-dist-*`）。**顺序铁律（v1.7.0 修缮实测）**：`.elz-st-*` / `.elz-fav-*` / `.elz-dist-*` 必须位于 CSS 数组**尾部**——晚于 `.elz-btn-on` / `.elz-tail-st-on` / `.elz-ls-fill` / `.elz-tail-exbtn`；同特异性（单类名）下靠后者胜，插在中部会导致尾条状态文字仍是琥珀、分布条仍是绿、尾条收藏星不变色（三处同因）。词卡左缘色条=当前状态色（含显式「生词」红条 `.elz-card-new`），未标记词无色条；WordCard 根节点 `title` 悬停显示当前状态名，避免「不知道彩条什么意思」。热力图二轮重做（用户反馈：太挤、hover 无信息、无日期锚定）：`heatmapCells` 改 **GitHub 式周对齐**——行=周一..周日、列恒 16、首列=(weeks-1) 周前的周一（首版起点公式算错成周三列首，已修+加「每列首格 getDay()===1」「末实际格=今天」对齐断言），未来日期推 null → `.elz-ls-future` visibility:hidden；列宽 `grid-auto-columns:1fr` **铺满面板**（格高 12px）；顶部月份锚点 `.elz-ls-months`（16 槽同列宽对齐，跨月出标签，语言按 `t('tab.viewStats')==='统计'` 嗅探 zh/en）；左侧星期刻度 一/三/五（`elz-ls-wd`）；**悬停读数是自渲染信息行**（cell onMouseEnter → heatHover state → 「日期 · 刷了 n 个词」，离开回总量行 `stat.heatTotal`）——不依赖原生 title 气泡（右栏语境可能不弹）；底部 少→多 图例（`elz-ls-mini` 5 档）。新增 i18n：stat.less/more/heatTip/heatTipZero/heatTotal（实测 140/140 parity）。
 
 ## 8. 开发约定（改 client.js 必读）
 
@@ -132,7 +143,7 @@ docs/       本文档
 - index.json 发布模式：feat 提交代码 → index.json plugins[0].versions[] 追加 `{version, publishTimestamp, source:{type git, commit=feat 全长 sha}}` → `chore: publish index` 提交 → tag vX.Y.Z 打在 feat 提交 → push origin main + tag → ls-remote 验证 main 与 tag 指向。
 - **git 必须带代理**：`git -c http.proxy=http://127.0.0.1:7897 ...`（直连 GitHub 会 Connection reset）；push/fetch 需 danger-full-access 提权（沙箱令牌取不到 schannel 凭据）。
 - 发布权：默认用户亲手发；用户明说「封版/请发布」= 授权 AI 执行完整流程。
-- 验证陷阱：编辑后刷 mtime 可能让 git stat 缓存骗人——用 `git show <sha>:file` 终验内容。
+- 验证陷阱：编辑后刷 mtime 可能让 git stat 缓存骗人——用 `git show <sha>:file` 终验内容。v1.7.0 实测反向案例：ops_edit_file 原子写**保留 mtime** 且新旧版本同字节数（1.6.0→1.7.0），package.json 被 git status/diff 整体漏报，`--really-refresh` 也无效；`touch <file>` 打散 mtime 即恢复，`git hash-object <file>` 对比 `git rev-parse HEAD:<file>` 可做内容级终验。
 
 ## 10. 版本史
 
@@ -143,6 +154,7 @@ docs/       本文档
 - v1.5.1：小测试回车先提交再下一题；尾条改自适应迷你卡网格（词/音标/释义/状态按钮同屏，例句按卡展开）；尾条抽词与标注状态解耦（mulberry32 均匀抽样，切会话来回不再换词）。
 - v1.6.0：① 右栏主题 brief 由单句扩为 2–3 句英文段落，每主题新增 usage 与 patterns[3] 地道句式（可 ↻ 换一组）；② 朗读：Web Speech API 接入词卡/dock/尾条/句式/测验揭示行，设置可关；③ 小测试加 known 复习池（初版 35%，按反馈降到 20%）与句式挖空题；④ 新增听写题 mode:'dictation'（自动朗读一次 + 再听一次 + 可选释义）；⑤ 结算页「只练这些错词」；⑥ 反馈修正轮：简报合并为单块、去掉词库总数与学习进度条、生词本改名单词本并支持四态筛选（默认 fuzzy+new）、朗读按钮统一进 WordLine（词右侧）、去掉词卡状态角标、known 复习比率下调。
 - v1.6.0 末轮（同版本内，未单独发版）：① 单词本多状态筛选由「按状态分桶拼接」改为 round-robin 交织——多选（如默认 fuzzy+new）时列表逐条交替混合状态、不再出现「模糊墙+生词墙」，各状态桶内部保持原序，单选行为不变；② 修复尾条总抽到 idle、以及词跟话题对不上：对话文本改走 looksLikeProse 人话过滤（详见 §5），主题池改为三档相关度 + 加权回填（详见 §5.1），主题键改词首匹配，daily 键表补齐并作为无主题兜底；③ 修复「本轮词汇」整条消失：TAIL_REGISTRY 增加高水位线 `high`，渲染 gate 由 `turnNo !== maxTurn` 改为 `maxTurn >= 0 && turnNo < maxTurn`（registry 为空时视为未知、照常渲染，只在明确有更晚回合时隐藏），hits useMemo 整体 try/catch 并在池空时回填 `visiblePool(dockPool())`，另修掉 `markedState(w)` 漏传 map 的签名误用（模糊/生词的放宽上限此前从未生效）；④ 尾条按 `sessionKey|turnNo` 缓存选词结果（`TAIL_PICK`），修复「切换对话或标注状态后本轮词汇自动换词」的稳定性问题；⑤ 修复小测试「音标」按钮点了没反应（揭示行改独立 `.elz-quiz-ipa` + 新增 374 条 IPA 补充表，题目无音标率 31.8%→17.8%）；⑥ 主题简报支持收起并记住状态（`state.briefFold`），收起后仍保留主题 chip；⑦ 架构与性能审查：四层缓存（bandOrder/dockPool/topicPoolFor/loadPacks）+ visiblePool WeakMap + tagsOf 标签缓存 + themedBase 收敛兜底 + Styles 懒构造 + 写盘去抖，详见 §4.1；⑧ 修复底部单词条在窄容器折行导致高度变高（`.elz-word-line` 改 nowrap）。
+- v1.7.0：① 间隔复习——markWord 记录状态变更时间戳（`at`）与按天刷词日志（`log`），模糊/生词 12h、认识 3d、熟悉 21d 到期；到期词在闪卡条置顶（拖得越久越靠前）、测验抽词加权 ×3，开局页提示今日到期数；② 学习统计 v0——右栏新增「统计」视图：今日刷词、连续天数、待复习数、四态分布（只统计标记过的词）与 16 周热力图（详见 §7.8）；③ 主题简报整体暂时隐藏（`BRIEF_ENABLED=false`，代码保留，详见 §7.5）；④ UX 轮（同版）：测验快捷键（选择题 1–4、Alt 系提示、Alt+R 重听、/ 聚焦搜索框）、句式学习独立成块回归（简报隐藏后保留）、统计条/热力图主题色兜底（右栏语境 token 失效致隐形）与空态可见、分段标签防溢出换行；⑤ 句式库扩容轮换与收藏轮（⑥ 收藏功能：词卡/尾条/句式行 ☆ → 右栏「收藏」视图 fav=旧 fav 字段+favLines{en:{en,zh,w,at}}，loadState 白名单+clearRecords 同清；⑦ 词库例句层与四态分色：见 §3/§7.8）——句式扩容轮：每主题 patterns 3→8（15 个主题块共 120 条，新增 75 条双语地道句式），右栏句式块遍历所有检出主题、窗口 3 条上限 4 行按句去重；测验「句式挖空题」共用该池自动受益；⑥ 单词显示完整性：去掉 `.elz-word` 的 26ch 隐藏上限与 `.elz-tail-w` 省略号截断（长 IPA 曾把词头挤成 `div…`），全部词头位改换行兜底。
 
 ## 11. 已知坑
 
@@ -153,3 +165,6 @@ docs/       本文档
 - 朗读依赖本机语音包：系统没有 en-* 音色时 speak() 仍会调用，但可能无声；`TTS_VOICE` 缓存是模块级，切语言需 voiceschanged 后才更新。
 - 缓存失效的唯一信号是 `KNOWN_REV` / `PACK_REV`：绕过 `markWord` 直接改 `storeState.known` 会让所有池子停在旧结果。`Styles()` 也必须在 `h` 可用之后才首次调用。
 - 小测试 `mode` 现在有三值：'choice' / 'spell' / 'dictation'，另有句式题的 'build'；任何新分支判断别再写 `mode === 'spell'`，用 `mode !== 'choice'`（`spell` 变量已是这个语义）。
+- **单词显示完整性约定（v1.7.0 UX 轮，用户明确要求）**：任何控件（闪卡条 WordLine、侧栏词卡、尾条小卡、测验揭示行）里的**词头 entry.w 禁止 ellipsis / max-width 截断**。曾有两处帮凶：`.elz-word` 带 `max-width: 26ch`、`.elz-tail-w` nowrap+ellipsis——长 IPA（银行数据里有多读音变体分号并列，如 diversion）会把词头挤成 `div…`、把「例」按钮挤碎。现口径：词头/音标一律 `white-space: normal + overflow-wrap: anywhere` 换行兜底，`.elz-word-line`/`.elz-tail-meta` flex-wrap:wrap；新加词头展示位时禁用 text-overflow。中文释义/例句仍可省略（有 title 悬浮兜底）。**作用域例外（v1.7.0 修缮实测，用户反馈「底部单词条又跨行」）**：`.elz-bar`（闪卡条单行约定）作用域内恢复 nowrap——`.elz-bar .elz-word-line` flex-wrap:nowrap、`.elz-bar .elz-word` `white-space:nowrap + flex-shrink:0`（**永不收缩、永不截断**，空间不够先压长音标：`.elz-bar .elz-ipa` 省略号 + span title 悬浮看全文）再压释义/例句；侧栏词卡/尾条小卡仍按换行兜底。两条约定按作用域并存，dock 覆写规则放 CSS 数组尾（`.elz-bar` 前缀双类名特异性本就更高）。
+- 到期重排挂在 LoungeDock rotation 的 useMemo（依赖 pool/s.known/s.at）上：只有标记或主题变化才重算，纯时间流逝不会把「刚到期」的词实时提前——语义是「下次刷新/标记时到期词排前」，v0 够用。热力图 112 格的列对齐不按周一起始（最后一列以今天收尾），纯装饰。`log` 只留 200 天（`pruneLog` 在 loadState 裁剪），算连续天数/热力图都够用。
+- `.elz-stat*` 是 v1.6.0 已删类名（勿再加回）；v1.7.0 统计页用 `.elz-ls-*`，两套无关勿混用。统计页四态分布只统计标记过的词（`markedState` 非 `''`），勿把未学词算进任何状态。

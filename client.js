@@ -14942,6 +14942,11 @@ const TOPIC_RULES = [
           { en: 'It works locally but fails in production — can you help me narrow it down?', zh: '本地能跑、生产就挂，能帮我把范围缩小吗？' },
           { en: 'The root cause is a race condition between the two writes.', zh: '根因是两次写入之间出现了竞态。' },
           { en: 'I would rather fix it properly than patch around it.', zh: '我宁愿正经修掉，也不想绕着打补丁。' },
+          { en: 'Could you paste the stack trace from the first failure, not the retry?', zh: '贴一下第一次报错的堆栈，别贴重试后的。' },
+          { en: 'It fails silently — the log level is swallowing the errors.', zh: '它静默失败了，日志级别把错误吞掉了。' },
+          { en: 'Let us add a failing test first, then make it pass.', zh: '我们先加一个会失败的测试，再让它通过。' },
+          { en: 'The bug only shows up under concurrent writes — a classic race window.', zh: '这个 bug 只在并发写入时出现，典型的竞态窗口。' },
+          { en: 'The hotfix shipped, but we still owe the codebase a proper cleanup.', zh: '热修已经上线，但欠代码库一次正经清理。' },
         ],
         keys: ['代码', '编程', '程序', '函数', '调试', '算法', '接口', '后端', '服务端', '数据库', 'sql', 'api', '脚本', '编译', '打包', '部署', 'deploy', 'compile', 'backend', 'server', 'cache', '缓存', '测试', '依赖', '性能', 'memory', '进程', '架构', '容器', 'docker', 'k8s', '微服务', 'bug', 'crash', 'refactor', 'stack trace', 'unit test', 'race condition'],
       },
@@ -14954,6 +14959,11 @@ const TOPIC_RULES = [
           { en: 'The layout breaks on narrow screens once the sidebar opens.', zh: '侧栏一打开，窄屏下布局就乱了。' },
           { en: 'This component re-renders on every keystroke; can we memoise it?', zh: '这个组件每敲一个字就重渲染，能加 memo 吗？' },
           { en: 'The empty state still looks clickable, which confuses people.', zh: '空状态看起来仍可点，容易让人误解。' },
+          { en: 'The button is fine on desktop but drifts two pixels on mobile.', zh: '按钮在桌面端没问题，移动端会偏两个像素。' },
+          { en: 'This list virtualises at five hundred rows, so scrolling stays smooth.', zh: '列表在五百行时启用虚拟化，滚动依然顺畅。' },
+          { en: 'The modal traps focus — you cannot reach the close button by tabbing.', zh: '弹窗把焦点困住了，按 Tab 到不了关闭按钮。' },
+          { en: 'We fetch on mount and cache by key, so switching tabs does not refetch.', zh: '我们在挂载时请求、按 key 缓存，切标签页不会重复请求。' },
+          { en: 'Dark mode inverts the shadow, so the card looks hollow.', zh: '深色模式下阴影反转，卡片看起来是空的。' },
         ],
         keys: ['前端', '页面', '样式', 'css', 'vue', 'react', '组件', 'ui', '布局', '渲染', '动画', '按钮', 'tailwind', 'html', '浏览器', '交互', '暗色', '主题切换', '小程序', '适配', 'layout', 'component', 'render', 'button', 'animation', 'browser', 'responsive', 'viewport', 'scroll', 'hover', 'modal', 'dropdown'],
       },
@@ -14966,6 +14976,11 @@ const TOPIC_RULES = [
           { en: 'Let me rebase onto main before I open the pull request.', zh: '我先 rebase 到 main 再提 PR。' },
           { en: 'That commit broke the build, so it needs a clean revert.', zh: '那个提交把构建搞挂了，需要干净地回滚。' },
           { en: 'Which branch should this hotfix land on — main or the release branch?', zh: '这个热修该落在哪个分支，main 还是发布分支？' },
+          { en: 'Squash the fixup commits before this goes into review.', zh: '进评审之前，把 fixup 提交压成一个。' },
+          { en: 'The merge conflict is only in the lock file — take theirs and reinstall.', zh: '冲突只在锁文件上——用对方的，再重装依赖。' },
+          { en: 'Cherry-pick that commit onto the release branch after CI passes.', zh: 'CI 过了以后，把那个提交 cherry-pick 到发布分支。' },
+          { en: 'I force-push my own branches, never the shared ones.', zh: '我只强推自己的分支，从不强推共享分支。' },
+          { en: 'The tag points to the wrong commit — retag it before anyone pulls.', zh: '标签指向了错误的提交——趁没人拉取赶紧重打。' },
         ],
         keys: ['git', '提交', 'commit', '分支', 'branch', '合并', 'merge', '仓库', 'repo', 'rebase', '推送', 'push', '回滚', 'revert', '版本控制', 'tag'],
       },
@@ -14978,6 +14993,11 @@ const TOPIC_RULES = [
           { en: 'The model follows the first instruction and quietly ignores the second.', zh: '模型只听了第一条指令，第二条被悄悄忽略。' },
           { en: 'Let us add a regression case before we touch the prompt again.', zh: '再改提示词之前，先加一个回归用例。' },
           { en: 'This is better done offline than on every single request.', zh: '这事离线做，比每次请求都做更划算。' },
+          { en: 'The prompt got shorter and the answers got sharper.', zh: '提示词改短之后，回答反而更准了。' },
+          { en: 'Give the model one job per call; it juggles two badly.', zh: '每次调用只给它一件事，两件一起就翻车。' },
+          { en: 'The agent looped on the same tool call until we capped the retries.', zh: '代理在同一个工具调用上打转，直到我们限制了重试次数。' },
+          { en: 'Temperature is high, so the same question gives three different answers.', zh: '温度参数太高，同一个问题能问出三个答案。' },
+          { en: 'We evaluate on real transcripts, not on the examples we wrote.', zh: '我们用真实对话评测，不用自己写的示例。' },
         ],
         keys: ['模型', 'ai', 'prompt', '提示词', 'token', '推理', 'agent', '智能', 'llm', '训练', '插件', 'plugin', 'harness', 'dsh', '会话', 'session', '知识库', '向量', '翻译', '大模型', '智能体', 'rag', '微调'],
       },
@@ -14990,6 +15010,11 @@ const TOPIC_RULES = [
           { en: 'The hierarchy is flat, so the primary action does not stand out.', zh: '层级太扁平，主操作不突出。' },
           { en: 'Let us keep one accent colour and let the typography do the rest.', zh: '只留一个强调色，其余交给字体层级。' },
           { en: 'This spacing is too tight for a settings panel.', zh: '设置面板用这个间距太挤了。' },
+          { en: 'The contrast fails the accessibility check at this size.', zh: '这个尺寸下对比度过不了无障碍检查。' },
+          { en: 'Every card shouts, so nothing gets heard.', zh: '每张卡片都在喊，结果谁也听不见。' },
+          { en: 'Move the destructive action away from the confirm button.', zh: '把危险操作挪得离确认按钮远一点。' },
+          { en: 'The icon reads as upload, not download — swap it.', zh: '这个图标像上传不像下载——换掉。' },
+          { en: 'Whitespace is not wasted space; it is where the eye rests.', zh: '留白不是浪费，是给视线休息的地方。' },
         ],
         keys: ['设计', '风格', '配色', '图标', '视觉', 'design', 'style', 'theme', 'icon', '插画', '动效', '品牌', 'typography', 'hierarchy', 'spacing', 'contrast', 'palette', 'gradient', 'alignment', 'whitespace', 'illustration'],
       },
@@ -15002,6 +15027,11 @@ const TOPIC_RULES = [
           { en: 'I will take the first half and hand it over on Thursday.', zh: '我做前半段，周四交接。' },
           { en: 'Let us park that and revisit it after the release.', zh: '这条先挂起，发布后再议。' },
           { en: 'Who owns it, and what does done look like?', zh: '谁负责？完成的定义是什么？' },
+          { en: 'I would rather flag the risk now than explain the slip later.', zh: '与其事后解释延期，不如现在就把风险挑明。' },
+          { en: 'Let us timebox the debate and decide by Friday.', zh: '讨论限时，周五前必须定。' },
+          { en: 'That dependency is on their side, so I will chase it today.', zh: '依赖在他们那边，我今天去催。' },
+          { en: 'Quick win first, then we tackle the messy part.', zh: '先拿下快的，再啃麻烦的。' },
+          { en: 'I am at capacity — something has to come off my plate.', zh: '我已经满负荷了，得从我盘子里拿走一件事。' },
         ],
         keys: ['任务', '计划', '日程', 'schedule', '待办', 'todo', '会议', '安排', 'deadline', '项目', '需求', '文档', '报告', '总结', '提醒', '清单', 'review', '评审', '复盘', '汇报', '周报', '排期', '里程碑', '跨部门', '进度', 'release', 'sprint', 'standup', 'retrospective', 'roadmap', 'backlog', 'ticket', 'stakeholder', 'colleague', 'manager', 'deliverable', 'priority', 'meeting', 'team'],
       },
@@ -15014,6 +15044,11 @@ const TOPIC_RULES = [
           { en: 'We can hold the timeline if the scope stays as agreed.', zh: '范围不变的话，时间表可以守住。' },
           { en: 'That sits outside the agreed scope, so it needs a separate quote.', zh: '这超出既定范围，需要单独报价。' },
           { en: 'Let me put the commercial terms in writing so we are aligned.', zh: '我把商务条款写下来，确保我们对齐。' },
+          { en: 'Happy to include training, as long as the sessions stay remote.', zh: '培训可以包含，前提是远程进行。' },
+          { en: 'Let us split payment into three milestones tied to delivery.', zh: '付款拆成三期，跟交付节点绑定。' },
+          { en: 'We are aligned on the goal, just not on the deadline.', zh: '目标一致，只是期限没对上。' },
+          { en: 'I will send a one-page summary so both sides read the same thing.', zh: '我发一页纸摘要，确保双方读的是同一份理解。' },
+          { en: 'If the pilot works, we scale in the second quarter.', zh: '试点跑通的话，二季度扩大规模。' },
         ],
         keys: ['商务', '客户', '谈判', '甲方', '乙方', '投标', '招标', '提案', '售前', '签约', '合作方', '供应商', '销售', 'business', 'client', 'customer', 'negotiation', 'proposal', 'vendor', 'partner', 'pitch', 'deal', 'sales', '采购', '物流', '供应链', '招投标', '客户服务', '市场营销', '运营管理', '需求计划'],
       },
@@ -15026,6 +15061,11 @@ const TOPIC_RULES = [
           { en: 'The invoice does not match the settlement statement by about two percent.', zh: '发票和结算单差了大约两个点。' },
           { en: 'The spot price moved against us for most of the month.', zh: '这个月大部分时间现货价格对我不利。' },
           { en: 'Let us reconcile the numbers before anyone reports them.', zh: '对外报数之前，先把账对上。' },
+          { en: 'Cash flow is fine; the crunch is timing, not amount.', zh: '现金流没问题，紧张的是时点，不是金额。' },
+          { en: 'The fee line doubled because the volume tier kicked in.', zh: '手续费翻倍是因为触发了按量的档位。' },
+          { en: 'Let us budget for the worst month, not the average one.', zh: '预算按最差的月份留，不按平均值。' },
+          { en: 'The variance is explained by one off-cycle payment.', zh: '差异就是一笔错期付款造成的。' },
+          { en: 'Two decimals matter here — round only at the final step.', zh: '这里小数点后两位都有意义，只在最后一步四舍五入。' },
         ],
         keys: ['电力交易', '售电', '现货', '电价', '结算', '财务', '预算', '报价', '发票', '付款', '成本', '收益', '市场化', '结算单', 'finance', 'settlement', 'invoice', 'budget', 'pricing', 'billing', 'payment', 'cost', 'revenue', 'market', 'trading', 'tariff', '绿证', '碳交易', '购电协议', '分时电价', '容量市场', '偏差考核', '结算单', '节点电价'],
       },
@@ -15038,6 +15078,11 @@ const TOPIC_RULES = [
           { en: 'The meter stopped reporting at two in the morning and came back at six.', zh: '电表凌晨两点停止上报，六点又恢复了。' },
           { en: 'We need a fallback reading when the gateway drops offline.', zh: '网关掉线时需要一个兜底读数。' },
           { en: 'Let us check the calibration before blaming the software.', zh: '先查校准，再怪软件。' },
+          { en: 'The gateway reconnected, but forty minutes of readings are gone.', zh: '网关重连了，但有四十分钟的读数丢了。' },
+          { en: 'The sensor drifts after each heat cycle — schedule a recalibration.', zh: '传感器每个热循环后都会漂移——排一次重新校准。' },
+          { en: 'Alarms fired, but nobody owned the response.', zh: '告警响了，但没人负责处置。' },
+          { en: 'The new protocol halves the polling interval without extra traffic.', zh: '新协议把轮询间隔砍半，流量并没有增加。' },
+          { en: 'Let us trend the readings for a week before replacing hardware.', zh: '换硬件之前，先把读数趋势看一周。' },
         ],
         keys: ['物联', '工业', '工厂', '车间', '产线', '设备', '采集', '传感器', '网关', '电表', '变电站', '调度', '运维', '检修', '能耗', '立项', '平台升级', '数据采集', '遥测', 'iot', 'scada', 'plc', 'sensor', 'gateway', 'telemetry', 'meter', 'maintenance', 'equipment', 'factory', '光伏', '风电', '储能', '新能源', '日前', '日内', '出清', '偏差', '负荷预测', '虚拟电厂', '需求响应', '中长期', '零售套餐', '并网', '辅助服务', '调频', '削峰'],
       },
@@ -15050,6 +15095,11 @@ const TOPIC_RULES = [
           { en: 'Clause five caps liability at the contract value.', zh: '第五条把责任上限锁在合同金额。' },
           { en: 'We need written approval before this change takes effect.', zh: '变更生效前需要书面批准。' },
           { en: 'Please confirm this does not conflict with the existing agreement.', zh: '请确认这与现有协议不冲突。' },
+          { en: 'The draft is silent on data ownership — that gap worries me.', zh: '草案对数据归属只字未提——这个空白让我担心。' },
+          { en: 'We can accept the clause, but only with the carve-out we discussed.', zh: '这条可以接受，但必须带上我们谈过的例外。' },
+          { en: 'Termination needs thirty days notice, in writing.', zh: '终止需要提前三十天、书面通知。' },
+          { en: 'When the two documents disagree, the signed one prevails.', zh: '两份文件打架时，以签字的那份为准。' },
+          { en: 'Keep the indemnity mutual, or one side carries all the risk.', zh: '赔偿条款必须对等，否则单边担风险。' },
         ],
         keys: ['合同', '法务', '条款', '协议', '法律', '合规', '违约', '知识产权', '验收标准', 'contract', 'clause', 'agreement', 'legal', 'compliance', 'liability', 'breach', 'regulation', 'terms'],
       },
@@ -15062,6 +15112,11 @@ const TOPIC_RULES = [
           { en: 'I have had a dull headache for three days, worse in the evening.', zh: '我隐隐头痛三天了，晚上更明显。' },
           { en: 'My sleep improved once I stopped eating late.', zh: '戒掉宵夜之后，睡眠变好了。' },
           { en: 'The doctor suggested a blood test before any treatment.', zh: '医生建议先抽血，再谈治疗。' },
+          { en: 'The pain is sharp when I climb stairs, dull when I rest.', zh: '上楼时是刺痛，休息时是钝痛。' },
+          { en: 'I cut coffee after noon and the jitters went away.', zh: '中午以后不喝咖啡，心慌就消失了。' },
+          { en: 'Two weeks into the medication, the side effects have faded.', zh: '用药两周了，副作用已经减轻。' },
+          { en: 'I am easing back into training at half the usual distance.', zh: '我在慢慢恢复训练，先跑平时一半的距离。' },
+          { en: 'The check-up came back clean, so we just keep an eye on it.', zh: '体检指标正常，先观察就行。' },
         ],
         keys: ['健康', '医生', '医院', '体检', '症状', '药品', '治疗', '睡眠', '运动', '健身', '饮食', 'health', 'doctor', 'hospital', 'symptom', 'medicine', 'treatment', 'sleep', 'exercise', 'fitness', 'diet'],
       },
@@ -15074,6 +15129,11 @@ const TOPIC_RULES = [
           { en: 'My flight was delayed, so I missed the connection.', zh: '航班延误，我错过了转机。' },
           { en: 'Could you book a hotel within walking distance of the venue?', zh: '能订个离会场步行可达的酒店吗？' },
           { en: 'Do I need a visa for a two-day stopover?', zh: '两天的中转停留需要签证吗？' },
+          { en: 'Is the window seat still available on the evening train?', zh: '晚班车靠窗的位子还有吗？' },
+          { en: 'We landed early, so immigration took barely twenty minutes.', zh: '我们提前落地，入境只花了二十分钟。' },
+          { en: 'Could I move the booking to next Friday at the same fare?', zh: '能按原价改签到下周五吗？' },
+          { en: 'The airport metro beats a taxi at this hour.', zh: '这个时间从机场坐地铁比打车快。' },
+          { en: 'Keep the receipt — the hotel deposit refunds at check-out.', zh: '收据留好——酒店押金退房时退。' },
         ],
         keys: ['旅行', '出行', '出差', '航班', '酒店', '签证', '行程', '护照', '攻略', 'travel', 'flight', 'hotel', 'visa', 'trip', 'itinerary', 'passport', 'airport', 'tour'],
       },
@@ -15086,6 +15146,11 @@ const TOPIC_RULES = [
           { en: 'I am reviewing the questions I got wrong last week.', zh: '我在复习上周做错的题。' },
           { en: 'The exam rewards accuracy more than speed.', zh: '这场考试更看准确率，不是速度。' },
           { en: 'Could you explain the difference between these two words?', zh: '能讲讲这两个词的区别吗？' },
+          { en: 'I remember a rule best right after I break it.', zh: '我刚用错一条规则的时候，记得最牢。' },
+          { en: 'Fifteen minutes a day beats two hours once a week.', zh: '每天十五分钟胜过一周突击两小时。' },
+          { en: 'Could you listen to my pronunciation and mark what sounds off?', zh: '能帮我听听发音，标出哪里不对吗？' },
+          { en: 'I keep notes of the phrases I wish I had said.', zh: '我把当时想不起来该怎么说的句子都记下来了。' },
+          { en: 'Shadowing the recording helped more than reading the transcript.', zh: '跟读录音比看文稿管用得多。' },
         ],
         keys: ['学习', '英语', '单词', '课程', '考试', '培训', '论文', '雅思', '托福', '教育', '背单词', 'study', 'learn', 'exam', 'course', 'lesson', 'paper', 'thesis', 'ielts', 'toefl', 'vocabulary', 'school'],
       },
@@ -15098,6 +15163,11 @@ const TOPIC_RULES = [
           { en: 'We ended up cooking at home instead of going out.', zh: '最后我们在家做饭，没出去吃。' },
           { en: 'I have been trying to walk more at weekends.', zh: '我最近周末尽量多走走。' },
           { en: 'Do you mind if I bring a friend along?', zh: '我带个朋友一起，你介意吗？' },
+          { en: 'It looked like rain, so we took the umbrella after all.', zh: '看着像要下雨，我们最后还是带了伞。' },
+          { en: 'The queue was so long that we gave up and went home.', zh: '队排得太长，我们放弃回家了。' },
+          { en: 'I have been meaning to fix that drawer for a month.', zh: '那个抽屉我想修一个月了，一直没动手。' },
+          { en: 'Let us grab coffee once the rush dies down.', zh: '等高峰过了我们去喝杯咖啡。' },
+          { en: 'The concert sold out in minutes, so we watched the stream.', zh: '演唱会几分钟就售罄了，我们只好看的直播。' },
         ],
         // v1.6.0: ASCII 键必须 >= 4 字符——detectTopics 用的是 indexOf 子串匹配，
         // 'tea' 会命中 team/teacher/steady，'cat' 会命中 category/catch，所以短的英文键一律不放。
@@ -15113,6 +15183,11 @@ const TOPIC_RULES = [
         { en: 'Just to make sure I follow — you mean the second option, not the first?', zh: '我确认一下——你说的是第二个方案，不是第一个？' },
         { en: 'Give me a moment to think that through before I answer.', zh: '让我想一下再回答。' },
         { en: 'That makes sense. What would you like me to do next?', zh: '明白了。接下来你希望我做什么？' },
+        { en: 'Sorry, I lost you at the last step — could you go back once more?', zh: '抱歉，最后一步我跟丢了，能再讲一遍吗？' },
+        { en: 'In short, we agree on what, and only differ on how.', zh: '简单说，做什么我们一致，怎么做有分歧。' },
+        { en: 'That is a fair point — let me reconsider.', zh: '有道理，我重新想想。' },
+        { en: 'Could you boil that down to one sentence for the summary?', zh: '你能把它概括成一句话吗？' },
+        { en: 'I will double-check and get back to you by tomorrow.', zh: '我再核对一下，明天之前答复你。' },
       ],
     };
 
@@ -15316,7 +15391,7 @@ const TOPIC_RULES = [
       'set.tts': '朗读发音',
       'set.ttsDesc': '用系统自带语音朗读单词与例句，不联网、不引入额外依赖。',
       'guide.title': '英语角',
-      'guide.desc': '等待时刷单词短语，看当前主题的英文简报',
+      'guide.desc': '等待时刷单词短语，右栏管生词、小测验和学习统计',
       'tab.viewSettings': '设置',
       'set.level': '英语水平',
       'set.level.starter': '入门 A2',
@@ -15355,6 +15430,30 @@ const TOPIC_RULES = [
       'book.search': '在单词本中检索（单词或释义）',
       'book.none': '单词本中没有匹配的词',
       'tab.lookup': '查词：输入英文单词或中文释义',
+      'tab.viewStats': '统计',
+      'stat.heading': '学习统计',
+      'stat.today': '今日刷词',
+      'stat.streak': '连续天数',
+      'stat.due': '待复习',
+      'stat.dist': '词状态分布',
+      'stat.marked': '已标记',
+      'stat.heat': '学习热力图（近 16 周）',
+      'stat.heatNone': '还没有痕迹：标一个词，这里就会亮一格。',
+      'stat.dueNote': '间隔复习：模糊/生词 12 小时后到期，认识 3 天、熟悉 21 天；到期的词优先进闪卡条和测验。',
+      'quiz.dueNote': '今天有 {n} 个词到了复习时间，这一轮会优先抽到它们。',
+      'quiz.hotkeys': '快捷键：选择题按 1–4 直接作答；拼写/听写 Alt+1 音标 · Alt+2 字母骨架 · Alt+3 例句 · Alt+4 释义 · Alt+R 再听一次；Enter 提交 / 下一题。',
+      'quiz.hotkeyChoice': '按 {n} 键选择',
+      'stat.less': '少',
+      'stat.more': '多',
+      'stat.heatTip': '刷了 {n} 个词',
+      'stat.heatTipZero': '当天没刷',
+      'stat.heatTotal': '近 16 周共刷 {n} 词',
+      'tab.viewFav': '收藏',
+      'fav.words': '收藏的单词',
+      'fav.lines': '收藏的句子',
+      'fav.empty': '还没有收藏：点词卡或句子后面的 ☆ 即可收藏，单词、句式、例句都能收。',
+      'fav.add': '收藏',
+      'fav.remove': '取消收藏',
     };
     const en = {
       'dock.brand': 'English Lounge',
@@ -15440,7 +15539,7 @@ const TOPIC_RULES = [
       'set.tts': 'Pronunciation',
       'set.ttsDesc': 'Reads words and examples aloud with the system voice — offline, no extra dependency.',
       'guide.title': 'English Lounge',
-      'guide.desc': 'Flashcards while you wait, plus an English topic brief',
+      'guide.desc': 'Flashcards while you wait; word book, quiz and learning stats in the sidebar',
       'tab.viewSettings': 'Settings',
       'set.level': 'English level',
       'set.level.starter': 'Starter A2',
@@ -15479,6 +15578,30 @@ const TOPIC_RULES = [
       'book.search': 'Search the word book (word or meaning)',
       'book.none': 'No matching words in the book',
       'tab.lookup': 'Look up: type an English word or a Chinese meaning',
+      'tab.viewStats': 'Stats',
+      'stat.heading': 'Learning stats',
+      'stat.today': 'Words today',
+      'stat.streak': 'Day streak',
+      'stat.due': 'Due for review',
+      'stat.dist': 'Word states',
+      'stat.marked': 'marked',
+      'stat.heat': 'Activity (last 16 weeks)',
+      'stat.heatNone': 'No marks yet — state a word and a cell lights up.',
+      'stat.dueNote': 'Spaced review: fuzzy/new words come due after 12 hours, known after 3 days, mastered after 21; due words jump the queue in the strip and the quiz.',
+      'quiz.dueNote': '{n} words are due for review today — this round picks them first.',
+      'quiz.hotkeys': 'Hotkeys: choice — press 1–4 to answer; spelling/dictation — Alt+1 IPA · Alt+2 letter mask · Alt+3 example · Alt+4 meaning · Alt+R replay; Enter submits / advances.',
+      'quiz.hotkeyChoice': 'Press {n} to choose',
+      'stat.less': 'Less',
+      'stat.more': 'More',
+      'stat.heatTip': '{n} words that day',
+      'stat.heatTipZero': 'nothing that day',
+      'stat.heatTotal': '{n} words in the last 16 weeks',
+      'tab.viewFav': 'Saved',
+      'fav.words': 'Saved words',
+      'fav.lines': 'Saved sentences',
+      'fav.empty': 'Nothing saved yet — tap ☆ after any word or sentence.',
+      'fav.add': 'Save',
+      'fav.remove': 'Remove',
     };
     const DICTS = { zh, en };
 
@@ -15495,14 +15618,18 @@ const TOPIC_RULES = [
           return {
             known: v && typeof v.known === 'object' && v.known !== null ? v.known : {},
             fav: v && typeof v.fav === 'object' && v.fav !== null ? v.fav : {},
+            // v1.7.0: at = 每个词最近一次状态变更的时间戳（间隔复习用）；log = 按天记录刷过哪些词（今日刷词/连续天数/热力图）
+            at: v && typeof v.at === 'object' && v.at !== null ? v.at : {},
+            log: v && typeof v.log === 'object' && v.log !== null ? pruneLog(v.log) : {},
+            favLines: v && typeof v.favLines === 'object' && v.favLines !== null ? v.favLines : {},
             collapsed: !!(v && v.collapsed),
             briefFold: !!(v && v.briefFold),
-            view: v && (v.view === 'book' || v.view === 'quiz' || v.view === 'settings') ? v.view : 'words',
+            view: v && (v.view === 'book' || v.view === 'quiz' || v.view === 'stats' || v.view === 'fav' || v.view === 'settings') ? v.view : 'words',
             settings: normalizeSettings(v && v.settings),
           };
         }
       } catch (error) { /* storage unavailable; start fresh */ }
-      return { known: {}, fav: {}, collapsed: false, briefFold: false, view: 'words', settings: normalizeSettings(null) };
+      return { known: {}, fav: {}, at: {}, log: {}, favLines: {}, collapsed: false, briefFold: false, view: 'words', settings: normalizeSettings(null) };
     }
     // v1.6.0 性能：每次点状态按钮都会整份写回 localStorage（词库标记多了以后是几十 KB 的 JSON）。
     // 写盘改成合并到下一帧之后，页面隐藏/关闭前强制落盘，语义不变但点击不再卡。
@@ -15555,9 +15682,22 @@ const TOPIC_RULES = [
     function wordState(word) { return stateIn(storeState.known, word); }
     function markWord(word, state) {
       const known = { ...storeState.known };
-      if (state) known[word] = state; else delete known[word];
+      // v1.7.0 间隔复习: 状态一变就记时间戳；当天日志记下这个词，供统计页汇总（同一天重复标记只算一个词）
+      const at = { ...storeState.at };
+      const log = { ...storeState.log };
+      const day = dayKey(new Date());
+      if (state) {
+        known[word] = state;
+        at[word] = Date.now();
+        const bucket = log[day] && typeof log[day] === 'object' ? { ...log[day] } : {};
+        bucket[word] = 1;
+        log[day] = bucket;
+      } else {
+        delete known[word];
+        delete at[word];
+      }
       KNOWN_REV += 1;
-      setStore({ known });
+      setStore({ known, at, log });
     }
     function setCollapsed(value) { setStore({ collapsed: value }); }
     function setView(value) { setStore({ view: value }); }
@@ -15565,7 +15705,81 @@ const TOPIC_RULES = [
       setStore({ settings: normalizeSettings({ ...storeState.settings, ...patch }) });
     }
     function resetSettings() { setStore({ settings: normalizeSettings(null) }); }
-    function clearRecords() { KNOWN_REV += 1; setStore({ known: {}, fav: {} }); }
+    function clearRecords() { KNOWN_REV += 1; setStore({ known: {}, fav: {}, at: {}, log: {}, favLines: {} }); }
+    // v1.7.0 收藏: 单词复用旧 fav 字段（补上写入路径，值=收藏时间）；句子存内容本体 favLines[en] = { en, zh, w, at }，↔ 切换即增删
+    function setFavWord(word, on) {
+      const fav = { ...storeState.fav };
+      if (on) fav[word] = Date.now(); else delete fav[word];
+      setStore({ fav });
+    }
+    function setFavLine(en, zh, w) {
+      const key = String(en || '');
+      if (!key) return;
+      const favLines = { ...storeState.favLines };
+      if (favLines[key]) delete favLines[key];
+      else favLines[key] = { en: key, zh: String(zh || ''), w: String(w || ''), at: Date.now() };
+      setStore({ favLines });
+    }
+
+    // -------------------------------------------- v1.7.0 spaced review（间隔复习）
+    // 到期间隔：模糊/生词 12 小时、认识 3 天、熟悉 21 天；到期的词优先进闪卡条与测验。
+    const SRS_INTERVALS = {
+      fuzzy: 12 * 3600 * 1000,
+      new: 12 * 3600 * 1000,
+      known: 3 * 24 * 3600 * 1000,
+      mastered: 21 * 24 * 3600 * 1000,
+    };
+    function dayKey(d) {
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return y + '-' + m + '-' + day;
+    }
+    function pruneLog(log) {
+      // 热力图只看最近十几周，日志最多留 200 天，防止 localStorage 无限膨胀
+      const min = dayKey(new Date(Date.now() - 200 * 24 * 3600 * 1000));
+      const out = {};
+      for (const key of Object.keys(log)) {
+        if (key >= min && log[key] && typeof log[key] === 'object') out[key] = log[key];
+      }
+      return out;
+    }
+    function dayCount(log, day) {
+      const bucket = log && log[day];
+      return bucket && typeof bucket === 'object' ? Object.keys(bucket).length : 0;
+    }
+    function streakFromLog(log) {
+      const cursor = new Date();
+      if (dayCount(log, dayKey(cursor)) === 0) cursor.setDate(cursor.getDate() - 1);
+      let streak = 0;
+      for (;;) {
+        if (dayCount(log, dayKey(cursor)) === 0) break;
+        streak += 1;
+        cursor.setDate(cursor.getDate() - 1);
+      }
+      return streak;
+    }
+    // 距到期已多久（ms）；未到期 / 无时间戳 / 该状态无间隔 → -1
+    function dueOverdue(word, state, now) {
+      const interval = SRS_INTERVALS[state];
+      if (!interval) return -1;
+      const markedAt = storeState.at && storeState.at[word];
+      if (!markedAt) return -1;
+      const age = now - markedAt;
+      return age >= interval ? age - interval : -1;
+    }
+    // 今天到期待复习的词数（模糊/生词/认识；熟悉不进任何词池，不计入）
+    function countDueWords(known, at, now) {
+      let n = 0;
+      for (const entry of WORDS) {
+        const st = markedState(known, entry.w);
+        if (!st || st === 'mastered') continue;
+        const interval = SRS_INTERVALS[st];
+        const markedAt = at && at[entry.w];
+        if (interval && markedAt && now - markedAt >= interval) n += 1;
+      }
+      return n;
+    }
 
     // ------------------------------------------------------- helpers
     const MISSING_SOURCE = { getSnapshot: () => undefined, subscribe: () => () => {} };
@@ -15600,6 +15814,8 @@ const TOPIC_RULES = [
     // v1.5.0: AI pack flow enabled (turn-tail AI pick + elpack fences); manual prompt entry stays hidden
     const PACKS_ENABLED = true;
     const PACK_MANUAL_ENABLED = false;
+    // v1.7.0: 主题简报暂时整体隐藏（用户反馈鸡肋、占空间）；要恢复显示把这里改回 true
+    const BRIEF_ENABLED = false;
     if (!PACKS_ENABLED) { try { localStorage.removeItem(PACK_KEY); } catch (err) { /* storage blocked */ } }
     function loadAllPacks() {
       try {
@@ -16133,8 +16349,8 @@ const TOPIC_RULES = [
       '.elz-dock { box-sizing: border-box; display: flex; justify-content: center; }',
       '.elz-bar { display: flex; align-items: center; gap: 8px; box-sizing: border-box; min-height: 30px; width: 760px; max-width: 100%; padding: 3px 10px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: var(--dsw-radius-md); background: var(--dsw-alias-bg-layer-1); flex-wrap: nowrap; overflow: hidden; }',
       '.elz-chipbar { display: flex; align-items: center; gap: 8px; box-sizing: border-box; padding: 4px 10px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: 999px; background: var(--dsw-alias-bg-layer-1); width: max-content; }',
-      '.elz-word { color: var(--dsw-alias-label-primary); font-weight: 600; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; max-width: 26ch; flex: 0 2 auto; }',
-      '.elz-ipa { color: var(--dsw-alias-label-tertiary); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }',
+      '.elz-word { color: var(--dsw-alias-label-primary); font-weight: 600; font-size: 13px; white-space: normal; overflow-wrap: anywhere; min-width: 0; flex: 0 1 auto; }',
+      '.elz-ipa { color: var(--dsw-alias-label-tertiary); font-size: 12px; overflow-wrap: anywhere; min-width: 0; }',
       '.elz-pos { color: var(--dsw-alias-label-tertiary); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }',
       '.elz-zh { color: var(--dsw-alias-label-secondary); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }',
       '.elz-ex { flex: 1; min-width: 0; color: var(--dsw-alias-label-tertiary); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }',
@@ -16179,7 +16395,7 @@ const TOPIC_RULES = [
       '.elz-cards { display: flex; flex-direction: column; gap: 8px; }',
       '.elz-card { display: flex; flex-direction: column; gap: 4px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: var(--dsw-radius-md); background: var(--dsw-alias-bg-layer-1); padding: 10px 12px; }',
       '.elz-card-top { display: flex; align-items: baseline; gap: 8px; flex-wrap: nowrap; }',
-      '.elz-word-line { display: inline-flex; align-items: center; gap: 6px; flex-wrap: nowrap; min-width: 0; min-height: 20px; }',
+      '.elz-word-line { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; min-width: 0; min-height: 20px; }',
       '.elz-card-zh { color: var(--dsw-alias-label-primary-dimmed, var(--dsw-alias-label-secondary)); font-size: 13px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }',
       '.elz-card-ex { color: var(--dsw-alias-label-tertiary); font-size: 12px; line-height: 1.55; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }',
       '.elz-card-actions { display: flex; gap: 6px; margin-top: 2px; }',
@@ -16187,17 +16403,17 @@ const TOPIC_RULES = [
       '.elz-filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }',
       '.elz-head-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }',
       '.elz-title-chip { display: inline-flex; align-items: center; gap: 6px; }',
-      '.elz-seg { display: flex; gap: 4px; padding: 3px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: 999px; background: var(--dsw-alias-bg-layer-1); width: max-content; }',
+      '.elz-seg { display: flex; flex-wrap: wrap; gap: 4px; padding: 3px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: 999px; background: var(--dsw-alias-bg-layer-1); width: max-content; max-width: 100%; }',
       '.elz-seg-btn { font: inherit; font-size: 12px; line-height: 20px; color: var(--dsw-alias-label-secondary); background: transparent; border: none; border-radius: 999px; padding: 1px 12px; cursor: pointer; }',
       '.elz-seg-btn:hover { color: var(--dsw-alias-label-primary); }',
       '.elz-seg-on { background: var(--dsw-alias-interactive-bg-hover); color: var(--dsw-alias-label-primary); font-weight: 600; }',
-      '.elz-card-known { opacity: 0.55; }',
+      '.elz-card-known { border-left: 3px solid #1565c0; }',
       '.elz-range { width: 100%; accent-color: var(--dsw-alias-interactive-primary); }',
       '.elz-lookup-input { width: 100%; font: inherit; font-size: 12px; color: var(--dsw-alias-label-primary); background: transparent; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: 8px; padding: 5px 10px; outline: none; }',
       '.elz-lookup-input:focus { border-color: var(--dsw-alias-interactive-primary); }',
       '.elz-pack-manual { width: 100%; min-height: 120px; font: inherit; font-size: 12px; line-height: 1.5; color: var(--dsw-alias-label-primary); background: transparent; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: 8px; padding: 6px 8px; resize: vertical; white-space: pre-wrap; }',
-      '.elz-card-mastered { opacity: 0.4; }',
-      '.elz-card-fuzzy { border-color: var(--dsw-alias-border-l3); }',
+      '.elz-card-mastered { border-left: 3px solid #2e7d32; }',
+      '.elz-card-fuzzy { border-left: 3px solid #b98a1c; }',
       '.elz-count { color: var(--dsw-alias-label-tertiary); font-size: 12px; white-space: nowrap; }',
       '.elz-set { display: flex; flex-direction: column; gap: 16px; }',
       '.elz-set-group { display: flex; flex-direction: column; gap: 6px; }',
@@ -16211,8 +16427,8 @@ const TOPIC_RULES = [
       '.elz-tail-label { flex: none; color: var(--dsw-alias-label-tertiary); font-size: 11px; }',
       '.elz-tail-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 6px; }',
       '.elz-tail-card { display: flex; flex-direction: column; gap: 3px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: var(--dsw-radius-md); background: var(--dsw-alias-bg-layer-1); padding: 6px 8px; min-width: 0; }',
-      '.elz-tail-meta { display: flex; align-items: baseline; gap: 6px; min-width: 0; }',
-      '.elz-tail-w { font-weight: 600; font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }',
+      '.elz-tail-meta { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; min-width: 0; }',
+      '.elz-tail-w { font-weight: 600; font-size: 13px; overflow-wrap: anywhere; min-width: 0; }',
       '.elz-tail-zh { font-size: 12px; color: var(--dsw-alias-label-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }',
       '.elz-tail-states { display: flex; flex-wrap: wrap; gap: 4px; }',
       '.elz-tail-st { padding: 1px 6px; font-size: 11px; border: 0.5px solid var(--dsw-alias-border-l1); border-radius: 6px; background: transparent; cursor: pointer; font: inherit; color: inherit; }',
@@ -16238,6 +16454,70 @@ const TOPIC_RULES = [
       '.elz-quiz-actions { display: flex; gap: 8px; }',
       '.elz-quiz-score { font-size: 14px; font-weight: 600; }',
       '.elz-quiz-wrong { display: flex; flex-direction: column; gap: 4px; }',
+      // v1.7.0 学习统计页（.elz-ls-* 与 v1.6.0 删除的旧进度条 .elz-stat* 无关，勿混用）
+      '.elz-ls { gap: 16px; }',
+      '.elz-ls-row { display: flex; gap: 24px; }',
+      '.elz-ls-num { display: flex; flex-direction: column; gap: 2px; }',
+      '.elz-ls-v { font-size: 20px; font-weight: 600; color: var(--dsw-alias-label-primary); line-height: 1.3; }',
+      '.elz-ls-k { font-size: 11px; color: var(--dsw-alias-label-tertiary); }',
+      '.elz-ls-dist { display: flex; flex-direction: column; gap: 6px; }',
+      '.elz-ls-dist-row { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--dsw-alias-label-secondary); }',
+      '.elz-ls-dist-name { flex: none; width: 66px; white-space: nowrap; }',
+      '.elz-ls-bar { flex: 1; height: 8px; border-radius: 999px; background: var(--dsw-alias-interactive-bg-hover); overflow: hidden; }',
+      '.elz-ls-fill { height: 100%; border-radius: 999px; background: var(--dsw-alias-interactive-primary, #2f6f4f); opacity: 0.85; }',
+      // 热力图=GitHub 贡献图双主题色板：浅色 ebedf0/9be9a8/40c463/30a14e/216e39；深色 161b22/0e4429/006d32/26a641/39d353
+      '.elz-ls-heatwrap { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }',
+      '.elz-ls-months { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 3px; }',
+      '.elz-ls-month { font-size: 10px; line-height: 12px; color: var(--dsw-alias-label-tertiary); white-space: nowrap; }',
+      '.elz-ls-heat { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 12px); grid-auto-columns: 1fr; gap: 3px; }',
+      '.elz-ls-cell { height: 12px; border-radius: 2px; background: #ebedf0; cursor: default; }',
+      '.elz-ls-mini { height: 9px; width: 9px; border-radius: 2px; background: #ebedf0; }',
+      '.elz-ls-h0 { background: #ebedf0; }',
+      '.elz-ls-h1 { background: #9be9a8; }',
+      '.elz-ls-h2 { background: #40c463; }',
+      '.elz-ls-h3 { background: #30a14e; }',
+      '.elz-ls-h4 { background: #216e39; }',
+      'body[data-ds-dark-theme] .elz-ls-h0 { background: #161b22; }',
+      'body[data-ds-dark-theme] .elz-ls-h1 { background: #0e4429; }',
+      'body[data-ds-dark-theme] .elz-ls-h2 { background: #006d32; }',
+      'body[data-ds-dark-theme] .elz-ls-h3 { background: #26a641; }',
+      'body[data-ds-dark-theme] .elz-ls-h4 { background: #39d353; }',
+      '.elz-ls-cell:hover { outline: 1px solid rgba(0, 0, 0, 0.3); }',
+      'body[data-ds-dark-theme] .elz-ls-cell:hover { outline: 1px solid rgba(255, 255, 255, 0.3); }',
+      '.elz-ls-future { visibility: hidden; }',
+      '.elz-ls-wd { flex: none; display: grid; grid-template-rows: repeat(7, 12px); gap: 3px; margin-top: 15px; }',
+      '.elz-ls-wd span { font-size: 10px; line-height: 12px; color: var(--dsw-alias-label-tertiary); }',
+      '.elz-ls-legend { display: flex; align-items: center; justify-content: flex-end; gap: 3px; }',
+      '.elz-ls-legend span { font-size: 10px; color: var(--dsw-alias-label-tertiary); margin: 0 3px; }',
+      '.elz-ls-count { flex: none; min-width: 26px; text-align: right; color: var(--dsw-alias-label-tertiary); font-size: 12px; }',
+      // v1.7.0 四态分色与收藏/分布条配色——必须排在 CSS 数组尾部：晚于 .elz-btn-on / .elz-tail-st-on / .elz-ls-fill / .elz-tail-exbtn，
+      // 同特异性下靠后的规则才赢（v1.7.0 曾插在数组中部，导致尾条状态文字仍是琥珀、分布条仍是绿、尾条收藏星不变色）。
+      '.elz-st-mastered { color: #2e7d32; border-color: #2e7d32; }',
+      'body[data-ds-dark-theme] .elz-st-mastered { color: #7bc47f; border-color: #7bc47f; }',
+      '.elz-st-known { color: #1565c0; border-color: #1565c0; }',
+      'body[data-ds-dark-theme] .elz-st-known { color: #6ea8ff; border-color: #6ea8ff; }',
+      '.elz-st-fuzzy { color: #b98a1c; border-color: #b98a1c; }',
+      'body[data-ds-dark-theme] .elz-st-fuzzy { color: #e3b74a; border-color: #e3b74a; }',
+      '.elz-st-new { color: #b3392c; border-color: #b3392c; }',
+      'body[data-ds-dark-theme] .elz-st-new { color: #e06a5d; border-color: #e06a5d; }',
+      '.elz-card-new { border-left: 3px solid #b3392c; }',
+      '.elz-fav-btn { color: var(--dsw-alias-label-tertiary); }',
+      '.elz-fav-on { color: #d9a514; }',
+      'body[data-ds-dark-theme] .elz-fav-on { color: #e3b74a; }',
+      '.elz-pattern-word { color: var(--dsw-alias-label-tertiary); font-size: 10px; align-self: flex-start; }',
+      '.elz-dist-mastered { background: #2e7d32; }',
+      '.elz-dist-known { background: #1565c0; }',
+      '.elz-dist-fuzzy { background: #b98a1c; }',
+      '.elz-dist-new { background: #b3392c; }',
+      'body[data-ds-dark-theme] .elz-dist-mastered { background: #7bc47f; }',
+      'body[data-ds-dark-theme] .elz-dist-known { background: #6ea8ff; }',
+      'body[data-ds-dark-theme] .elz-dist-fuzzy { background: #e3b74a; }',
+      'body[data-ds-dark-theme] .elz-dist-new { background: #e06a5d; }',
+      // v1.7.0 修缮: 闪卡条单行约定回归——仅 .elz-bar（dock）作用域恢复 nowrap；词头 flex-shrink:0 永不收缩、永不截断，
+      // 空间不够时先压长音标（省略号 + 悬停看全文）再压释义/例句；侧栏词卡与尾条小卡仍按「单词完整性」换行。两约定各管各的作用域。
+      '.elz-bar .elz-word-line { flex-wrap: nowrap; }',
+      '.elz-bar .elz-word { white-space: nowrap; flex-shrink: 0; }',
+      '.elz-bar .elz-ipa { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 1; }',
     ].join('\n');
 
     // v1.6.0: 每个挂点（闪卡、尾条、右栏、小测试）都各插一份同样的样式。
@@ -16330,7 +16610,7 @@ const TOPIC_RULES = [
       return h('span', { className: 'elz-word-line' },
         h('span', { className: 'elz-word' }, entry.w),
         t ? h(SpeakButton, { text: entry.w, t }) : null,
-        entry.ipa ? h('span', { className: 'elz-ipa' }, entry.ipa) : null,
+        entry.ipa ? h('span', { className: 'elz-ipa', title: entry.ipa }, entry.ipa) : null,
         h('span', { className: 'elz-pos' }, entry.pos),
       );
     }
@@ -16346,14 +16626,23 @@ const TOPIC_RULES = [
     // state badge is gone — the lit button in the row below already says which state is active.
     function WordCard({ entry, state, t }) {
       return h('div', {
-        className: 'elz-card' + (state === 'mastered' ? ' elz-card-mastered' : state === 'known' ? ' elz-card-known' : state === 'fuzzy' ? ' elz-card-fuzzy' : ''),
+        className: 'elz-card' + (state === 'mastered' ? ' elz-card-mastered' : state === 'known' ? ' elz-card-known' : state === 'fuzzy' ? ' elz-card-fuzzy' : state === 'new' ? ' elz-card-new' : ''),
         key: entry.w,
+        // 左缘色条=当前状态色；悬停直接说明，避免「不知道彩条什么意思」
+        title: state ? t('card.' + state) + ' · ' + entry.w : undefined,
       },
         h(WordLine, { entry, t }),
         h('span', { className: 'elz-card-zh' }, entry.zh),
         h('span', { className: 'elz-card-ex' }, (entry.en || '') + (entry.zhEx ? '　' + entry.zhEx : '')),
         h('div', { className: 'elz-card-actions' },
           h(StateButtons, { entry, state, t }),
+          h('button', {
+            type: 'button',
+            className: 'elz-btn elz-fav-btn' + (storeState.fav && storeState.fav[entry.w] ? ' elz-fav-on' : ''),
+            title: t('fav.' + (storeState.fav && storeState.fav[entry.w] ? 'remove' : 'add')) + ' · ' + entry.w,
+            'aria-label': t('fav.' + (storeState.fav && storeState.fav[entry.w] ? 'remove' : 'add')) + ' · ' + entry.w,
+            onClick: () => { setFavWord(entry.w, !(storeState.fav && storeState.fav[entry.w])); },
+          }, storeState.fav && storeState.fav[entry.w] ? '★' : '☆'),
         ),
       );
     }
@@ -16364,7 +16653,7 @@ const TOPIC_RULES = [
           const next = on ? null : meta.id;
           return h('button', {
             key: meta.id, type: 'button',
-            className: 'elz-btn' + (on ? ' elz-btn-on' : ''),
+            className: 'elz-btn' + (on ? ' elz-btn-on elz-st-' + meta.id : ''),
             onClick: () => { markWord(entry.w, next); },
             'aria-pressed': on ? 'true' : 'false',
             title: t('card.' + meta.id) + ' · ' + entry.w,
@@ -16406,17 +16695,30 @@ const TOPIC_RULES = [
         return visiblePool(hitBucket.concat(themeBucket, restBucket));
       }, [sessionId, settings, title, convText, packHit, s.packsTick]);
       // rotation = pool woven by mastery weight: fuzzy x3, new x2, known x1 (low frequency); mastered never enters
+      // v1.7.0 间隔复习: 到期的词先排到序列最前（拖得越久越靠前），其余仍按权重编织；到期判定由 markWord 记录的时间戳驱动
       const rotation = React.useMemo(() => {
+        const now = Date.now();
+        const due = [];
+        const rest = [];
+        for (const item of pool) {
+          const st = wordState(item.w);
+          const over = dueOverdue(item.w, st, now);
+          if (over >= 0) due.push({ item, over }); else rest.push(item);
+        }
+        due.sort((a, b) => b.over - a.over);
+        const ordered = [];
+        for (const pair of due) ordered.push(pair.item);
+        for (const item of rest) ordered.push(item);
         const seq = [];
         for (let copy = 0; copy < 3; copy++) {
-          for (const item of pool) {
+          for (const item of ordered) {
             const st = wordState(item.w);
             const weight = st === 'fuzzy' ? 3 : st === 'known' ? 1 : 2;
             if (weight > copy) seq.push(item);
           }
         }
         return seq;
-      }, [pool, s.known]);
+      }, [pool, s.known, s.at]);
       const [cursor, setCursor] = React.useState(() => Math.floor(Math.random() * 100000));
       const [paused, setPaused] = React.useState(false);
 
@@ -16806,18 +17108,25 @@ const TOPIC_RULES = [
       const count = Math.max(1, Math.min(20, opts.count || 10));
       const rand = Math.random;
       // v1.6.0: words already marked known come back for spaced review (lower weight, capped share)
+      // v1.7.0 间隔复习: 到期的词加权抽样（×3）——模糊/生词 12h、认识 3d 到期，拖得越久越可能被抽到
+      const nowTs = Date.now();
+      const dueBoost = (word, state) => {
+        const interval = SRS_INTERVALS[state];
+        const markedAt = opts.at && opts.at[word];
+        return interval && markedAt && nowTs - markedAt >= interval ? 3 : 1;
+      };
       const bookPairs = [];
       const knownPool = [];
       for (const entry of WORDS) {
         const v = known && known[entry.w];
-        if (v === 'new') bookPairs.push({ entry, weight: 2 });
-        else if (v === 'fuzzy') bookPairs.push({ entry, weight: 1 });
+        if (v === 'new') bookPairs.push({ entry, weight: 2 * dueBoost(entry.w, 'new') });
+        else if (v === 'fuzzy') bookPairs.push({ entry, weight: dueBoost(entry.w, 'fuzzy') });
         else if (v === 'known') knownPool.push(entry);
       }
       // v1.6.0 feedback: 0.35 of a round felt like too many already-known words. 0.2 keeps a
       // light refresher without turning the quiz into a victory lap.
       const reviewN = knownPool.length > 0 ? Math.min(knownPool.length, Math.max(1, Math.round(count * 0.2))) : 0;
-      const reviewPick = weightedSample(knownPool.map((entry) => ({ entry, weight: 1 })), reviewN, rand);
+      const reviewPick = weightedSample(knownPool.map((entry) => ({ entry, weight: dueBoost(entry.w, 'known') })), reviewN, rand);
       const favN = Math.min(bookPairs.length, Math.max(0, Math.round(count * 0.8) - reviewPick.length));
       const favPick = weightedSample(bookPairs, favN, rand).concat(reviewPick);
       const used = new Set(favPick.map((entry) => entry.w));
@@ -16877,6 +17186,8 @@ const TOPIC_RULES = [
         [title, convText, settings, sessionId, s.packsTick]);
       const knownCount = React.useMemo(() => WORDS.filter((entry) => s.known && s.known[entry.w] === 'known').length, [s.known]);
       const reviewPlanned = knownCount > 0 ? Math.min(knownCount, Math.max(1, Math.round(count * 0.2))) : 0;
+      // v1.7.0: 今天到期待复习的词数，出题加权优先抽到（见 buildQuizItems 的 dueBoost）
+      const dueCount = React.useMemo(() => countDueWords(s.known, s.at, Date.now()), [s.known, s.at]);
       const quizEntry = items && items[idx] ? items[idx].entry : null;
       const choiceOpts = React.useMemo(
         () => (quizEntry ? quizChoiceOptions(quizEntry, s.known) : []),
@@ -16910,6 +17221,35 @@ const TOPIC_RULES = [
         window.addEventListener('keydown', onKey);
         return () => { window.removeEventListener('keydown', onKey); };
       }, [items, idx, done, verdict, choicePick, log, settings]);
+      // v1.7.0 UX 轮: 选择题数字键 1-4 直接作答；拼写/听写题 Alt+1/2/3/4 开提示、Alt+R 重听（输入框打字时不抢键）
+      React.useEffect(() => {
+        if (items === null || done) return undefined;
+        const onKey = (event) => {
+          if (!event || event.repeat) return;
+          const it = items[idx];
+          if (!it) return;
+          const target = event.target;
+          const typing = !!(target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA'));
+          if (it.mode === 'choice') {
+            if (event.altKey || event.ctrlKey || event.metaKey || typing) return;
+            const n = Number(event.key);
+            if (!(n >= 1 && n <= 4) || choicePick) return;
+            event.preventDefault();
+            const opt = choiceOpts[n - 1];
+            if (opt) setChoicePick({ picked: opt });
+            return;
+          }
+          if (!event.altKey || event.ctrlKey || event.metaKey) return;
+          const k = String(event.key).toLowerCase();
+          if (k === '1') { event.preventDefault(); if (it.entry.ipa || ipaOf(it.entry.w)) setHint((v) => ({ ...v, ipa: true })); }
+          else if (k === '2') { event.preventDefault(); setHint((v) => ({ ...v, mask: true })); }
+          else if (k === '3') { event.preventDefault(); if (blankedExample(it.entry)) setHint((v) => ({ ...v, ex: true })); }
+          else if (k === '4' && it.mode === 'dictation') { event.preventDefault(); setHint((v) => ({ ...v, zh: true })); }
+          else if (k === 'r' && it.mode === 'dictation') { event.preventDefault(); speak(it.entry.w); }
+        };
+        window.addEventListener('keydown', onKey);
+        return () => { window.removeEventListener('keydown', onKey); };
+      }, [items, idx, done, choicePick, choiceOpts]);
       // v1.6.0: dictation questions speak themselves once per question
       React.useEffect(() => {
         if (!items || done) return;
@@ -16930,10 +17270,12 @@ const TOPIC_RULES = [
           ),
           h('span', { className: 'elz-note' }, t('quiz.pool').replace('{n}', String(favCount)).replace('{m}', String(topicCount))),
           knownCount > 0 ? h('span', { className: 'elz-note' }, t('quiz.reviewNote').replace('{n}', String(reviewPlanned))) : null,
+          dueCount > 0 ? h('span', { className: 'elz-note' }, t('quiz.dueNote').replace('{n}', String(dueCount))) : null,
+          h('span', { className: 'elz-note' }, t('quiz.hotkeys')),
           empty ? h('p', { className: 'elz-empty' }, t('quiz.empty')) : null,
           h('button', { type: 'button', className: 'elz-btn elz-btn-primary', disabled: empty,
             onClick: () => {
-              setItems(buildQuizItems({ known: s.known, settings, title, convText, sessionId, count }));
+              setItems(buildQuizItems({ known: s.known, at: s.at, settings, title, convText, sessionId, count }));
               setIdx(0); setDone(false); setLog([]); setInput('');
               setHint({ ipa: false, mask: false, ex: false, zh: false }); setVerdict(null); setCloseTried(false); setChoicePick(null); setAdded(false);
             } }, t('quiz.start')),
@@ -17030,7 +17372,7 @@ const TOPIC_RULES = [
           h('button', {
             type: 'button', className: 'elz-quiz-hint',
             onClick: () => { speak(entry.w); },
-            title: t('quiz.replay'),
+            title: t('quiz.replay') + ' · Alt+R',
           },
             h('span', { style: { display: 'inline-flex', alignItems: 'center', gap: 4 } },
               h(SpeakGlyph, { size: 12 }), t('quiz.replay')),
@@ -17046,13 +17388,16 @@ const TOPIC_RULES = [
         spell ? h(React.Fragment, null,
           h('div', { className: 'elz-quiz-hints' },
             h('button', { type: 'button', className: 'elz-quiz-hint', disabled: !ipaText,
-              title: ipaText ? undefined : t('quiz.noIpa'),
+              title: ipaText ? t('quiz.hintIpa') + ' · Alt+1' : t('quiz.noIpa'),
               onClick: () => { setHint((v) => ({ ...v, ipa: ipaText ? true : v.ipa })); } }, t('quiz.hintIpa')),
             h('button', { type: 'button', className: 'elz-quiz-hint',
+              title: t('quiz.hintMask') + ' · Alt+2',
               onClick: () => { setHint((v) => ({ ...v, mask: true })); } }, t('quiz.hintMask')),
             h('button', { type: 'button', className: 'elz-quiz-hint', disabled: isBuild || !exText,
+              title: t('quiz.hintEx') + ' · Alt+3',
               onClick: () => { setHint((v) => ({ ...v, ex: true })); } }, t('quiz.hintEx')),
             isDictation ? h('button', { type: 'button', className: 'elz-quiz-hint', disabled: hint.zh,
+              title: t('quiz.hintZh') + ' · Alt+4',
               onClick: () => { setHint((v) => ({ ...v, zh: true })); } }, t(hint.zh ? 'quiz.hintZhOn' : 'quiz.hintZh')) : null,
           ),
           hint.ipa && ipaText ? h('div', { className: 'elz-quiz-ipa' }, ipaText) : null,
@@ -17096,12 +17441,13 @@ const TOPIC_RULES = [
           ),
         ) : h(React.Fragment, null,
           h('div', { className: 'elz-quiz-opts' },
-            choiceOpts.map((opt) => h('button', {
+            choiceOpts.map((opt, optIdx) => h('button', {
               key: opt, type: 'button',
               className: 'elz-btn' + (choicePick && opt === entry.w ? ' elz-btn-primary' : ''),
               disabled: !!choicePick,
+              title: t('quiz.hotkeyChoice').replace('{n}', String(optIdx + 1)),
               onClick: () => { setChoicePick({ picked: opt }); },
-            }, opt)),
+            }, (optIdx + 1) + ' · ' + opt)),
           ),
           choicePick ? (choicePick.picked === entry.w
             ? h('div', { className: 'elz-quiz-ok' }, '✓ ' + t('quiz.correct'))
@@ -17110,6 +17456,150 @@ const TOPIC_RULES = [
           choicePick ? h('div', { className: 'elz-quiz-actions' },
             h('button', { type: 'button', className: 'elz-btn elz-btn-primary', title: 'Enter / →', onClick: () => { advance(choicePick.picked === entry.w); } }, nextLabel),
           ) : null,
+        ),
+      );
+    }
+
+    // ------------------------------------------- learning stats（v1.7.0 学习统计 v0）
+    // 今日刷词、连续天数、待复习、四态分布（只统计标记过的词）、16 周热力图。
+    // 类名用 .elz-ls-*——v1.6.0 删除的旧进度条用过 .elz-stat*（把未学词算成「?」），那套类名与口径勿再混用。
+    const HEAT_WEEKS = 16;
+    // GitHub 式对齐：列=周（周一起）、行=周一..周日；今天所在列不满 7 格，未来日期留空（16 列恒定）
+    function heatmapCells(log, weeks) {
+      const today = new Date();
+      const dow = (today.getDay() + 6) % 7; // 0=周一 … 6=周日
+      const total = weeks * 7;
+      const startOffset = (weeks - 1) * 7 + dow; // 回到 (weeks-1) 周前的周一：每列首格恒为周一
+      const cells = [];
+      for (let i = 0; i < total; i += 1) {
+        const d = new Date(today.getFullYear(), today.getMonth(), today.getDate() - (startOffset - i));
+        if (d > today) { cells.push(null); continue; }
+        cells.push({ key: dayKey(d), n: dayCount(log, dayKey(d)) });
+      }
+      return cells;
+    }
+    function heatLevel(n) {
+      if (n <= 0) return 0;
+      if (n <= 2) return 1;
+      if (n <= 5) return 2;
+      if (n <= 9) return 3;
+      return 4;
+    }
+    function StatsView({ s, t }) {
+      const todayCount = React.useMemo(() => dayCount(s.log, dayKey(new Date())), [s.log]);
+      const streak = React.useMemo(() => streakFromLog(s.log), [s.log]);
+      const dueCount = React.useMemo(() => countDueWords(s.known, s.at, Date.now()), [s.known, s.at]);
+      const dist = React.useMemo(() => {
+        const byState = { mastered: 0, known: 0, fuzzy: 0, new: 0 };
+        for (const entry of WORDS) {
+          const st = markedState(s.known, entry.w);
+          if (st && byState[st] !== undefined) byState[st] += 1;
+        }
+        return byState;
+      }, [s.known]);
+      const marked = dist.mastered + dist.known + dist.fuzzy + dist.new;
+      const distMax = Math.max(dist.mastered, dist.known, dist.fuzzy, dist.new, 1);
+      const cells = React.useMemo(() => heatmapCells(s.log, HEAT_WEEKS), [s.log]);
+      const heatEmpty = cells.every((cell) => cell === null || cell.n === 0);
+      const [heatHover, setHeatHover] = React.useState(null);
+      const heatTotal = cells.reduce((sum, cell) => sum + (cell ? cell.n : 0), 0);
+      // GitHub 式锚点：顶部月份、左侧星期（一/三/五）；语言按当前词典嗅探
+      const isZh = t('tab.viewStats') === '统计';
+      const MONTH_EN = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const WD = isZh ? ['一', '三', '五'] : ['Mon', 'Wed', 'Fri'];
+      const monthLabels = [];
+      let lastMonth = -1;
+      for (let c = 0; c < HEAT_WEEKS; c += 1) {
+        const top = cells[c * 7];
+        let label = '';
+        if (top) {
+          const m = Number(top.key.slice(5, 7));
+          if (m !== lastMonth) { label = isZh ? m + '月' : MONTH_EN[m - 1]; lastMonth = m; }
+        }
+        monthLabels.push(h('span', { className: 'elz-ls-month', key: 'm' + c }, label));
+      }
+      return h('section', { className: 'elz-root elz-page elz-ls' }, h(Styles),
+        h('span', { className: 'elz-h' }, t('stat.heading')),
+        h('div', { className: 'elz-ls-row' },
+          h('div', { className: 'elz-ls-num' },
+            h('span', { className: 'elz-ls-v' }, String(todayCount)),
+            h('span', { className: 'elz-ls-k' }, t('stat.today'))),
+          h('div', { className: 'elz-ls-num' },
+            h('span', { className: 'elz-ls-v' }, String(streak)),
+            h('span', { className: 'elz-ls-k' }, t('stat.streak'))),
+          h('div', { className: 'elz-ls-num' },
+            h('span', { className: 'elz-ls-v' }, String(dueCount)),
+            h('span', { className: 'elz-ls-k' }, t('stat.due'))),
+        ),
+        h('div', { className: 'elz-ls-dist' },
+          h('span', { className: 'elz-h' }, t('stat.dist') + ' · ' + t('stat.marked') + ' ' + marked),
+          ['mastered', 'known', 'fuzzy', 'new'].map((id) => h('div', { className: 'elz-ls-dist-row', key: id },
+            h('span', { className: 'elz-ls-dist-name' },
+              (STATE_META.find((meta) => meta.id === id) || {}).icon + ' ' + t('card.' + id)),
+            h('div', { className: 'elz-ls-bar' },
+              h('div', { className: 'elz-ls-fill elz-dist-' + id, style: { width: Math.round((dist[id] / distMax) * 100) + '%' } })),
+            h('span', { className: 'elz-ls-count' }, String(dist[id])),
+          )),
+        ),
+        h('div', { style: { display: 'flex', flexDirection: 'column', gap: 6 } },
+          h('span', { className: 'elz-h' }, t('stat.heat')),
+          heatEmpty ? h('span', { className: 'elz-note' }, t('stat.heatNone')) : null,
+          h('div', { style: { display: 'flex', gap: 5 } },
+            h('div', { className: 'elz-ls-wd' },
+              WD.map((w, i) => h('span', { key: w, style: { gridRow: String(i * 2 + 1) } }, w)),
+            ),
+            h('div', { className: 'elz-ls-heatwrap' },
+              h('div', { className: 'elz-ls-months' }, monthLabels),
+              h('div', { className: 'elz-ls-heat', onMouseLeave: () => setHeatHover(null) },
+                cells.map((cell, i) => cell === null
+                  ? h('div', { className: 'elz-ls-cell elz-ls-future', key: 'f' + i })
+                  : h('div', {
+                      className: 'elz-ls-cell elz-ls-h' + heatLevel(cell.n),
+                      key: cell.key,
+                      title: cell.key + ' · ' + cell.n,
+                      onMouseEnter: () => setHeatHover(cell),
+                    }))),
+            ),
+          ),
+          h('div', { className: 'elz-ls-legend' },
+            h('span', null, t('stat.less')),
+            [0, 1, 2, 3, 4].map((lv) => h('div', { className: 'elz-ls-mini elz-ls-h' + lv, key: lv })),
+            h('span', null, t('stat.more')),
+          ),
+          h('span', { className: 'elz-note' },
+            heatHover
+              ? heatHover.key + ' · ' + (heatHover.n > 0 ? t('stat.heatTip').replace('{n}', String(heatHover.n)) : t('stat.heatTipZero'))
+              : t('stat.heatTotal').replace('{n}', String(heatTotal))),
+        ),
+        h('span', { className: 'elz-note' }, t('stat.dueNote')),
+      );
+    }
+    // --------------------------------------------- favorites（v1.7.0 收藏视图）
+    function FavView({ s, t }) {
+      const favWords = React.useMemo(() => Object.keys(s.fav || {})
+        .map((w) => ({ w, at: typeof s.fav[w] === 'number' ? s.fav[w] : 0 }))
+        .filter((x) => wordByWord[x.w])
+        .sort((a, b) => b.at - a.at), [s.fav]);
+      const favLines = React.useMemo(() => Object.values(s.favLines || {})
+        .sort((a, b) => (b.at || 0) - (a.at || 0)), [s.favLines]);
+      const nothing = favWords.length === 0 && favLines.length === 0;
+      return h('section', { className: 'elz-root elz-page' }, h(Styles),
+        nothing ? h('p', { className: 'elz-empty' }, t('fav.empty')) : h(React.Fragment, null,
+          h('span', { className: 'elz-h' }, t('fav.words') + ' · ' + favWords.length),
+          favWords.length === 0 ? null : h('div', { className: 'elz-cards' },
+            favWords.map((x) => h(WordCard, { key: x.w, entry: wordByWord[x.w], state: markedState(s.known, x.w), t }))),
+          h('span', { className: 'elz-h' }, t('fav.lines') + ' · ' + favLines.length),
+          favLines.length === 0 ? null : h('div', { className: 'elz-patterns' },
+            favLines.map((ln) => h('div', { className: 'elz-pattern', key: ln.en },
+              h('div', { style: { display: 'flex', alignItems: 'flex-start', gap: 6 } },
+                h('span', { className: 'elz-pattern-en' }, ln.en),
+                h(SpeakButton, { text: ln.en, t }),
+                h('button', { type: 'button', className: 'elz-speak', title: t('fav.remove'),
+                  'aria-label': t('fav.remove'), onClick: () => { setFavLine(ln.en, ln.zh, ln.w || ''); } }, '✕'),
+              ),
+              ln.w ? h('span', { className: 'elz-chip' }, ln.w) : null,
+              h('span', { className: 'elz-pattern-zh' }, ln.zh),
+            ))),
         ),
       );
     }
@@ -17123,6 +17613,20 @@ const TOPIC_RULES = [
       const setView = (value) => { setStore({ view: value }); };
       const briefFold = !!s.briefFold;
       const setBriefFold = (value) => { setStore({ briefFold: !!value }); };
+      // v1.7.0 UX 轮: 「/」一键聚焦查词/单词本搜索框（输入框内打字时不触发）
+      React.useEffect(() => {
+        if (typeof document === 'undefined' || typeof window === 'undefined') return undefined;
+        const onKey = (event) => {
+          if (!event || event.key !== '/') return;
+          const el = event.target;
+          if (el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA')) return;
+          if (view !== 'words' && view !== 'book') return;
+          const input = document.getElementById(view === 'words' ? 'elz-lookup' : 'elz-book-search');
+          if (input) { event.preventDefault(); input.focus(); }
+        };
+        window.addEventListener('keydown', onKey);
+        return () => { window.removeEventListener('keydown', onKey); };
+      }, [view]);
 
       const row = catalog && catalog.byId ? catalog.byId[sessionId] : undefined;
       const title = (row && (row.title || row.displayTitle)) || '';
@@ -17141,24 +17645,58 @@ const TOPIC_RULES = [
       const [patternOffset, setPatternOffset] = React.useState(0);
       React.useEffect(() => { setPatternOffset(0); }, [briefIds]);
       // one rotated pair of sentence frames per topic; "another set" walks the list
-      const patternRows = React.useMemo(() => {
-        const rows = [];
+      // v1.7.0 句式二层: 手作句式(每主题 8 条) + 词库例句层(贴主题、6–22 词、带中文翻译、剔虚词)，按会话标题稳定抽样 60 条，合并去重后滑窗轮换
+      const exampleRows = React.useMemo(() => {
+        const want = new Set(briefTopics.map((tp) => tp.id));
+        if (want.has('general')) { want.delete('general'); want.add('daily'); }
+        const pool = [];
+        const seenW = new Set();
+        for (const entry of WORDS) {
+          if (seenW.has(entry.w) || FUNCTION_WORD.has(String(entry.w || '').toLowerCase())) continue;
+          if (!tagsOf(entry).some((tag) => want.has(tag))) continue;
+          const en = String(entry.en || '');
+          const zh = String(entry.zhEx || '');
+          if (!en || !zh) continue;
+          const wc = en.split(/\s+/).length;
+          if (wc < 6 || wc > 22) continue;
+          seenW.add(entry.w);
+          pool.push({ en, zh, w: entry.w });
+        }
+        const seedSrc = title || 'general';
+        let seed = 0;
+        for (let i = 0; i < seedSrc.length; i++) seed = (seed * 31 + seedSrc.charCodeAt(i)) >>> 0;
+        shuffle(pool, mulberry32(seed));
+        return pool.slice(0, 60);
+      }, [briefIds, title]);
+      const combinedRows = React.useMemo(() => {
+        const out = [];
         const seen = new Set();
-        for (const topic of [leadTopic]) {
+        for (const topic of briefTopics) {
           const list = Array.isArray(topic.patterns) ? topic.patterns : [];
-          if (list.length === 0) continue;
-          for (let step = 0; step < 2; step += 1) {
-            const at = (patternOffset + step) % list.length;
-            const item = list[at];
-            if (!item) continue;
-            const key = topic.id + '|' + at;
-            if (seen.has(key)) continue;
-            seen.add(key);
-            rows.push({ key, en: item.en, zh: item.zh });
+          for (const item of list) {
+            const sig = String(item.en || '');
+            if (!sig || seen.has(sig)) continue;
+            seen.add(sig);
+            out.push({ en: sig, zh: String(item.zh || ''), w: '', kind: 'pat' });
           }
         }
+        for (const ex of exampleRows) {
+          if (seen.has(ex.en)) continue;
+          seen.add(ex.en);
+          out.push({ en: ex.en, zh: ex.zh, w: ex.w, kind: 'ex' });
+        }
+        return out;
+      }, [briefIds, exampleRows]);
+      // ↻ 沿合并池滑窗，一次 4 行，循环轮换
+      const patternRows = React.useMemo(() => {
+        const n = combinedRows.length;
+        const rows = [];
+        if (n === 0) return rows;
+        for (let i = 0; i < Math.min(4, n); i += 1) {
+          rows.push(combinedRows[(patternOffset + i) % n]);
+        }
         return rows;
-      }, [briefIds, patternOffset]);
+      }, [combinedRows, patternOffset]);
 
       const words = React.useMemo(() => pickTopicWords(title, offset, s.settings, convText, loadPacks(sessionId)), [sessionId, title, offset, s.settings, convText, s.packsTick]);
       const [bookPage, setBookPage] = React.useState(0);
@@ -17261,10 +17799,11 @@ const TOPIC_RULES = [
 
       return h('div', { className: 'elz-root elz-page' }, h(Styles),
         // --- topic brief
+        // v1.7.0: 主题简报整体暂时隐藏（BRIEF_ENABLED=false）——用户反馈鸡肋、占空间；恢复显示改回 true 即可。
         // v1.6.0 feedback: the brief ate the whole pane, so it folds. The fold is persisted
         // (store.briefFold), and the topic chips stay visible even when folded — they are one
         // compact line and they tell you which topic the word list below belongs to.
-        h('section', { className: 'elz-topic' + (briefFold ? ' elz-topic-min' : '') },
+        BRIEF_ENABLED ? h('section', { className: 'elz-topic' + (briefFold ? ' elz-topic-min' : '') },
           h('div', { className: 'elz-head-row' },
             h('span', { className: 'elz-h' }, t('tab.briefHeading')),
             h('div', { className: 'elz-head-tools' },
@@ -17313,7 +17852,34 @@ const TOPIC_RULES = [
             )),
             h('span', { className: 'elz-note' }, t('tab.briefPatternsLead')),
           ) : null),
-        ),
+        ) : null,
+        // v1.7.0 UX 轮: 句式学习独立成块——简报隐藏后保留（↻ 换一组 + 朗读）；BRIEF_ENABLED 恢复时本块让位，避免句式出现两份
+        !BRIEF_ENABLED && patternRows.length > 0 ? h('section', { className: 'elz-topic elz-topic-min' },
+          h('div', { className: 'elz-head-row' },
+            h('span', { className: 'elz-h' }, t('tab.briefPatterns')),
+            h('button', {
+              type: 'button', className: 'elz-btn elz-btn-ghost',
+              onClick: () => { setPatternOffset((value) => value + 1); },
+              title: t('tab.briefPatternsMore'),
+            }, '↻ ' + t('tab.briefPatternsMore')),
+          ),
+          h('div', { className: 'elz-patterns' },
+            patternRows.map((row) => h('div', { className: 'elz-pattern', key: row.key },
+              h('div', { style: { display: 'flex', alignItems: 'flex-start', gap: 6 } },
+                h('span', { className: 'elz-pattern-en' }, row.en),
+                h(SpeakButton, { text: row.en, t }),
+                row.kind === 'ex' && row.w ? h('span', { className: 'elz-chip elz-pattern-word', title: row.w }, row.w) : null,
+                h('button', {
+                  type: 'button', className: 'elz-speak elz-fav-btn' + (s.favLines && s.favLines[row.en] ? ' elz-fav-on' : ''),
+                  title: t('fav.' + (s.favLines && s.favLines[row.en] ? 'remove' : 'add')),
+                  onClick: () => { setFavLine(row.en, row.zh, row.w || ''); },
+                }, s.favLines && s.favLines[row.en] ? '★' : '☆'),
+              ),
+              h('span', { className: 'elz-pattern-zh' }, row.zh),
+            )),
+            h('span', { className: 'elz-note' }, t('tab.briefPatternsLead')),
+          ),
+        ) : null,
         // --- view switch: topic words / word book, gear opens settings
         h('div', { className: 'elz-seg-row' },
           h('div', { className: 'elz-seg', role: 'tablist' },
@@ -17322,6 +17888,11 @@ const TOPIC_RULES = [
               className: 'elz-seg-btn' + (view === 'words' ? ' elz-seg-on' : ''),
               onClick: () => { setView('words'); },
             }, t('tab.viewWords')),
+            h('button', {
+              type: 'button', 'aria-selected': view === 'fav' ? 'true' : 'false',
+              className: 'elz-seg-btn' + (view === 'fav' ? ' elz-seg-on' : ''),
+              onClick: () => { setView('fav'); },
+            }, '★ ' + t('tab.viewFav')),
             h('button', {
               type: 'button', 'aria-selected': view === 'book' ? 'true' : 'false',
               className: 'elz-seg-btn' + (view === 'book' ? ' elz-seg-on' : ''),
@@ -17332,6 +17903,11 @@ const TOPIC_RULES = [
               className: 'elz-seg-btn' + (view === 'quiz' ? ' elz-seg-on' : ''),
               onClick: () => { setView('quiz'); },
             }, t('tab.viewQuiz')),
+            h('button', {
+              type: 'button', 'aria-selected': view === 'stats' ? 'true' : 'false',
+              className: 'elz-seg-btn' + (view === 'stats' ? ' elz-seg-on' : ''),
+              onClick: () => { setView('stats'); },
+            }, t('tab.viewStats')),
           ),
           h('button', {
             type: 'button', 'aria-selected': view === 'settings' ? 'true' : 'false',
@@ -17340,10 +17916,14 @@ const TOPIC_RULES = [
             title: t('tab.viewSettings'), 'aria-label': t('tab.viewSettings'),
           }, '⚙'),
         ),
+        view === 'fav' ?
+        h(FavView, { s, t }) :
         view === 'settings' ?
         h(SettingsPanel, { s, t, title, convText, sessionId }) :
         view === 'quiz' ?
         h(QuizView, { s, t, title, convText, sessionId }) :
+        view === 'stats' ?
+        h(StatsView, { s, t }) :
         view === 'book' ?
         // --- word book (saved words)
         h('section', { style: { display: 'flex', flexDirection: 'column', gap: 8 } },
@@ -17353,7 +17933,7 @@ const TOPIC_RULES = [
             h('div', { className: 'elz-seg', role: 'group' },
               STATE_META.map((meta) => h('button', {
                 type: 'button', key: meta.id,
-                className: 'elz-seg-btn' + (bookFilter.indexOf(meta.id) !== -1 ? ' elz-seg-on' : ''),
+                className: 'elz-seg-btn elz-st-' + meta.id + (bookFilter.indexOf(meta.id) !== -1 ? ' elz-seg-on' : ''),
                 'aria-pressed': bookFilter.indexOf(meta.id) !== -1 ? 'true' : 'false',
                 title: t('card.' + meta.id + 'On'),
                 onClick: () => {
@@ -17371,7 +17951,8 @@ const TOPIC_RULES = [
             ? h('p', { className: 'elz-empty' }, t('book.emptyFiltered'))
             : h(React.Fragment, null,
                 h('input', {
-                  type: 'search', className: 'elz-lookup-input', placeholder: t('book.search'),
+                  id: 'elz-book-search',
+                  type: 'search', className: 'elz-lookup-input', placeholder: t('book.search') + '  ( / )',
                   value: bookQuery, 'aria-label': t('book.search'),
                   onChange: (event) => { setBookQuery(event.target.value); setBookPage(0); },
                 }),
@@ -17411,7 +17992,8 @@ const TOPIC_RULES = [
           ) : null,
           h('p', { className: 'elz-note' }, t('tab.briefNote')),
           h('input', {
-            type: 'search', className: 'elz-lookup-input', placeholder: t('tab.lookup'),
+            id: 'elz-lookup',
+            type: 'search', className: 'elz-lookup-input', placeholder: t('tab.lookup') + '  ( / )',
             value: lookup, 'aria-label': t('tab.lookup'),
             onChange: (event) => { setLookup(event.target.value); },
           }),
@@ -17503,7 +18085,7 @@ const TOPIC_RULES = [
           const next = on ? null : meta.id;
           return h('button', {
             key: meta.id, type: 'button',
-            className: 'elz-tail-st' + (on ? ' elz-tail-st-on' : ''),
+            className: 'elz-tail-st' + (on ? ' elz-tail-st-on elz-st-' + meta.id : ''),
             onClick: () => { markWord(entry.w, next); },
             'aria-pressed': on ? 'true' : 'false',
             title: t('card.' + meta.id) + ' · ' + entry.w,
@@ -17524,6 +18106,11 @@ const TOPIC_RULES = [
           entry.ipa ? h('span', { className: 'elz-ipa' }, entry.ipa) : null,
           entry.__pack ? h('span', { className: 'elz-ipa' }, '·AI') : null,
           (entry.en || entry.zhEx) ? h('button', { type: 'button', className: 'elz-tail-exbtn', onClick: () => { setShowEx((v) => !v); }, 'aria-pressed': showEx ? 'true' : 'false', title: t('tail.example') }, showEx ? '▾ 例' : '▸ 例') : null,
+          h('button', {
+            type: 'button', className: 'elz-tail-exbtn elz-fav-btn' + (s.fav && s.fav[entry.w] ? ' elz-fav-on' : ''),
+            title: t('fav.' + (s.fav && s.fav[entry.w] ? 'remove' : 'add')),
+            onClick: () => { setFavWord(entry.w, !(s.fav && s.fav[entry.w])); },
+          }, s.fav && s.fav[entry.w] ? '★' : '☆'),
         ),
         h('span', { className: 'elz-tail-zh', title: entry.zh }, entry.zh),
         h(TailStateRow, { entry, state, t }),
